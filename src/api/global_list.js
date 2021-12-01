@@ -1,14 +1,13 @@
 import api from './index'
 import { axios } from '@/utils/request'
-import { axiosReport } from '@/utils/requestReport'
 
-export function findByCode (parameter) {
-  return axios({
-    url: api.GlobalList,
-    method: 'get',
-    params: parameter
-  })
-}
+// export function findByCode (parameter) {
+//   return axios({
+//     url: api.GlobalList,
+//     method: 'get',
+//     params: parameter
+//   })
+// }
 
 export function GlobalListItems (parameter) {
   return axios({
@@ -57,14 +56,6 @@ export function GlobalListValueUpdate (parameter) {
     data: parameter
   })
 }
-export function getApParamByType (parameter) {
-  return axiosReport({
-    url: api.getApParamByType,
-    method: 'get',
-    params: parameter
-  })
-}
-
 export function GlobalListValueDelete (parameter) {
   return axios({
     url: api.GlobalListValueDelete,

@@ -133,8 +133,8 @@ export default {
         name: '',
         province: '',
         address: '',
-        stockManagement: '',
-        telNumber: '',
+        managerId: '',
+        phone: '',
         parentId: ''
       }
     }

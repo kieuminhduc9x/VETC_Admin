@@ -1,8 +1,8 @@
 import api from './index'
-import { axiosReport } from '@/utils/requestReport'
+import { axios } from '@/utils/request'
 
 export function exportReport (parameter) {
-  return axiosReport({
+  return axios({
     url: api.exportReport,
     method: 'post',
     data: parameter,
@@ -11,7 +11,7 @@ export function exportReport (parameter) {
 }
 
 export function previewReport (parameter) {
-  return axiosReport({
+  return axios({
     url: api.previewReport,
     method: 'post',
     data: parameter,

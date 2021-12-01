@@ -48,10 +48,10 @@ export function phoneValidator (rule, value, callback) {
     if (reg1.test(value) === false) {
       callback(new Error(' Số điện thoại nhập sai định dạng'))
     } else {
-      if (value.toString().trim().length > 9 && value.toString().trim().length < 16) {
+      if (value.toString().trim().length === 10) {
         callback()
       } else {
-        callback(new Error('Số điện thoại phải từ 10 đến 15 ký tự'))
+        callback(new Error('Số điện thoại nhập sai định dạng'))
       }
     }
   }

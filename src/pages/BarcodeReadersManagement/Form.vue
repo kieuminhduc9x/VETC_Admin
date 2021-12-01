@@ -7,115 +7,68 @@
     :destroy-on-close="false"
     :mask-closable="false"
   >
-    <a-form-model :model="form" ref="ruleForm">
-      <a-row :gutter="16">
-        <a-col :xs="24" :md="12" :lg="12">
-          <a-form-model-item
-            label="Mã kho"
-            prop="code"
-            :rules="[
-              {
-                required: true,
-                message: 'Mã kho là bắt buộc',
-                trigger: 'change'
-              },
-              {
-                max: 200,
-                message: 'Nhập tối đa 200 ký tự',
-                trigger: 'change'
-              }
-            ]">
-            <a-input v-model="form.code" @blur="DeepTrimValue(form)"></a-input>
-          </a-form-model-item>
-        </a-col>
-        <a-col :xs="24" :md="12" :lg="12">
-          <a-form-model-item
-            label="Tên kho"
-            prop="name"
-            :rules="[
-              {
-                required: true,
-                message: 'Tên kho là bắt buộc',
-                trigger: 'change'
-              },
-              {
-                max: 250,
-                message: 'Nhập tối đa 250 ký tự',
-                trigger: 'change'
-              }
-            ]">
-            <a-input v-model="form.name" @blur="DeepTrimValue(form)"></a-input>
-          </a-form-model-item>
-        </a-col>
-      </a-row>
-      <a-row :gutter="16">
-        <a-col :xs="24" :md="12" :lg="12">
-          <a-form-model-item
-            label="Tỉnh/Tp"
-            prop="province"
-            :rules="[
-              {
-                required: true,
-                message: 'Tỉnh/TP là bắt buộc',
-                trigger: 'change'
-              },
-            ]">
-            <a-select v-model="form.province" >
-              <a-select-option v-for="item in listProvince" :key="item.provinceCode" :value="item.provinceCode">
-                {{ item.provinceName }}
-              </a-select-option>
-            </a-select>
-          </a-form-model-item>
-        </a-col>
-        <a-col :xs="24" :md="12" :lg="12">
-          <a-form-model-item
-            label="Số thuê bao"
-            prop="telNumber"
-            :rules="[
-              {
-                validator: phoneValidator,
-                trigger: 'change'
-              }
-            ]">
-            <a-input v-model="form.telNumber"></a-input>
-          </a-form-model-item>
-        </a-col>
-      </a-row>
-      <a-row :gutter="16">
-        <a-col :xs="24" :md="12" :lg="12">
-          <a-form-model-item
-            label="IMEI máy"
-            prop="imeiNumber"
-            :rules="[
-              {
-                validator: phoneValidator,
-                trigger: 'change'
-              }
-            ]">
-            <a-input v-model="form.imeiNumber"></a-input>
-          </a-form-model-item>
-        </a-col>
-        <a-col :xs="24" :md="12" :lg="12">
-          <a-form-model-item
-            label="Địa chỉ"
-            prop="address"
-            :rules="[
-              {
-                required: true,
-                message: 'Địa chỉ là bắt buộc',
-                trigger: 'change'
-              },
-              {
-                max: 500,
-                message: 'Nhập tối đa 500 ký tự',
-                trigger: 'change'
-              }
-            ]">
-            <a-textarea v-model="form.address" @blur="DeepTrimValue(form)"></a-textarea>
-          </a-form-model-item>
-        </a-col>
-      </a-row>
-    </a-form-model>
+    <a-spin :spinning="loading">
+      <a-form-model :model="form" ref="ruleForm">
+        <a-row :gutter="16">
+          <a-col :xs="24" :md="12" :lg="12">
+            <a-form-model-item
+              label="Kho hàng"
+              prop="warehouseId"
+              :rules="[
+                {
+                  required: true,
+                  message: 'Kho hàng là bắt buộc',
+                  trigger: 'change'
+                }
+              ]">
+              <a-select
+                v-model="form.warehouseId"
+                :allowClear="true"
+                show-search
+                :filter-select-option="filterSelectOption">
+                <a-select-option v-for="item in listWarehouse" :key="item.id" :value="item.id">
+                  {{ item.name }}
+                </a-select-option>
+              </a-select>
+            </a-form-model-item>
+          </a-col>
+          <a-col :xs="24" :md="12" :lg="12">
+            <a-form-model-item
+              label="Số thuê bao"
+              prop="phone"
+              :rules="[
+                {
+                  required: true,
+                  message: 'Số thuê bao là bắt buộc',
+                  trigger: 'change'
+                },
+                {
+                  validator: phoneValidator,
+                  trigger: 'change'
+                }
+              ]">
+              <a-input v-model="form.phone"></a-input>
+            </a-form-model-item>
+          </a-col>
+        </a-row>
+        <a-row :gutter="16">
+          <a-col :xs="24" :md="12" :lg="12">
+            <a-form-model-item
+              label="IMEI"
+              prop="imei"
+              :rules="[
+                {
+                  required: true,
+                  message: 'IMEI là bắt buộc',
+                  trigger: 'change'
+                }
+              ]">
+              <a-input v-model="form.imei"></a-input>
+            </a-form-model-item>
+          </a-col>
+        </a-row>
+      </a-form-model>
+    </a-spin>
     <div
       :style="{
         position: 'absolute',
@@ -129,7 +82,7 @@
         borderRadius: '0 0 4px 4px',
       }"
     >
-      <a-button type="primary" style="marginRight: 8px" >
+      <a-button type="primary" style="marginRight: 8px" @click="submitData">
         {{ isCreate === true? 'Thêm mới' : 'Cập nhật' }}
       </a-button>
       <a-button @click="closeForm">
@@ -141,6 +94,7 @@
 <script>
 import { phoneValidator } from '@/utils/helpers'
 import { updateBarcodeReadersManagement, createBarcodeReadersManagement } from '@/api/barcode-readers-management'
+import { searchWarehouseManagement } from '@/api/warehouse-management'
 export default {
   components: {
 
@@ -181,18 +135,37 @@ export default {
       visible: false,
       form: {
         id: '',
-        code: '',
-        name: '',
-        province: '',
-        address: '',
-        stockManagement: '',
-        telNumber: '',
-        parentId: ''
-      }
+        warehouseId: '',
+        imei: '',
+        phone: ''
+      },
+      listWarehouse: [],
+      loading: false
     }
+  },
+  created () {
+    this.getListWarehouse()
   },
   methods: {
     phoneValidator,
+    getListWarehouse (value) {
+      this.loading = true
+      const params = {
+        pagination: false
+      }
+      searchWarehouseManagement(params).then(res => {
+        this.listWarehouse = res.data
+      }).catch(err => {
+        const msg = this.handleApiError(err)
+        this.$notification.error({
+          message: '',
+          description: msg,
+          duration: 5
+        })
+      }).finally(res => {
+        this.loading = false
+      })
+    },
     closeForm () {
       this.visibleForm = false
       this.form = {}

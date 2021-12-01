@@ -2,7 +2,7 @@
   <a-layout-header class="header">
     <div class="head-logo">
       <router-link :to="{ name: 'dashboard' }">
-        <img src="@/assets/vna.png" alt="VNA">
+        <!--        <img src="@/assets/vna.png" alt="VNA">-->
       </router-link>
       <div class="headline">{{ $t('AppName') }}</div>
     </div>

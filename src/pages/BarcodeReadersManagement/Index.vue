@@ -20,9 +20,10 @@
                   v-model="filter.warehouseId"
                   :allowClear="true"
                   show-search
+                  @change="changeWarehouse"
                   :filter-select-option="filterSelectOption">
                   <a-select-option :key="''" :value="''">--Tất cả--</a-select-option>
-                  <a-select-option v-for="item in listWarehouse" :key="item.hrvWarehouseId" :value="item.hrvWarehouseId">
+                  <a-select-option v-for="item in listWarehouse" :key="item.id" :value="item.id">
                     {{ item.name }}
                   </a-select-option>
                 </a-select>
@@ -108,7 +109,7 @@ import { commonMethods, authComputed } from '@/store/helpers'
 import pdf from 'vue-pdf'
 import FormWarehouse from './Form'
 import _ from 'lodash'
-import { GetStoreForUser } from '@/api/user'
+import { searchWarehouseManagement } from '@/api/warehouse-management'
 
 const ResizeableTitle = resizeableTitle(columns)
 export default {
@@ -162,8 +163,8 @@ export default {
     }
   },
   async created () {
-    await this.getListWarehouse()
-    await this.getData()
+    await this.getListWarehouse('')
+    await this.getData('')
   },
   mounted () {
     this.scrollBarOfTable()
@@ -173,10 +174,18 @@ export default {
   },
   methods: {
     ...commonMethods,
-    getListWarehouse () {
+    changeWarehouse (value) {
+      if (value) {
+        this.getData(value)
+      }
+    },
+    getListWarehouse (value) {
       this.loading = true
-      GetStoreForUser({ userId: this.currentUser.userId }).then(res => {
-        this.listWarehouse = res
+      const params = {
+        pagination: false
+      }
+      searchWarehouseManagement(params).then(res => {
+        this.listWarehouse = res.data
       }).catch(err => {
         const msg = this.handleApiError(err)
         this.$notification.error({
@@ -192,8 +201,10 @@ export default {
       this.pagination = pagination
       this.getData()
     },
-    getData () {
-      const params = {}
+    getData (value) {
+      const params = {
+        warehouseId: value
+      }
       this.loading = false
       this.data = []
       searchBarcodeReadersManagement(params).then(res => {
@@ -225,6 +236,7 @@ export default {
     closeForm () {
       this.visibleForm = false
       this.modelObject = {}
+      this.getData()
     },
     onDeleteRow (record) {
       this.$confirm({

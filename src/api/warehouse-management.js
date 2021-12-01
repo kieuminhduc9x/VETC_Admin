@@ -1,9 +1,9 @@
-import { axiosWarehouse } from '@/utils/requestWarehouse'
+import { axios } from '@/utils/request'
 import api from '@/api/index'
 
 // tìm kiếm
 export function searchWarehouseManagement (parameter) {
-  return axiosWarehouse({
+  return axios({
     url: api.warehouseManagement.search,
     method: 'get',
     params: parameter
@@ -12,7 +12,7 @@ export function searchWarehouseManagement (parameter) {
 
 // thêm mới
 export function createWarehouseManagement (parameter) {
-  return axiosWarehouse({
+  return axios({
     url: api.warehouseManagement.create,
     method: 'post',
     data: parameter
@@ -21,7 +21,7 @@ export function createWarehouseManagement (parameter) {
 
 // Cập nhật
 export function updateWarehouseManagement (parameter) {
-  return axiosWarehouse({
+  return axios({
     url: api.warehouseManagement.update,
     method: 'post',
     data: parameter
@@ -30,7 +30,7 @@ export function updateWarehouseManagement (parameter) {
 
 // Xóa
 export function deleteWarehouseManagement (parameter) {
-  return axiosWarehouse({
+  return axios({
     url: api.warehouseManagement.delete,
     method: 'post',
     data: parameter
@@ -39,7 +39,7 @@ export function deleteWarehouseManagement (parameter) {
 
 // chi tiết
 export function findByIdWarehouseManagement (parameter) {
-  return axiosWarehouse({
+  return axios({
     url: api.warehouseManagement.detail,
     method: 'get',
     params: parameter

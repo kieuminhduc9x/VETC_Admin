@@ -1,6 +1,5 @@
 import api from './index'
 import { axios } from '@/utils/request'
-import { axiosReport } from '@/utils/requestReport'
 
 export async function listProvince (parameter) {
   return axios({
@@ -23,29 +22,6 @@ export async function GetPrecinctByDistrict (parameter) {
     params: parameter
   })
 }
-export async function getApParamByType (parameter) {
-  return axiosReport({
-    url: api.getApParamByType,
-    method: 'get',
-    params: parameter
-  })
-}
-export function listDistrict (parameter) {
-  return axios({
-    url: api.ListDistrict,
-    method: 'get',
-    params: parameter
-  })
-}
-
-export function listPhoenix (parameter) {
-  return axios({
-    url: api.ListPhoenix,
-    method: 'get',
-    params: parameter
-  })
-}
-
 export function UpdateProvince (parameter) {
   return axios({
     url: api.UpdateProvince,

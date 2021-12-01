@@ -24,8 +24,8 @@ export default [
   },
   {
     title: 'Tỉnh/TP',
-    dataIndex: 'province',
-    scopedSlots: { customRender: 'province' },
+    dataIndex: 'provinceName',
+    scopedSlots: { customRender: 'provinceName' },
     align: 'left',
     ellipsis: true,
     width: 150
@@ -33,8 +33,8 @@ export default [
   },
   {
     title: 'Địa chỉ',
-    dataIndex: 'address',
-    scopedSlots: { customRender: 'address' },
+    dataIndex: 'warehouseAddress',
+    scopedSlots: { customRender: 'warehouseAddress' },
     align: 'left',
     ellipsis: true,
     width: 250

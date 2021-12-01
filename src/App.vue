@@ -3,7 +3,7 @@
     <div id="app">
       <router-view/>
       <!--      <select-hub/>-->
-      <select-store />
+      <!--      <select-store />-->
     </div>
   </a-config-provider>
 </template>
