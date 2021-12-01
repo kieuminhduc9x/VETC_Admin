@@ -1,2 +1,32 @@
-# quan-ly-kho-nc
-Quản lý kho nam cường
+# vue-boilerplate
+
+## Project setup
+```
+yarn install
+```
+
+### Compiles and hot-reloads for development
+```
+yarn run serve
+```
+
+### Compiles and minifies for production
+```
+yarn run build
+```
+
+### Run your tests
+```
+yarn run test
+```
+
+### Lints and fixes files
+```
+yarn run lint
+```
+
+### DEPLOY
+```
+yarn install
+yarn build
+```

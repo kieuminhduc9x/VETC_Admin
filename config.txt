@@ -1,0 +1,18 @@
+# local
+VUE_APP_I18N_LOCALE=vi
+VUE_APP_I18N_FALLBACK_LOCALE=en
+#VUE_APP_API_SERVER_URL=https://apiqlkd.vietants.vn/
+VUE_APP_API_SERVER_URL=http://45.77.33.180:8200/
+VUE_APP_API_SERVER_URL_TRACKING=http://45.77.33.180:8200/
+VUE_APP_API_SERVER_REPORT=http://45.77.33.180:8201/
+VUE_APP_API_SERVER_STORE=http://45.77.33.180:8202/
+
+
+# Production
+VUE_APP_I18N_LOCALE=vi
+VUE_APP_I18N_FALLBACK_LOCALE=en
+#VUE_APP_API_SERVER_URL=https://apiqlkd.vietants.vn/
+VUE_APP_API_SERVER_URL=https://api.aizalog.com/opt
+VUE_APP_API_SERVER_REPORT=https://api.aizalog.com/report
+VUE_APP_API_SERVER_URL_TRACKING=https://api.aizalog.com/cust
+VUE_APP_API_SERVER_STORE=https://api.aizalog.com/opt

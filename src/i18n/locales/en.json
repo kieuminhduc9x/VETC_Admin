@@ -1,0 +1,18 @@
+{
+  "login": {
+    "Forgot password": "Forgot password",
+    "Please enter your password": "Please enter your password",
+    "Please enter an account name or email address": "Please enter an account name or email address",
+    "Username": "Username",
+    "Password": "Password"
+  },
+  "bu": {
+    "title": "Business Unit Settings",
+    "labels": {
+      "bu": "Business Unit"
+    },
+    "validation": {
+      "bu_required": "Business Unit is required field"
+    }
+  }
+}

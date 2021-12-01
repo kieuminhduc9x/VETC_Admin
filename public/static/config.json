@@ -1,0 +1,11 @@
+{
+  "VUE_APP_I18N_LOCALE":"vi",
+  "VUE_APP_I18N_FALLBACK_LOCALE":"en",
+  "VUE_APP_VDI":true,
+  "VUE_APP_API_SERVER_URL":"http://10.60.156.154:8998/",
+  "VUE_APP_DOMAIN_CODE":"QLKD_GPCNTT_BU_YTE",
+  "VUE_APP_URL":"http://10.60.155.11:8001",
+  "VUE_APP_LOGIN_URL":"http://10.60.155.11:8001/login",
+  "VUE_APP_PASSPORT_URL":"http://10.58.71.130:8001/passportv3/login",
+  "VUE_APP_VALIDATE_URL":"http://10.58.71.130:8001/passportv3/validate"
+}
