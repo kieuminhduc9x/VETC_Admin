@@ -31,30 +31,6 @@ export const asyncRouterMap = [
     }
   },
   {
-    path: '/hub-start',
-    name: 'hubstart',
-    component: () => import('../pages/HubStart/index.vue'),
-    meta: {
-      authRequired: true,
-      head: {
-        title: 'Nhận vận đơn tại Hub đầu',
-        description: 'Nhận vận đơn tại Hub đầu'
-      }
-    }
-  },
-  {
-    path: '/hub-end',
-    name: 'hubend',
-    component: () => import('../pages/HubEnd/index.vue'),
-    meta: {
-      authRequired: true,
-      head: {
-        title: 'Nhận AWB tại Hub cuối',
-        description: 'Nhận AWB tại Hub cuối'
-      }
-    }
-  },
-  {
     path: '/order',
     name: 'order',
     component: () => import('../pages/Order/index.vue'),
@@ -63,103 +39,6 @@ export const asyncRouterMap = [
       head: {
         title: 'Tra cứu thông tin vận đơn',
         description: 'Tra cứu thông tin vận đơn'
-      }
-    }
-  },
-  // {
-  //   path: '/order/:id/detail',
-  //   name: 'order_detail',
-  //   component: () => import('../pages/Order/detail'),
-  //   meta: {
-  //     authRequired: true,
-  //     head: {
-  //       title: 'Thông tin chi tiết vận đơn',
-  //       description: 'Thông tin chi tiết vận đơn'
-  //     }
-  //   }
-  //
-  // },
-  {
-    path: '/group-awb',
-    name: 'groupawb',
-    component: () => import('../pages/GroupAWB/index.vue'),
-    meta: {
-      authRequired: true,
-      head: {
-        title: 'Gộp vận đơn hàng không AWB tại Hub đầu',
-        description: 'Gộp vận đơn hàng không AWB tại Hub đầu'
-      }
-    }
-  },
-  {
-    path: '/awb-transfer',
-    name: 'awbflight',
-    component: () => import('../pages/AwbTransfer/index.vue'),
-    meta: {
-      authRequired: true,
-      head: {
-        title: 'Chuyển AWB ra tàu bay tại Hub đầu',
-        description: 'Chuyển AWB ra tàu bay tại Hub đầu'
-      }
-    }
-  },
-  {
-    path: '/bike-hub-end',
-    name: 'bikehubend',
-    component: () => import('../pages/BikeHubEnd/index.vue'),
-    meta: {
-      authRequired: true,
-      head: {
-        title: 'Đặt Bike giao hàng cho Đơn hàng tại Hub cuối',
-        description: 'Đặt Bike giao hàng cho Đơn hàng tại Hub cuối'
-      }
-    }
-  },
-  {
-    path: '/bike-hub-end-receipt',
-    name: 'bikehubendreceipt',
-    component: () => import('../pages/BikeHubEndReceipt/index.vue'),
-    meta: {
-      authRequired: true,
-      head: {
-        title: 'Giao hàng cho Bike tại Hub cuối',
-        description: 'Giao hàng cho Bike tại Hub cuối'
-      }
-    }
-  },
-  {
-    path: '/flight',
-    name: 'flight',
-    component: () => import('../pages/MMaster/Flight/index.vue'),
-    meta: {
-      authRequired: true,
-      head: {
-        title: 'Danh mục chuyến bay',
-        description: 'Danh mục chuyến bay'
-      }
-    }
-  },
-  {
-    path: '/area',
-    name: 'area',
-    component: () => import('../pages/MMaster/Area/index.vue'),
-    meta: {
-      authRequired: true,
-      head: {
-        title: 'Danh mục Địa bàn',
-        description: 'Danh mục Địa bàn'
-      }
-    }
-  },
-  {
-    path: '/user',
-    name: 'user',
-    component: () => import('../pages/MMaster/User/index.vue'),
-    meta: {
-      authRequired: true,
-      head: {
-        title: 'Danh mục Người sử dụng',
-        description: 'Danh mục Người sử dụng'
       }
     }
   },
@@ -172,18 +51,6 @@ export const asyncRouterMap = [
       head: {
         title: 'Aizalog',
         description: 'Aizalog'
-      }
-    }
-  },
-  {
-    path: '/admin',
-    name: 'hubStart',
-    component: () => import('../pages/HubStart/index.vue'),
-    meta: {
-      authRequired: true,
-      head: {
-        title: 'Nhận vận đơn tại Hub đầu',
-        description: 'Nhận vận đơn tại Hub đầu'
       }
     }
   },
@@ -210,108 +77,6 @@ export const asyncRouterMap = [
       head: {
         title: 'Tham số hệ thống',
         description: 'Tham số hệ thống'
-      }
-    }
-  },
-  {
-    path: '/hub',
-    name: 'hub',
-    component: () => import('../pages/MMaster/Hub/index'),
-    meta: {
-      authRequired: true,
-      permission: [ 'hub' ],
-      head: {
-        title: 'Danh mục Hub',
-        description: 'Danh mục Hub'
-      }
-    }
-  },
-  {
-    path: '/hub/create',
-    name: 'hub.create',
-    component: () => import('../pages/MMaster/Hub/Create'),
-    meta: {
-      authRequired: true,
-      permission: [ 'hub.create' ],
-      head: {
-        title: 'Thêm mới Hub',
-        description: 'Thêm mới Hub'
-      }
-    }
-  },
-  {
-    path: '/hub/:id/update',
-    name: 'hub.update',
-    component: () => import('../pages/MMaster/Hub/Update'),
-    meta: {
-      authRequired: true,
-      permission: [ 'hub.update' ],
-      head: {
-        title: 'Cập nhật Hub',
-        description: 'Cập nhật Hub'
-      }
-    }
-  },
-  {
-    path: '/product',
-    name: 'product',
-    component: () => import('../pages/MMaster/Product/index'),
-    meta: {
-      authRequired: true,
-      permission: [ 'product' ],
-      head: {
-        title: 'Danh mục hàng hóa',
-        description: 'Danh mục hàng hóa'
-      }
-    }
-  },
-  {
-    path: '/product-offer',
-    name: 'product_offer',
-    component: () => import('../pages/MMaster/ProductOffer/index'),
-    meta: {
-      authRequired: true,
-      permission: [ 'product_offer' ],
-      head: {
-        title: 'Giá vận đơn hàng không',
-        description: 'Giá vận đơn hàng không'
-      }
-    }
-  },
-  {
-    path: '/flight-schedule',
-    name: 'flight_schedule',
-    component: () => import('../pages/MMaster/FlightSchedule/index'),
-    meta: {
-      authRequired: true,
-      permission: [ 'flight_schedule' ],
-      head: {
-        title: 'Lịch trình bay',
-        description: 'Lịch trình bay'
-      }
-    }
-  },
-  {
-    path: '/awb-last-airport',
-    name: 'awb_last_airport',
-    component: () => import('../pages/AWBLastAirport/index.vue'),
-    meta: {
-      authRequired: true,
-      head: {
-        title: 'Nhận AWB tại sân bay cuối',
-        description: 'Nhận AWB tại sân bay cuối'
-      }
-    }
-  },
-  {
-    path: '/order-back',
-    name: 'order_back',
-    component: () => import('../pages/OrderBack/index.vue'),
-    meta: {
-      authRequired: true,
-      head: {
-        title: 'Quản lý đơn hoàn',
-        description: 'Quản lý đơn hoàn'
       }
     }
   },

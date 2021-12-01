@@ -38,168 +38,19 @@
       :default-open-keys="[openKeys]"
       :style="{ height: '100%', borderRight: 0, paddingTop: '0', }"
     >
-      <!--      <a-menu-item key="5" v-if="hasPermission('order')">-->
-      <!--        <router-link :to="{ name: 'order' }">-->
-      <!--          <a-icon type="database"/>-->
-      <!--          <span>Tra cứu thông tin vận đơn</span>-->
-      <!--        </router-link>-->
-      <!--      </a-menu-item>-->
-      <!--      <a-menu-item key="3" v-if="hasPermission('hubstart')">-->
-      <!--        <router-link :to="{ name: 'hubstart' }">-->
-      <!--          <a-icon type="check-circle"/>-->
-      <!--          <span>Nhận vận đơn tại Hub đầu</span>-->
-      <!--        </router-link>-->
-      <!--      </a-menu-item>-->
-      <!--      <a-menu-item key="6" v-if="hasPermission('groupawb')">-->
-      <!--        <router-link :to="{ name: 'groupawb' }">-->
-      <!--          <a-icon type="codepen"/>-->
-      <!--          <span>Gộp AWB tại Hub đầu</span>-->
-      <!--        </router-link>-->
-      <!--      </a-menu-item>-->
-      <!--      <a-menu-item key="7" v-if="hasPermission('awbflight')">-->
-      <!--        <router-link :to="{ name: 'awbflight' }">-->
-      <!--          <a-icon type="rocket"/>-->
-      <!--          <span>Chuyển AWB tại sân bay đầu</span>-->
-      <!--        </router-link>-->
-      <!--      </a-menu-item>-->
-      <!--      <a-menu-item key="4_11" v-if="hasPermission('awb_last_airport')">-->
-      <!--        <router-link :to="{ name: 'awb_last_airport' }">-->
-      <!--          <a-icon type="file-protect"/>-->
-      <!--          <span>Nhận AWB tại sân bay cuối</span>-->
-      <!--        </router-link>-->
-      <!--      </a-menu-item>-->
-      <!--      <a-menu-item key="4" v-if="hasPermission('hubend')">-->
-      <!--        <router-link :to="{ name: 'hubend' }">-->
-      <!--          <a-icon type="file-protect"/>-->
-      <!--          <span>Nhận AWB tại Hub cuối</span>-->
-      <!--        </router-link>-->
-      <!--      </a-menu-item>-->
-      <!--      <a-menu-item key="8" v-if="hasPermission('bikehubend')">-->
-      <!--        <router-link :to="{ name: 'bikehubend' }">-->
-      <!--          <a-icon type="mobile"/>-->
-      <!--          <span>Đặt Bike tại Hub cuối</span>-->
-      <!--        </router-link>-->
-      <!--      </a-menu-item>-->
-      <!--      <a-menu-item key="9" v-if="hasPermission('bikehubendreceipt')">-->
-      <!--        <router-link :to="{ name: 'bikehubendreceipt' }">-->
-      <!--          <a-icon type="file-done"/>-->
-      <!--          <span>Giao Bike tại Hub cuối</span>-->
-      <!--        </router-link>-->
-      <!--      </a-menu-item>-->
-      <!--      <a-menu-item key="19" v-if="hasPermission('order_back')">-->
-      <!--        <router-link :to="{ name: 'order_back' }">-->
-      <!--          <a-icon type="file-done"/>-->
-      <!--          <span>Quản lý đơn hoàn</span>-->
-      <!--        </router-link>-->
-      <!--      </a-menu-item>-->
-      <!--      <a-menu-item key="11" v-if="hasPermission('flight')">-->
-      <!--        <router-link :to="{ name: 'flight' }">-->
-      <!--          <a-icon type="calendar"/>-->
-      <!--          <span>Danh mục chuyến bay</span>-->
-      <!--        </router-link>-->
-      <!--      </a-menu-item>-->
-      <!--      <a-menu-item key="12" v-if="hasPermission('area')">-->
-      <!--        <router-link :to="{ name: 'area' }">-->
-      <!--          <a-icon type="audit"/>-->
-      <!--          <span>Danh mục Địa bàn</span>-->
-      <!--        </router-link>-->
-      <!--      </a-menu-item>-->
-      <!--      <a-menu-item key="13" v-if="hasPermission('user')">-->
-      <!--        <router-link :to="{ name: 'user' }">-->
-      <!--          <a-icon type="team"/>-->
-      <!--          <span>Danh mục Người sử dụng</span>-->
-      <!--        </router-link>-->
-      <!--      </a-menu-item>-->
-      <!--      <a-menu-item key="14" v-if="hasPermission('hub')">-->
-      <!--        <router-link :to="{ name: 'hub' }">-->
-      <!--          <a-icon type="home"/>-->
-      <!--          <span>Danh mục Hub</span>-->
-      <!--        </router-link>-->
-      <!--      </a-menu-item>-->
-      <!--      <a-menu-item key="15" v-if="hasPermission('product')">-->
-      <!--        <router-link :to="{ name: 'product' }">-->
-      <!--          <a-icon type="code-sandbox"/>-->
-      <!--          <span>Danh mục hàng hóa</span>-->
-      <!--        </router-link>-->
-      <!--      </a-menu-item>-->
-      <!--      <a-menu-item key="16" v-if="hasPermission('product_offer')">-->
-      <!--        <router-link :to="{ name: 'product_offer' }">-->
-      <!--          <a-icon type="dollar"/>-->
-      <!--          <span>Giá vận đơn hàng không</span>-->
-      <!--        </router-link>-->
-      <!--      </a-menu-item>-->
-      <!--      <a-menu-item key="17" v-if="hasPermission('flight_schedule')">-->
-      <!--        <router-link :to="{ name: 'flight_schedule' }">-->
-      <!--          <a-icon type="profile"/>-->
-      <!--          <span>Lịch trình bay</span>-->
-      <!--        </router-link>-->
-      <!--      </a-menu-item>-->
-      <a-sub-menu
-        key="20"
-        v-if="$auth.hasAnyPrivilege(['SEARCH_ORDER']) === true">
-        <a slot="title"><a-icon class="icon-menu" type="database" /><span class="title-menu">Quản lý đơn hàng</span></a>
-        <a-menu-item key="20_1" v-if="$auth.hasPrivilege('SEARCH_ORDER') === true">
-          <router-link :to="{ name: 'search_order' }">
-            <span>Tất cả đơn hàng</span>
-          </router-link>
-        </a-menu-item>
-        <!--        <a-menu-item key="20_2" >-->
-        <!--          <router-link :to="{ name: '' }">-->
-        <!--            <span>Đã hủy</span>-->
-        <!--          </router-link>-->
-        <!--        </a-menu-item>-->
-      </a-sub-menu>
-      <a-sub-menu
-        key="18"
-        v-if="$auth.hasAnyPrivilege(['REPORT_SALE_REVENUE','REPORT_SALE_REVENUE_SUPPLIER','REPORT_INVOICE_WRITING','REPORT_ORDER_DAILY','REPORT_SUMMARY_BY_DAY','REPORT_SUMMARY_BY_MONTH']) === true">
-        <a slot="title"><a-icon class="icon-menu" type="mail" /><span class="title-menu">BÁO CÁO</span></a>
-        <a-menu-item key="18_1" v-if="$auth.hasPrivilege('REPORT_SALE_REVENUE') === true">
-          <router-link :to="{ name: 'report_sale_revenue' }">
-            <span>Doanh thu bán hàng</span>
-          </router-link>
-        </a-menu-item>
-        <a-menu-item key="18_2" v-if="$auth.hasPrivilege('REPORT_SALE_REVENUE_SUPPLIER') === true">
-          <router-link :to="{ name: 'report_sale_revenue_supplier' }">
-            <span>Doanh thu nhà bán hàng</span>
-          </router-link>
-        </a-menu-item>
-        <a-menu-item key="18_3" v-if="$auth.hasPrivilege('REPORT_INVOICE_WRITING') === true">
-          <router-link :to="{ name: 'report_invoice_writing' }">
-            <span>Thông tin viết hóa đơn</span>
-          </router-link>
-        </a-menu-item>
-        <a-menu-item key="18_4" v-if="$auth.hasPrivilege('REPORT_ORDER_DAILY') === true">
-          <router-link :to="{ name: 'report_order_daily' }">
-            <span>Đơn đặt hằng ngày</span>
-          </router-link>
-        </a-menu-item>
-        <a-menu-item key="18_5" v-if="$auth.hasPrivilege('REPORT_SUMMARY_BY_DAY') === true">
-          <router-link :to="{ name: 'report_summary_by_day' }">
-            <span>Tổng hợp theo ngày</span>
-          </router-link>
-        </a-menu-item>
-        <a-menu-item
-          key="18_6"
-          v-if="$auth.hasPrivilege('REPORT_SUMMARY_BY_MONTH') === true">
-          <router-link
-            :to="{ name: 'report_summary_by_month' }">
-            <span>Tổng hợp theo tháng</span>
-          </router-link>
-        </a-menu-item>
-      </a-sub-menu>
-      <a-menu-item key="21" >
+      <a-menu-item key="2" >
         <router-link :to="{ name: 'warehouse_management' }" class="title-menu">
           <a-icon type="appstore"></a-icon>
           <span>Quản lý danh mục kho</span>
         </router-link>
       </a-menu-item>
-      <a-menu-item key="22" >
+      <a-menu-item key="3" >
         <router-link :to="{ name: 'barcode_readers_management' }" class="title-menu">
           <a-icon type="barcode"></a-icon>
           <span>Máy đọc mã vạch</span>
         </router-link>
       </a-menu-item>
-      <a-menu-item key="23" >
+      <a-menu-item key="4" >
         <router-link :to="{ name: 'import_export_management' }" class="title-menu">
           <a-icon type="export"></a-icon>
           <span>Quản lý nhập xuất</span>
@@ -232,93 +83,14 @@ export default {
         case 'dashboard':
           idx = '1'
           break
-        case 'role':
-        case 'role.user':
+        case 'warehouse_management':
           idx = '2'
           break
-        case 'hubstart':
+        case 'barcode_readers_management':
           idx = '3'
           break
-        case 'hubend':
-          idx = '4'
-          break
-        case 'order':
-        case 'order_detail':
-          idx = '5'
-          break
-        case 'groupawb':
-          idx = '6'
-          break
-        case 'awbflight':
-          idx = '7'
-          break
-        case 'bikehubend':
-          idx = '8'
-          break
-        case 'bikehubendreceipt':
-          idx = '9'
-          break
-        case 'priceflight':
-          idx = '10'
-          break
-        case 'flight':
-          idx = '11'
-          break
-        case 'area':
-          idx = '12'
-          break
-        case 'user':
-          idx = '13'
-          break
-        case 'hub':
-        case 'hub.create':
-        case 'hub.update':
-          idx = '14'
-          break
-        case 'product':
-          idx = '15'
-          break
-        case 'product_offer':
-          idx = '16'
-          break
-        case 'flight_schedule':
-          idx = '17'
-          break
-        case 'awb_last_airport':
-          idx = '4_11'
-          break
-        case 'order_back':
-          idx = '19'
-          break
-        case 'report_sale_revenue':
-          idx = '18_1'
-          break
-        case 'report_sale_revenue_supplier':
-          idx = '18_2'
-          break
-        case 'report_invoice_writing':
-          idx = '18_3'
-          break
-        case 'report_order_daily':
-          idx = '18_4'
-          break
-        case 'report_summary_by_day':
-          idx = '18_5'
-          break
-        case 'report_summary_by_month':
-          idx = '18_6'
-          break
-        case 'search_order':
-          idx = '20_1'
-          break
-        case 'warehouse_management':
-          idx = '21'
-          break
-        case 'barcode_readers_management':
-          idx = '22'
-          break
         case 'import_export_management':
-          idx = '23'
+          idx = '4'
           break
       }
 
@@ -330,25 +102,14 @@ export default {
         case 'dashboard':
           k = '1'
           break
-        case 'report_sale_revenue':
-        case 'report_sale_revenue_supplier':
-        case 'report_invoice_writing':
-        case 'report_order_daily':
-        case 'report_summary_by_day':
-        case 'report_summary_by_month':
-          k = '18'
-          break
-        case 'search_order':
-          k = '20'
-          break
         case 'warehouse_management':
-          k = '21'
+          k = '2'
           break
         case 'barcode_readers_management':
-          k = '22'
+          k = '3'
           break
         case 'import_export_management':
-          k = '23'
+          k = '4'
           break
         default:
           k = '0'

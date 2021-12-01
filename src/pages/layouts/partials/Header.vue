@@ -26,12 +26,12 @@
           <!--              <span>Danh sách HUB làm việc</span>-->
           <!--            </a>-->
           <!--          </a-menu-item>-->
-          <a-menu-item key="profile:5">
-            <a href="#" aria-current="page" class="router-link-exact-active router-link-active" @click.prevent="openSelectStore">
-              <a-icon type="profile" />
-              <span>Chọn kho làm việc</span>
-            </a>
-          </a-menu-item>
+          <!--          <a-menu-item key="profile:5">-->
+          <!--            <a href="#" aria-current="page" class="router-link-exact-active router-link-active" @click.prevent="openSelectStore">-->
+          <!--              <a-icon type="profile" />-->
+          <!--              <span>Chọn kho làm việc</span>-->
+          <!--            </a>-->
+          <!--          </a-menu-item>-->
           <a-menu-item key="profile:4">
             <a href="#" aria-current="page" class="router-link-exact-active router-link-active" @click.prevent="showModalPassword">
               <a-icon type="profile" />

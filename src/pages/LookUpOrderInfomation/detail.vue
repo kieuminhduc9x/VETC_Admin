@@ -145,7 +145,6 @@ import TableEmptyText from '../../utils/table-empty-text'
 import FormDetail from './form'
 import columns from './columns'
 import { deliverySuccess, GetByIdForAdmin, orderDeliveryAgain, cancelTransportCompanyOrder } from '@/api/order'
-import FormSelectAWB from '../GroupAWB/FormSelectAWB'
 import { previewReport } from '@/api/report'
 import pdf from 'vue-pdf'
 
@@ -154,7 +153,6 @@ export default {
   components: {
     MainLayout,
     FormDetail,
-    FormSelectAWB,
     pdf
   },
   mixins: [TableEmptyText],
