@@ -72,7 +72,7 @@
                     <template slot="content">
                       <span>Sửa</span>
                     </template>
-                    <a-icon type="edit" style="margin-right: 8px; color: #086885"></a-icon>
+                    <a-icon @click="showUpdate(record)" type="edit" style="margin-right: 8px; color: #086885"></a-icon>
                   </a-popover>
                   <a-popover >
                     <template slot="content">
@@ -149,12 +149,9 @@ export default {
       isUpdate: false,
       modelObject: {
         id: '',
-        code: '',
-        name: '',
-        province: '',
-        address: '',
-        telNumber: '',
-        imeiNumber: ''
+        warehouseCode: '',
+        phone: '',
+        imei: ''
       },
       filter: {
         warehouseId: ''

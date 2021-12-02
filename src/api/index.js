@@ -27,7 +27,7 @@ const api = {
   GlobalParamItemDelete: '/globalParam/removeGlobalParam',
 
   // area
-  ListProvince: '/area/getProvinces',
+  ListProvince: '/area/get-province',
   GetDistrictByProvince: '/area/getDistrictByProvince',
   GetPrecinctByDistrict: '/area/getPrecinctByDistrict',
   UpdateProvince: '/area/updateProvince',
@@ -59,7 +59,6 @@ const api = {
     search: '/scan-device/admin/search',
     create: '/scan-device/admin/create',
     update: '/scan-device/admin/update',
-    detail: '',
     delete: '/scan-device/admin/delete'
   },
 

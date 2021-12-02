@@ -97,14 +97,13 @@
                   required: true,
                   message: 'Người quản lý là bắt buộc',
                   trigger: 'change'
-                },
-                {
-                  max: 200,
-                  message: 'Nhập tối đa 200 ký tự',
-                  trigger: 'change'
                 }
               ]">
-              <a-input v-model="form.managerId" ></a-input>
+              <a-select v-model="form.managerId" >
+                <a-select-option v-for="item in listManage" :key="item.id" :value="item.id">
+                  {{ item.fullName }}
+                </a-select-option>
+              </a-select>
             </a-form-model-item>
           </a-col>
           <a-col :xs="24" :md="12" :lg="12">
@@ -201,29 +200,21 @@ export default {
       required: true
     }
   },
+  computed: {
+    form () {
+      return this.modelObject
+    }
+  },
   mounted () {
     if (this.visibleForm === true) {
       this.visible = true
     } else {
       this.visible = false
     }
-    if (this.modelObject) {
-      this.form = this.modelObject
-    }
   },
   data () {
     return {
       visible: false,
-      form: {
-        id: '',
-        code: '',
-        name: '',
-        province: '',
-        address: '',
-        managerId: '',
-        phone: '',
-        parentId: ''
-      },
       listWarehouse: [],
       listProvince: [],
       listManage: [],
@@ -240,7 +231,7 @@ export default {
     getListProvince () {
       listProvince().then(rs => {
         if (rs) {
-          this.listProvince = rs.data
+          this.listProvince = rs
         }
       })
     },

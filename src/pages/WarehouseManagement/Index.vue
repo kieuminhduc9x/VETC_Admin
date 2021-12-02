@@ -50,7 +50,7 @@
                     <template slot="content" >
                       <span>Sửa</span>
                     </template>
-                    <a-icon type="edit" style="margin-right: 8px; color: #086885"></a-icon>
+                    <a-icon type="edit" style="margin-right: 8px; color: #086885" @click="showUpdate(record)"></a-icon>
                   </a-popover>
                   <a-popover >
                     <template slot="content">
@@ -85,8 +85,12 @@ import _merge from 'lodash/merge'
 import { commonMethods, authComputed } from '@/store/helpers'
 import pdf from 'vue-pdf'
 import FormWarehouse from './Form'
-import _ from 'lodash'
-import { searchWarehouseManagement, deleteWarehouseManagement } from '@/api/warehouse-management'
+// import _ from 'lodash'
+import {
+  searchWarehouseManagement,
+  deleteWarehouseManagement,
+  findByIdWarehouseManagement
+} from '@/api/warehouse-management'
 
 const ResizeableTitle = resizeableTitle(columns)
 export default {
@@ -150,9 +154,12 @@ export default {
   },
   methods: {
     ...commonMethods,
-    resetForm (e) {
-      this.$refs.ruleFilter.resetFields()
-      this.search(e)
+    findById (id) {
+      findByIdWarehouseManagement({ warehouseId: id }).then(rs => {
+        if (rs) {
+          this.modelObject = rs
+        }
+      })
     },
     handleTableChange (pagination, filters, sorter) {
       this.pagination = pagination
@@ -186,7 +193,8 @@ export default {
       this.visibleForm = true
       this.isCreate = false
       this.isUpdate = true
-      this.modelObject = _.cloneDeep(record)
+      // this.modelObject = _.cloneDeep(record)
+      this.findById(record.id)
     },
     closeForm () {
       this.visibleForm = false

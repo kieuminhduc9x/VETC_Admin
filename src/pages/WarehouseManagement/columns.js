@@ -58,8 +58,8 @@ export default [
   },
   {
     title: 'Kho cấp trên',
-    dataIndex: 'parentWarehouseCode',
-    scopedSlots: { customRender: 'parentWarehouseCode' },
+    dataIndex: 'parentWarehouseName',
+    scopedSlots: { customRender: 'parentWarehouseName' },
     align: 'left',
     ellipsis: true,
     width: 150

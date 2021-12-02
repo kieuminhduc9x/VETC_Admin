@@ -26,7 +26,7 @@ export default [
     title: 'Ngày giao dịch',
     dataIndex: 'importAt',
     scopedSlots: { customRender: 'importAt' },
-    align: 'left',
+    align: 'center',
     ellipsis: true,
     width: 150
 

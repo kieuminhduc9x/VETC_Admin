@@ -16,32 +16,63 @@
           <a-card style="width: 100%;border: none" class="search-container">
             <a-row :gutter="16" type="flex" justify="center">
               <a-col :xs="24" :md="6" :lg="6" class="filter-item-container">
-                <a-form-model-item prop="warehouseCode" label="Mã kho">
-                  <a-input
-                    v-model="filters.warehouseCode"
-                  >
-                  </a-input>
-                </a-form-model-item>
+                <a-form-model :model="filters" ref="ruleFilter">
+                  <a-form-model-item
+                    label="Chọn kho"
+                    prop="warehouseId"
+                    :rules="[]">
+                    <a-select
+                      v-model="filters.warehouseId"
+                      :allowClear="true"
+                      show-search
+                      :filter-select-option="filterSelectOption">
+                      <a-select-option :key="''" :value="''">--Tất cả--</a-select-option>
+                      <a-select-option v-for="item in listWarehouse" :key="item.id" :value="item.id">
+                        {{ item.name }}
+                      </a-select-option>
+                    </a-select>
+                  </a-form-model-item>
+                </a-form-model>
               </a-col>
               <a-col :xs="24" :md="6" :lg="6" class="filter-item-container">
                 <a-form-model-item prop="billCode" label="Mã đơn hàng">
-                  <a-input v-model="filters.billCode"></a-input>
+                  <a-input v-model="filters.voucherCode"></a-input>
                 </a-form-model-item>
               </a-col>
-              <a-col :xs="24" :md="6" :lg="6" class="filter-item-container">
-                <a-form-model-item prop="fromDate" label="Ngày nhập từ ngày">
+              <a-col :xs="24" :md="3" :lg="3" class="filter-item-container">
+                <a-form-model-item prop="importFromDate" label="Ngày nhập từ ngày">
                   <a-date-picker
                     placeholder="DD/MM/YYYY"
                     :format="'DD/MM/YYYY'"
-                    v-model="filters.fromDate"/>
+                    @change="changeImportFromDate"
+                    v-model="filters.importFromDate"/>
                 </a-form-model-item>
               </a-col>
-              <a-col :xs="24" :md="6" :lg="6" class="filter-item-container">
-                <a-form-model-item prop="endDate" label="Đến ngày">
+              <a-col :xs="24" :md="3" :lg="3" class="filter-item-container">
+                <a-form-model-item prop="importToDate" label="Đến ngày">
                   <a-date-picker
                     placeholder="DD/MM/YYYY"
                     :format="'DD/MM/YYYY'"
-                    v-model="filters.endDate"/>
+                    :disabled-date="disabledImportToDate"
+                    v-model="filters.importToDate"/>
+                </a-form-model-item>
+              </a-col>
+              <a-col :xs="24" :md="3" :lg="3" class="filter-item-container">
+                <a-form-model-item prop="exportFromDate" label="Ngày xuất từ ngày">
+                  <a-date-picker
+                    placeholder="DD/MM/YYYY"
+                    :format="'DD/MM/YYYY'"
+                    @change="changeExportFromDate"
+                    v-model="filters.exportFromDate"/>
+                </a-form-model-item>
+              </a-col>
+              <a-col :xs="24" :md="3" :lg="3" class="filter-item-container">
+                <a-form-model-item prop="exportToDate" label="Đến ngày">
+                  <a-date-picker
+                    placeholder="DD/MM/YYYY"
+                    :format="'DD/MM/YYYY'"
+                    :disabled-date="disabledExportToDate"
+                    v-model="filters.exportToDate"/>
                 </a-form-model-item>
               </a-col>
 
@@ -119,6 +150,8 @@ import _merge from 'lodash/merge'
 import { searchImporteExportManagement } from '@/api/import-export-management'
 import { commonMethods, authComputed } from '@/store/helpers'
 import pdf from 'vue-pdf'
+import { searchWarehouseManagement } from '@/api/warehouse-management'
+import moment from 'moment'
 
 const ResizeableTitle = resizeableTitle(columns)
 export default {
@@ -135,6 +168,7 @@ export default {
       }
     }
     return {
+      moment,
       activeSearchKey: 1,
       activeResultKey: 1,
       data: [],
@@ -154,15 +188,19 @@ export default {
       columns,
       loadingExport: false,
       filters: {
-        warehouseCode: '',
-        billCode: '',
-        fromDate: '',
-        endDate: ''
+        warehouseId: '',
+        voucherCode: '',
+        importFromDate: '',
+        importToDate: '',
+        exportFromDate: '',
+        exportToDate: ''
       },
-      selectedRowKeys: []
+      selectedRowKeys: [],
+      listWarehouse: []
     }
   },
   created () {
+    this.getListWarehouse()
     this.getData()
   },
   mounted () {
@@ -173,6 +211,48 @@ export default {
   },
   methods: {
     ...commonMethods,
+    changeImportFromDate (value) {
+      if (value) {
+        this.filters.importToDate = ''
+      }
+    },
+    disabledImportToDate (toDate) {
+      const fromDate = this.filters.importFromDate
+      if (!toDate || !fromDate) {
+        return false
+      }
+      return fromDate.valueOf() >= toDate.valueOf()
+    },
+    changeExportFromDate (value) {
+      if (value) {
+        this.filters.exportToDate = ''
+      }
+    },
+    disabledExportToDate (toDate) {
+      const fromDate = this.filters.exportFromDate
+      if (!toDate || !fromDate) {
+        return false
+      }
+      return fromDate.valueOf() >= toDate.valueOf()
+    },
+    getListWarehouse (value) {
+      this.loading = true
+      const params = {
+        pagination: false
+      }
+      searchWarehouseManagement(params).then(res => {
+        this.listWarehouse = res.data
+      }).catch(err => {
+        const msg = this.handleApiError(err)
+        this.$notification.error({
+          message: '',
+          description: msg,
+          duration: 5
+        })
+      }).finally(res => {
+        this.loading = false
+      })
+    },
     onSelectChange (selectedRowKeys) {
       this.selectedRowKeys = selectedRowKeys
     },
@@ -193,8 +273,17 @@ export default {
       })
     },
     getData () {
-      const params = {}
-      this.loading = false
+      const params = {
+        page: this.pagination.current > 0 ? this.pagination.current - 1 : 0,
+        size: this.pagination.pageSize,
+        warehouseId: this.filters.warehouseId,
+        voucherCode: this.filters.voucherCode,
+        importFromDate: this.filters.importFromDate !== '' ? moment(this.filters.importFromDate, 'YYYY-MM-DD').format('YYYY-MM-DD') : '',
+        importToDate: this.filters.importToDate !== '' ? moment(this.filters.importToDate, 'YYYY-MM-DD').format('YYYY-MM-DD') : '',
+        exportFromDate: this.filters.exportFromDate !== '' ? moment(this.filters.exportFromDate, 'YYYY-MM-DD').format('YYYY-MM-DD') : '',
+        exportToDate: this.filters.exportToDate !== '' ? moment(this.filters.exportToDate, 'YYYY-MM-DD').format('YYYY-MM-DD') : ''
+      }
+      this.loading = true
       this.data = []
       searchImporteExportManagement(params).then(res => {
         this.data = this.convertPropToDisplayDate(res.data)
