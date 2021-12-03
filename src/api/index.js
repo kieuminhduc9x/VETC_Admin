@@ -65,7 +65,10 @@ const api = {
   // Quản lý xuất nhập
   importExportManagement: {
     search: '/voucher/admin/search',
-    getById: '/voucher/admin/get-by-id'
+    getById: '/voucher/admin/get-by-id',
+    checkPrintVoucher: '/voucher/admin/printed-output-voucher', // Kiểm tra trước khi in phiếu
+    acceptExport: '/voucher/admin/accept-export', // Xác nhận xuất kho
+    acceptSuccessfulDelivery: '/voucher/admin/accept-successful-delivery' // Xác nhận giao hàng thành công
   },
   // Quản lý đơn đặt hàng
   preOrder: {

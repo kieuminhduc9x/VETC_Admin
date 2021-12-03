@@ -99,8 +99,9 @@
             <a-row :gutter="16">
               <a-col :xs="24" :md="24" :lg="24">
                 <div style="display: flex; justify-content: center">
-                  <a-button style="margin-right: 1rem" @click="printBill">In phiếu xuất</a-button>
-                  <a-button type="primary" style="margin-right: 1rem">Xác nhận xuất hàng</a-button>
+                  <a-button style="margin-right: 1rem" @click="checkPrintVoucher">In phiếu xuất</a-button>
+                  <a-button type="primary" style="margin-right: 1rem" @click="showAcceptExport">Xác nhận xuất hàng</a-button>
+                  <a-button v-if="String(form.status) === '2'" type="primary" style="margin-right: 1rem" @click="showAcceptDelivery">Xác nhận giao hàng thành công</a-button>
                 </div>
               </a-col>
             </a-row>
@@ -121,7 +122,7 @@
                 :columns="columns"
                 :data-source="data"
                 :rowKey=" (rowKey, index ) => index"
-                :pagination="data.length === 0 ? false : pagination"
+                :pagination="false"
                 :loading="loading"
                 :scroll="{ x: '100%' }"
                 :locale="{ emptyText: 'Chưa có dữ liệu' }"
@@ -139,18 +140,24 @@
         </a-card>
       </a-collapse-panel>
     </a-collapse>
+    <popup-accept-export v-if="visibleAcceptExport === true" :visibleAcceptExport="visibleAcceptExport" @closePopup="closePopup"></popup-accept-export>
+    <popup-accept-successfully-delivery v-if="visibleAcceptDelivery === true" :visibleAcceptDelivery="visibleAcceptDelivery" @closePopup="closeAcceptDelivery"></popup-accept-successfully-delivery>
   </main-layout>
 </template>
 <script>
 import MainLayout from '@/pages/layouts/MainLayout'
-import { getByIdImportExportManagement } from '@/api/import-export-management'
+import { checkPrintVoucherImportExportManagement, getByIdImportExportManagement } from '@/api/import-export-management'
 import { previewReport } from '@/api/report'
 import moment from 'moment'
 import columns from './columnsDetail'
+import PopupAcceptExport from './PopupAcceptExport'
+import PopupAcceptSuccessfullyDelivery from './PopupAcceptSuccessfullyDelivery'
 
 export default {
   components: {
-    MainLayout
+    MainLayout,
+    PopupAcceptExport,
+    PopupAcceptSuccessfullyDelivery
   },
   data () {
     return {
@@ -171,7 +178,9 @@ export default {
           return 'Tổng số dòng ' + total
         }
       },
-      loading: false
+      loading: false,
+      visibleAcceptExport: false,
+      visibleAcceptDelivery: false
     }
   },
   created () {
@@ -193,12 +202,28 @@ export default {
       this.pagination = pagination
       this.getData()
     },
-    printBill () {
+    checkPrintVoucher () {
+      const $this = this
+      checkPrintVoucherImportExportManagement({ voucherId: this.$route.params.id }).then(rs => {
+        if (rs === true) {
+          this.$confirm({ content: 'Phiếu đã được in. Bạn có muốn tiếp tục in không?',
+            okText: 'In',
+            cancelText: 'Hủy',
+            onOk () {
+              $this.printVoucher()
+            }
+          })
+        } else {
+          $this.printVoucher()
+        }
+      })
+    },
+    printVoucher () {
       const params = {
         fileType: 'pdf',
         params: {
         },
-        reportName: 'vna_mall_bill'
+        reportName: 'voucher'
       }
       this.loadingPdf = true
       previewReport(params).then(rs => {
@@ -211,6 +236,20 @@ export default {
       }).finally(res => {
         this.loadingPdf = false
       })
+    },
+    showAcceptExport () {
+      this.visibleAcceptExport = true
+    },
+    closePopup () {
+      this.visibleAcceptExport = false
+      this.getById()
+    },
+    showAcceptDelivery () {
+      this.visibleAcceptDelivery = true
+    },
+    closeAcceptDelivery () {
+      this.visibleAcceptDelivery = false
+      this.getById()
     }
   }
 }
