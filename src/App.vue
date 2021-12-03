@@ -2,7 +2,6 @@
   <a-config-provider :locale="locale">
     <div id="app">
       <router-view/>
-      <!--      <select-hub/>-->
       <!--      <select-store />-->
     </div>
   </a-config-provider>
@@ -10,11 +9,9 @@
 
 <script>
 import viVN from 'ant-design-vue/lib/locale-provider/vi_VN'
-import SelectHub from '@/components/SelectHubModal'
 import SelectStore from '@/components/SelectStoreModal'
 export default {
   components: {
-    SelectHub,
     SelectStore
   },
   data () {

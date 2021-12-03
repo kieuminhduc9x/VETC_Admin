@@ -5,8 +5,6 @@ export const authComputed = {
     currentUser: (state) => state.currentUser
   }),
   ...mapState('common', {
-    select_hub: (state) => state.select_hub,
-    hub_id: (state) => state.hub_id,
     select_store: (state) => state.select_store,
     store_id: (state) => state.store_id
   }),
@@ -14,4 +12,4 @@ export const authComputed = {
 }
 
 export const authMethods = mapActions('auth', ['logIn', 'logOut'])
-export const commonMethods = mapActions('common', ['updateSelectHub', 'updateHub', 'fetchProvince', 'updateSelectStore', 'updateStore'])
+export const commonMethods = mapActions('common', ['fetchProvince', 'updateSelectStore', 'updateStore'])

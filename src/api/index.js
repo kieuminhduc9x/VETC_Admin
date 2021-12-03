@@ -64,7 +64,14 @@ const api = {
 
   // Quản lý xuất nhập
   importExportManagement: {
-    search: '/voucher/admin/search'
+    search: '/voucher/admin/search',
+    getById: '/voucher/admin/get-by-id'
+  },
+  // Quản lý đơn đặt hàng
+  preOrder: {
+    search: '/pre-order/admin/search',
+    getById: '/pre-order/admin/get-by-id',
+    import: '/pre-order/admin/import'
   }
 
 }

@@ -1,7 +1,7 @@
 
 export const asyncRouterMap = [
   {
-    path: '/dashboard',
+    path: '/',
     name: 'dashboard',
     component: () => import('../pages/Dashboard/index.vue'),
     meta: {
@@ -30,18 +30,18 @@ export const asyncRouterMap = [
       }
     }
   },
-  {
-    path: '/',
-    name: 'home',
-    component: () => import('../pages/Home/index.vue'),
-    meta: {
-      authRequired: true,
-      head: {
-        title: 'Aizalog',
-        description: 'Aizalog'
-      }
-    }
-  },
+  // {
+  //   path: '/',
+  //   name: 'home',
+  //   component: () => import('../pages/Home/index.vue'),
+  //   meta: {
+  //     authRequired: true,
+  //     head: {
+  //       title: 'Quản lý kho Nam Cường',
+  //       description: 'Quản lý kho Nam Cường'
+  //     }
+  //   }
+  // },
   {
     path: '/settings/global-list',
     name: 'settings_global_list',
@@ -121,6 +121,20 @@ export const asyncRouterMap = [
       head: {
         title: 'Quản lý nhập xuất',
         description: 'Quản lý nhập xuất'
+      }
+    }
+  },
+
+  // Chi tiết phiếu xuất nhập kho
+  {
+    path: '/import-export-management/:id/detail',
+    name: 'import_export_management.detail',
+    component: () => import('../pages/ImportExportManagement/Detail'),
+    meta: {
+      authRequired: true,
+      head: {
+        title: 'Chi tiết phiếu nhập xuất',
+        description: 'Chi tiết phiếu nhập xuất'
       }
     }
   }

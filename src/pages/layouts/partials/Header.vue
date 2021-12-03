@@ -20,12 +20,6 @@
           <!--              <span>Hồ sơ</span>-->
           <!--            </router-link>-->
           <!--          </a-menu-item>-->
-          <!--          <a-menu-item key="profile:3">-->
-          <!--            <a href="#" aria-current="page" class="router-link-exact-active router-link-active" @click.prevent="openSelectHub">-->
-          <!--              <a-icon type="profile" />-->
-          <!--              <span>Danh sách HUB làm việc</span>-->
-          <!--            </a>-->
-          <!--          </a-menu-item>-->
           <!--          <a-menu-item key="profile:5">-->
           <!--            <a href="#" aria-current="page" class="router-link-exact-active router-link-active" @click.prevent="openSelectStore">-->
           <!--              <a-icon type="profile" />-->
@@ -117,9 +111,6 @@ export default {
       this.collapsedTmp = !this.collapsedTmp
       this.$emit('collapsed-changed', this.collapsedTmp)
     },
-    // openSelectHub () {
-    //   this.updateSelectHub(true)
-    // },
     openSelectStore () {
       this.updateSelectStore(true)
     },

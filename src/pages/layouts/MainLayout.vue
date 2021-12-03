@@ -14,22 +14,6 @@
       </a-layout>
     </a-layout>
   </a-layout>
-  <!-- <a-layout
-    class="layout desktop"
-    id="components-layout-demo-custom-trigger"
-    style="min-height:100vh; background-color:#E5E5E5 !important"
-  >
-    <sider-bar :collapsed="collapsed" />
-
-    <a-layout>
-      <header-bar :collapsed.sync="collapsed" @collapsed-changed="changeCollapsed"></header-bar>
-      <slot name="breadcrumb"></slot>
-      <a-layout-content style="padding: 24px;">
-        <slot />
-      </a-layout-content>
-      <a-layout-footer style="text-align: center; padding-bottom:16px">Copyright ©2019. All rights reserved.</a-layout-footer>
-    </a-layout>
-  </a-layout> -->
 </template>
 
 <script>

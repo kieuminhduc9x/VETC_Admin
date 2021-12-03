@@ -114,14 +114,13 @@ export default {
       })
     },
     loginSuccess (res) {
-      // this.updateSelectHub(true)
-      this.updateSelectStore(true)
-      // this.$router.push({ path: this.$route.query.directFrom || '/' })
-      if (this.$auth.hasPrivilege('search_order') === true) {
-        this.$router.push({ name: 'search_order' })
-      } else {
-        this.$router.push({ name: 'dashboard' })
-      }
+      // this.updateSelectStore(true)
+      // if (this.$auth.hasPrivilege('search_order') === true) {
+      //   this.$router.push({ name: 'search_order' })
+      // } else {
+      //   this.$router.push({ name: 'dashboard' })
+      // }
+      this.$router.push({ name: 'dashboard' })
     },
     requestFailed (err) {
       this.$store.dispatch('auth/logoutLocal')

@@ -102,6 +102,7 @@ router.beforeEach((routeTo, routeFrom, next) => {
           hasPrivilege(routerName) ||
           routeTo.name === 'config' ||
           routeTo.name === 'warehouse_management' ||
+          routeTo.name === 'import_export_management.detail' ||
           routeTo.name === 'import_export_management' ||
           routeTo.name === 'barcode_readers_management') {
         return next()
@@ -175,7 +176,7 @@ router.afterEach((routeTo, routeFrom) => {
   // Complete the animation of the route progress bar.
   if (routeTo.meta.head !== undefined) {
     if (routeTo.meta.head.title !== undefined) {
-      document.title = routeTo.meta.head.title + ' - Lotus Ship Admin'
+      document.title = routeTo.meta.head.title + ' - Quản lý kho Nam Cường'
     }
     if (routeTo.meta.head.description !== undefined) {
       const meta = document.getElementsByTagName('meta').namedItem('description')

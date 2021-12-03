@@ -113,23 +113,19 @@
                 :scroll="{ x: '100%' }"
                 :locale="{ emptyText: 'Chưa có dữ liệu' }"
                 @change="handleTableChange"
-                class="ant-table-bordered"
-                :row-selection="{ selectedRowKeys: selectedRowKeys, onChange: onSelectChange }">
+                class="ant-table-bordered">
                 <template slot="rowIndex" slot-scope="text, record, index">
                   <span>{{ getTableRowIndex(pagination.pageSize, pagination.current, index) }} </span>
                 </template>
-                <template slot="operation" >
+                <template slot="actionTitle" >
+                  <a-icon type="control"></a-icon>
+                </template>
+                <template slot="operation" slot-scope="text, record">
                   <a-popover >
                     <template slot="content" >
-                      <span>Sửa</span>
+                      <span>Chi tiết</span>
                     </template>
-                    <a-icon type="edit" style="margin-right: 8px; color: #086885"></a-icon>
-                  </a-popover>
-                  <a-popover >
-                    <template slot="content">
-                      <span>Xóa</span>
-                    </template>
-                    <a-icon type="delete" style="margin-right: 8px; color: red"></a-icon>
+                    <a-icon type="eye" @click="goToDetail(record)" style=" color: #086885"></a-icon>
                   </a-popover>
                 </template>
               </a-table>
@@ -147,7 +143,7 @@ import resizeableTitle from '@/utils/resizable-columns'
 import TableEmptyText from '@/utils/table-empty-text'
 import columns from './columns'
 import _merge from 'lodash/merge'
-import { searchImporteExportManagement } from '@/api/import-export-management'
+import { searchImportExportManagement } from '@/api/import-export-management'
 import { commonMethods, authComputed } from '@/store/helpers'
 import pdf from 'vue-pdf'
 import { searchWarehouseManagement } from '@/api/warehouse-management'
@@ -195,7 +191,6 @@ export default {
         exportFromDate: '',
         exportToDate: ''
       },
-      selectedRowKeys: [],
       listWarehouse: []
     }
   },
@@ -253,9 +248,6 @@ export default {
         this.loading = false
       })
     },
-    onSelectChange (selectedRowKeys) {
-      this.selectedRowKeys = selectedRowKeys
-    },
     resetForm (e) {
       this.$refs.ruleFilter.resetFields()
       this.search(e)
@@ -285,7 +277,7 @@ export default {
       }
       this.loading = true
       this.data = []
-      searchImporteExportManagement(params).then(res => {
+      searchImportExportManagement(params).then(res => {
         this.data = this.convertPropToDisplayDate(res.data)
         this.pagination = _merge(this.pagination, this.handlePaginationData(res))
         this.loading = false
@@ -299,6 +291,9 @@ export default {
       }).finally(res => {
         this.loading = false
       })
+    },
+    goToDetail (record) {
+      this.$router.push({ name: 'import_export_management.detail', params: { id: record.id } })
     }
 
   }
