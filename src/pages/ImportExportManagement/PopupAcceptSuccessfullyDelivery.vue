@@ -10,20 +10,22 @@
     :destroyOnClose="false"
   >
     <a-spin :spinning="loading">
-      <a-card style="border: none; padding: 15px 10px">
+      <a-card style="border: none; padding: 0px 10px">
         <a-form-model :model="form" ref="ruleForm">
           <a-row :gutter="16">
             <a-col :xs="24" :md="24" :lg="24">
-              <a-upload
-                name="file"
-                :multiple="true"
-                :accept="'.doc, docx,.pdf, .xlsx'"
-                :show-upload-list="true"
-                :before-upload="beforeUpload"
-                :remove="removeFile"
-              >
-                <a-button> <a-icon type="upload" /> Upload File</a-button>
-              </a-upload>
+              <a-form-model-item label="File ký">
+                <a-upload
+                  name="file"
+                  :multiple="true"
+                  :accept="'.doc, docx,.pdf, .xlsx'"
+                  :show-upload-list="true"
+                  :before-upload="beforeUpload"
+                  :remove="removeFile"
+                >
+                  <a-button> <a-icon type="upload" /> Upload File</a-button>
+                </a-upload>
+              </a-form-model-item>
             </a-col>
           </a-row>
         </a-form-model>

@@ -8,7 +8,7 @@ export default [
     width: 50
   },
   {
-    title: 'imeiScanDevice',
+    title: 'IMEI thiết bị',
     dataIndex: 'imeiScanDevice',
     scopedSlots: { customRender: 'imeiScanDevice' },
     align: 'right',
@@ -16,7 +16,7 @@ export default [
     width: 250
   },
   {
-    title: 'cartonNo',
+    title: 'Số thùng',
     dataIndex: 'cartonNo',
     scopedSlots: { customRender: 'cartonNo' },
     align: 'left',

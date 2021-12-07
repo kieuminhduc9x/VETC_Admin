@@ -99,8 +99,9 @@
             <a-row :gutter="16">
               <a-col :xs="24" :md="24" :lg="24">
                 <div style="display: flex; justify-content: center">
+                  <a-button style="margin-right: 1rem" @click="goToBack">Quay lại</a-button>
                   <a-button style="margin-right: 1rem" @click="checkPrintVoucher">In phiếu xuất</a-button>
-                  <a-button type="primary" style="margin-right: 1rem" @click="showAcceptExport">Xác nhận xuất hàng</a-button>
+                  <a-button v-if="String(form.status) !== '2'" type="primary" style="margin-right: 1rem" @click="showAcceptExport">Xác nhận xuất hàng</a-button>
                   <a-button v-if="String(form.status) === '2'" type="primary" style="margin-right: 1rem" @click="showAcceptDelivery">Xác nhận giao hàng thành công</a-button>
                 </div>
               </a-col>
@@ -250,6 +251,9 @@ export default {
     closeAcceptDelivery () {
       this.visibleAcceptDelivery = false
       this.getById()
+    },
+    goToBack () {
+      this.$router.push({ name: 'import_export_management' })
     }
   }
 }
