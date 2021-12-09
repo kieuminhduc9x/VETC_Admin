@@ -22,6 +22,7 @@
                   prop="warehouseName"
                   :rules="[]">
                   <a-input
+                    :disabled="true"
                     v-model="form.warehouseName">
                   </a-input>
                 </a-form-model-item>
@@ -32,6 +33,7 @@
                   prop="voucherCode"
                   :rules="[]">
                   <a-input
+                    :disabled="true"
                     v-model="form.voucherCode">
                   </a-input>
                 </a-form-model-item>
@@ -42,6 +44,7 @@
                   prop="preOrderNo"
                   :rules="[]">
                   <a-input
+                    :disabled="true"
                     v-model="form.preOrderNo">
                   </a-input>
                 </a-form-model-item>
@@ -52,6 +55,7 @@
                   prop="statusName"
                   :rules="[]">
                   <a-input
+                    :disabled="true"
                     v-model="form.statusName">
                   </a-input>
                 </a-form-model-item>
@@ -64,6 +68,7 @@
                   prop="importAt"
                   :rules="[]">
                   <a-date-picker
+                    :disabled="true"
                     placeholder="DD/MM/YYYY"
                     :format="'DD/MM/YYYY'"
                     v-model="form.importAt">
@@ -76,6 +81,7 @@
                   prop="exportAt"
                   :rules="[]">
                   <a-date-picker
+                    :disabled="true"
                     placeholder="DD/MM/YYYY"
                     :format="'DD/MM/YYYY'"
                     v-model="form.exportAt">
@@ -88,6 +94,7 @@
                   prop="deliveredAt"
                   :rules="[]">
                   <a-date-picker
+                    :disabled="true"
                     placeholder="DD/MM/YYYY"
                     :format="'DD/MM/YYYY'"
                     v-model="form.deliveredAt">

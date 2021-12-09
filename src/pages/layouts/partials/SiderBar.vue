@@ -89,6 +89,7 @@ export default {
         case 'barcode_readers_management':
           idx = '3'
           break
+        case 'import_export_management.detail':
         case 'import_export_management':
           idx = '4'
           break
@@ -109,6 +110,7 @@ export default {
           k = '3'
           break
         case 'import_export_management':
+        case 'import_export_management.detail':
           k = '4'
           break
         default:
