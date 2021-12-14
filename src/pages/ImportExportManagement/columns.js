@@ -47,11 +47,11 @@ export default [
     width: 250
   },
   {
-    title: 'Tổng số kiện',
-    dataIndex: 'total',
-    scopedSlots: { customRender: 'total' },
+    title: 'Trạng thái đơn hàng',
+    dataIndex: 'statusName',
+    scopedSlots: { customRender: 'statusName' },
     align: 'left',
     ellipsis: true,
-    width: 150
+    width: 120
   }
 ]

@@ -3,7 +3,7 @@
     :visible="visible"
     :title="isCreate === true? 'Thêm mới' : 'Cập nhật'"
     @close="closeForm"
-    width="600"
+    width="500"
     :destroy-on-close="false"
     :mask-closable="false"
   >

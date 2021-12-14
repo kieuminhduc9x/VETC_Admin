@@ -1,4 +1,4 @@
-import { login, getInfo } from '@/api/login'
+import { login } from '@/api/login'
 import Ls from '@/utils/ls'
 
 const lsKey = 'vuex_auth'
@@ -76,9 +76,9 @@ export const actions = {
   setPermissions ({ commit }, permissions) {
     commit('SET_PERMISSIONS', permissions)
   },
-  GetInfo () {
-    return getInfo()
-  },
+  // GetInfo () {
+  //   return getInfo()
+  // },
   logoutLocal ({ commit }) {
     commit('SET_CURRENT_USER', null)
     commit('SET_PERMISSIONS', null)

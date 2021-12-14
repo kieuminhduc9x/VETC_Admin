@@ -70,9 +70,9 @@
 
 <script>
 import { authComputed, commonMethods } from '@/store/helpers'
-import {
-  GetStoreForUser
-} from '@/api/user'
+// import {
+//   GetStoreForUser
+// } from '@/api/user'
 export default {
   name: 'Store',
   data () {
@@ -103,16 +103,16 @@ export default {
     }
   },
   async created () {
-    this.fetchStore()
+    // this.fetchStore()
   },
   mounted () {
-    if (!this.store && this.isLoggedIn) {
-      this.updateSelectStore(true)
-      this.fetchStore()
-    } else {
-      this.updateSelectStore(false)
-    }
-    this.fetchStore()
+    // if (!this.store && this.isLoggedIn) {
+    //   this.updateSelectStore(true)
+    //   this.fetchStore()
+    // } else {
+    //   this.updateSelectStore(false)
+    // }
+    // this.fetchStore()
   },
 
   methods: {
@@ -155,36 +155,36 @@ export default {
           }
         }
       })
-    },
-    fetchStore () {
-      this.loading = true
-      GetStoreForUser({ userId: this.currentUser.userId }).then(res => {
-        this.list_store = res
-        if (res.length > 0) {
-          const storeId = JSON.parse(window.localStorage.getItem('store_id'))
-          if (!storeId) {
-            this.storeForm.store = res[0].hrvWarehouseId
-          } else if (storeId.length > 1) {
-            this.storeForm.store = 'All'
-          } else if (storeId.length === 1) {
-            storeId.forEach(item => {
-              this.storeForm.store = item
-            })
-          }
-        } else {
-          this.updateSelectStore(false)
-        }
-      }).catch(err => {
-        const msg = this.handleApiError(err)
-        this.$notification.error({
-          message: '',
-          description: msg,
-          duration: 5
-        })
-      }).finally(res => {
-        this.loading = false
-      })
     }
+    // fetchStore () {
+    //   this.loading = true
+    //   GetStoreForUser({ userId: this.currentUser.userId }).then(res => {
+    //     this.list_store = res
+    //     if (res.length > 0) {
+    //       const storeId = JSON.parse(window.localStorage.getItem('store_id'))
+    //       if (!storeId) {
+    //         this.storeForm.store = res[0].hrvWarehouseId
+    //       } else if (storeId.length > 1) {
+    //         this.storeForm.store = 'All'
+    //       } else if (storeId.length === 1) {
+    //         storeId.forEach(item => {
+    //           this.storeForm.store = item
+    //         })
+    //       }
+    //     } else {
+    //       this.updateSelectStore(false)
+    //     }
+    //   }).catch(err => {
+    //     const msg = this.handleApiError(err)
+    //     this.$notification.error({
+    //       message: '',
+    //       description: msg,
+    //       duration: 5
+    //     })
+    //   }).finally(res => {
+    //     this.loading = false
+    //   })
+    // }
 
   },
   watch: {
