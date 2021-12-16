@@ -56,6 +56,12 @@
           <span>Quản lý nhập xuất</span>
         </router-link>
       </a-menu-item>
+      <a-menu-item key="5" >
+        <router-link :to="{ name: 'order_management' }" class="title-menu">
+          <a-icon type="export"></a-icon>
+          <span>Quản lý đơn đặt hàng</span>
+        </router-link>
+      </a-menu-item>
     </a-menu>
   </a-layout-sider>
 </template>
@@ -93,6 +99,10 @@ export default {
         case 'import_export_management':
           idx = '4'
           break
+        case 'order_management':
+        case 'order_management.detail':
+          idx = '5'
+          break
       }
 
       return idx
@@ -112,6 +122,10 @@ export default {
         case 'import_export_management':
         case 'import_export_management.detail':
           k = '4'
+          break
+        case 'order_management':
+        case 'order_management.detail':
+          k = '5'
           break
         default:
           k = '0'

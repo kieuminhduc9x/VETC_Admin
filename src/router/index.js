@@ -104,7 +104,9 @@ router.beforeEach((routeTo, routeFrom, next) => {
           routeTo.name === 'warehouse_management' ||
           routeTo.name === 'import_export_management.detail' ||
           routeTo.name === 'import_export_management' ||
-          routeTo.name === 'barcode_readers_management') {
+          routeTo.name === 'barcode_readers_management' ||
+          routeTo.name === 'order_management.detail' ||
+          routeTo.name === 'order_management') {
         return next()
       } else {
         notification.error({

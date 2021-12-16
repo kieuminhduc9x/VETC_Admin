@@ -137,6 +137,34 @@ export const asyncRouterMap = [
         description: 'Chi tiết phiếu nhập xuất'
       }
     }
+  },
+
+  // Quản lý đơn đặt hàng
+  {
+    path: '/order-management',
+    name: 'order_management',
+    component: () => import('../pages/OrderManagement/Index'),
+    meta: {
+      authRequired: true,
+      head: {
+        title: 'Quản lý đơn đặt hàng',
+        description: 'Quản lý đơn đặt hàng'
+      }
+    }
+  },
+
+  // Chi tiết đơn đặt hàng
+  {
+    path: '/order-management/detail/:id',
+    name: 'order_management.detail',
+    component: () => import('../pages/OrderManagement/Detail'),
+    meta: {
+      authRequired: true,
+      head: {
+        title: 'Chi tiết đơn đặt hàng',
+        description: 'Chi tiết đơn đặt hàng'
+      }
+    }
   }
 ]
 
