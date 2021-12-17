@@ -19,19 +19,19 @@
             </a-divider>
             <a-descriptions>
               <a-descriptions-item label="Mã đơn tổng: ">
-                Zhou Maomao
+                {{ form.parentNo }}
               </a-descriptions-item>
               <a-descriptions-item label="Mã đơn hàng:">
-                1810000000
+                {{ form.no }}
               </a-descriptions-item>
               <a-descriptions-item label="Ngày tạo::">
-                1810000000
+                {{ form.createAt }}
               </a-descriptions-item>
               <a-descriptions-item label="Ngày đặt hàng:">
-                1810000000
+                {{ form.completeAt }}
               </a-descriptions-item>
               <a-descriptions-item label="Trạng thái:">
-                1810000000
+                {{ form.statusName }}
               </a-descriptions-item>
             </a-descriptions>
             <a-divider orientation="left">
@@ -95,6 +95,7 @@ import TableEmptyText from '@/utils/table-empty-text'
 import { commonMethods, authComputed } from '@/store/helpers'
 import moment from 'moment'
 import columnDetail from './columnDetail'
+import { getByIdPreOrder } from '@/api/pre-order'
 
 export default {
   components: {
@@ -128,7 +129,7 @@ export default {
   },
   mounted () {
     this.scrollBarOfTable()
-    this.getData()
+    this.getDetail()
   },
   computed: {
     ...authComputed
@@ -138,16 +139,13 @@ export default {
     handleTableChange (pagination, filters, sorter) {
       this.pagination = pagination
     },
-    getData () {
-      this.data = [
-        {
-          code: 'Test',
-          importDate: '21/12/2021',
-          exportDate: '02/01/2021',
-          status: '1',
-          statusName: 'Thành công'
+    getDetail () {
+      getByIdPreOrder({ preOrderId: this.$route.params.id }).then(rs => {
+        if (rs) {
+          this.form = rs
+          this.data = rs.listDetail
         }
-      ]
+      })
     }
   }
 }

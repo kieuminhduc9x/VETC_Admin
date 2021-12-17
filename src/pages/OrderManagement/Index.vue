@@ -132,7 +132,7 @@ import resizeableTitle from '@/utils/resizable-columns'
 import TableEmptyText from '@/utils/table-empty-text'
 import columns from './columns'
 import _merge from 'lodash/merge'
-import { searchImportExportManagement } from '@/api/import-export-management'
+import { searchPreOrder } from '@/api/pre-order'
 import { commonMethods, authComputed } from '@/store/helpers'
 import pdf from 'vue-pdf'
 import columnsChild from './columnChild'
@@ -236,7 +236,7 @@ export default {
       }
       this.loading = true
       this.data = []
-      searchImportExportManagement(params).then(res => {
+      searchPreOrder(params).then(res => {
         this.data = this.convertPropToDisplayDate(res.data)
         this.pagination = _merge(this.pagination, this.handlePaginationData(res))
         this.loading = false

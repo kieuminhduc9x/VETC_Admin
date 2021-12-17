@@ -15,16 +15,16 @@ export default [
   },
   {
     title: 'Mã đơn tổng',
-    dataIndex: 'code',
-    scopedSlots: { customRender: 'code' },
+    dataIndex: 'parentNo',
+    scopedSlots: { customRender: 'parentNo' },
     align: 'left',
     ellipsis: true,
     width: 150
   },
   {
     title: 'Mã đơn đặt hàng',
-    dataIndex: 'orderCode',
-    scopedSlots: { customRender: 'orderCode' },
+    dataIndex: 'no',
+    scopedSlots: { customRender: 'no' },
     align: 'left',
     ellipsis: true,
     width: 200
@@ -40,8 +40,8 @@ export default [
   },
   {
     title: 'Ngày hoàn thành',
-    dataIndex: 'completeDate',
-    scopedSlots: { customRender: 'completeDate' },
+    dataIndex: 'completeAt',
+    scopedSlots: { customRender: 'completeAt' },
     align: 'left',
     ellipsis: true,
     width: 250
