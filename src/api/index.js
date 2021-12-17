@@ -74,7 +74,8 @@ const api = {
   preOrder: {
     search: '/pre-order/admin/search',
     getById: '/pre-order/admin/get-by-id',
-    import: '/pre-order/admin/import'
+    import: '/pre-order/admin/import',
+    listVoucher: '/pre-order/admin/list-voucher'
   }
 
 }

@@ -14,109 +14,112 @@
       layout="vertical">
       <a-collapse v-model="activeKey" expandIconPosition="left" class="collapse-left">
         <a-collapse-panel header="Thông tin chi tiết" key="1">
-          <a-card style="width: 100%;border: none" class="search-container">
-            <a-row :gutter="16">
-              <a-col :xs="24" :md="6" :lg="6" class="filter-item-container">
-                <a-form-model-item
-                  label="Tên kho"
-                  prop="warehouseName"
-                  :rules="[]">
-                  <a-input
-                    :disabled="true"
-                    v-model="form.warehouseName">
-                  </a-input>
-                </a-form-model-item>
-              </a-col>
-              <a-col :xs="24" :md="6" :lg="6" class="filter-item-container">
-                <a-form-model-item
-                  label="Mã Phiếu"
-                  prop="voucherCode"
-                  :rules="[]">
-                  <a-input
-                    :disabled="true"
-                    v-model="form.voucherCode">
-                  </a-input>
-                </a-form-model-item>
-              </a-col>
-              <a-col :xs="24" :md="6" :lg="6" class="filter-item-container">
-                <a-form-model-item
-                  label="Mã đơn hàng"
-                  prop="preOrderNo"
-                  :rules="[]">
-                  <a-input
-                    :disabled="true"
-                    v-model="form.preOrderNo">
-                  </a-input>
-                </a-form-model-item>
-              </a-col>
-              <a-col :xs="24" :md="6" :lg="6" class="filter-item-container">
-                <a-form-model-item
-                  label="Trạng thái"
-                  prop="statusName"
-                  :rules="[]">
-                  <a-input
-                    :disabled="true"
-                    v-model="form.statusName">
-                  </a-input>
-                </a-form-model-item>
-              </a-col>
-            </a-row>
-            <a-row :gutter="16" type="flex" justify="center">
-              <a-col :xs="24" :md="6" :lg="6" class="filter-item-container">
-                <a-form-model-item
-                  label="Ngày nhập"
-                  prop="importAt"
-                  :rules="[]">
-                  <a-date-picker
-                    :disabled="true"
-                    placeholder="DD/MM/YYYY"
-                    :format="'DD/MM/YYYY'"
-                    v-model="form.importAt">
-                  </a-date-picker>
-                </a-form-model-item>
-              </a-col>
-              <a-col :xs="24" :md="6" :lg="6" class="filter-item-container">
-                <a-form-model-item
-                  label="Ngày xuất"
-                  prop="exportAt"
-                  :rules="[]">
-                  <a-date-picker
-                    :disabled="true"
-                    placeholder="DD/MM/YYYY"
-                    :format="'DD/MM/YYYY'"
-                    v-model="form.exportAt">
-                  </a-date-picker>
-                </a-form-model-item>
-              </a-col>
-              <a-col :xs="24" :md="6" :lg="6" class="filter-item-container">
-                <a-form-model-item
-                  label="Ngày xác nhận giao hàng"
-                  prop="deliveredAt"
-                  :rules="[]">
-                  <a-date-picker
-                    :disabled="true"
-                    placeholder="DD/MM/YYYY"
-                    :format="'DD/MM/YYYY'"
-                    v-model="form.deliveredAt">
-                  </a-date-picker>
-                </a-form-model-item>
-              </a-col>
-              <a-col :xs="24" :md="6" :lg="6" class="filter-item-container"></a-col>
-            </a-row>
-            <a-row :gutter="16">
-              <a-col :xs="24" :md="24" :lg="24">
-                <div style="display: flex; justify-content: center">
-                  <a-button style="margin-right: 1rem" @click="goToBack">Quay lại</a-button>
-                  <a-button style="margin-right: 1rem" @click="checkPrintVoucher">In phiếu xuất</a-button>
-                  <a-button v-if="String(form.status) !== '2'" type="primary" style="margin-right: 1rem" @click="showAcceptExport">Xác nhận xuất hàng</a-button>
-                  <a-button v-if="String(form.status) === '2'" type="primary" style="margin-right: 1rem" @click="showAcceptDelivery">Xác nhận giao hàng thành công</a-button>
-                </div>
-              </a-col>
-            </a-row>
-          </a-card>
+          <a-spin :spinning="loading">
+            <a-card style="width: 100%;border: none" class="search-container">
+              <a-row :gutter="16">
+                <a-col :xs="24" :md="6" :lg="6" class="filter-item-container">
+                  <a-form-model-item
+                    label="Tên kho"
+                    prop="warehouseName"
+                    :rules="[]">
+                    <a-input
+                      :disabled="true"
+                      v-model="form.warehouseName">
+                    </a-input>
+                  </a-form-model-item>
+                </a-col>
+                <a-col :xs="24" :md="6" :lg="6" class="filter-item-container">
+                  <a-form-model-item
+                    label="Mã Phiếu"
+                    prop="voucherCode"
+                    :rules="[]">
+                    <a-input
+                      :disabled="true"
+                      v-model="form.voucherCode">
+                    </a-input>
+                  </a-form-model-item>
+                </a-col>
+                <a-col :xs="24" :md="6" :lg="6" class="filter-item-container">
+                  <a-form-model-item
+                    label="Mã đơn hàng"
+                    prop="preOrderNo"
+                    :rules="[]">
+                    <a-input
+                      :disabled="true"
+                      v-model="form.preOrderNo">
+                    </a-input>
+                  </a-form-model-item>
+                </a-col>
+                <a-col :xs="24" :md="6" :lg="6" class="filter-item-container">
+                  <a-form-model-item
+                    label="Trạng thái"
+                    prop="statusName"
+                    :rules="[]">
+                    <a-input
+                      :disabled="true"
+                      v-model="form.statusName">
+                    </a-input>
+                  </a-form-model-item>
+                </a-col>
+              </a-row>
+              <a-row :gutter="16" type="flex" justify="center">
+                <a-col :xs="24" :md="6" :lg="6" class="filter-item-container">
+                  <a-form-model-item
+                    label="Ngày nhập"
+                    prop="importAt"
+                    :rules="[]">
+                    <a-date-picker
+                      :disabled="true"
+                      placeholder="DD/MM/YYYY"
+                      :format="'DD/MM/YYYY'"
+                      v-model="form.importAt">
+                    </a-date-picker>
+                  </a-form-model-item>
+                </a-col>
+                <a-col :xs="24" :md="6" :lg="6" class="filter-item-container">
+                  <a-form-model-item
+                    label="Ngày xuất"
+                    prop="exportAt"
+                    :rules="[]">
+                    <a-date-picker
+                      :disabled="true"
+                      placeholder="DD/MM/YYYY"
+                      :format="'DD/MM/YYYY'"
+                      v-model="form.exportAt">
+                    </a-date-picker>
+                  </a-form-model-item>
+                </a-col>
+                <a-col :xs="24" :md="6" :lg="6" class="filter-item-container">
+                  <a-form-model-item
+                    label="Ngày xác nhận giao hàng"
+                    prop="deliveredAt"
+                    :rules="[]">
+                    <a-date-picker
+                      :disabled="true"
+                      placeholder="DD/MM/YYYY"
+                      :format="'DD/MM/YYYY'"
+                      v-model="form.deliveredAt">
+                    </a-date-picker>
+                  </a-form-model-item>
+                </a-col>
+                <a-col :xs="24" :md="6" :lg="6" class="filter-item-container"></a-col>
+              </a-row>
+              <a-row :gutter="16">
+                <a-col :xs="24" :md="24" :lg="24">
+                  <div style="display: flex; justify-content: center">
+                    <a-button style="margin-right: 1rem" @click="goToBack">Quay lại</a-button>
+                    <a-button style="margin-right: 1rem" @click="checkPrintVoucher">In phiếu xuất</a-button>
+                    <a-button v-if="String(form.status) !== '2'" type="primary" style="margin-right: 1rem" @click="showAcceptExport">Xác nhận xuất hàng</a-button>
+                    <a-button v-if="String(form.status) === '2'" type="primary" style="margin-right: 1rem" @click="showAcceptDelivery">Xác nhận giao hàng thành công</a-button>
+                  </div>
+                </a-col>
+              </a-row>
+            </a-card>
+          </a-spin>
         </a-collapse-panel>
       </a-collapse>
     </a-form-model>
+
     <a-collapse v-model="activeKey" expandIconPosition="left" style=" margin-top: 8px" class="collapse-left">
       <a-collapse-panel header="Danh sách đơn hàng" key="1">
         <a-card style="width: 100%; border: none" class="vts-table-container">
@@ -196,6 +199,7 @@ export default {
   },
   methods: {
     getById () {
+      this.loading = true
       getByIdImportExportManagement({ voucherId: this.$route.params.id }).then(rs => {
         if (rs) {
           this.form = rs
@@ -204,6 +208,15 @@ export default {
           this.form.deliveredAt = moment(rs.deliveredAt, 'DD-MM-YYYY').format('YYYY-MM-DD')
           this.data = rs.listDetail
         }
+      }).catch(err => {
+        const msg = this.handleApiError(err)
+        this.$notification.error({
+          message: '',
+          description: msg,
+          duration: 5
+        })
+      }).finally(res => {
+        this.loading = false
       })
     },
     handleTableChange (pagination, filters, sorter) {

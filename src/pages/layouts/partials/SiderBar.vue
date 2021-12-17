@@ -58,7 +58,7 @@
       </a-menu-item>
       <a-menu-item key="5" >
         <router-link :to="{ name: 'order_management' }" class="title-menu">
-          <a-icon type="export"></a-icon>
+          <a-icon type="project" />
           <span>Quản lý đơn đặt hàng</span>
         </router-link>
       </a-menu-item>

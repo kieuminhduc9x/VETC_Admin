@@ -27,3 +27,11 @@ export function importPreOrder (parameter) {
     data: parameter
   })
 }
+
+// Import đơn hàng
+export function getListVoucher (parameter) {
+  return axios({
+    url: api.preOrder.listVoucher + '/' + parameter,
+    method: 'get'
+  })
+}
