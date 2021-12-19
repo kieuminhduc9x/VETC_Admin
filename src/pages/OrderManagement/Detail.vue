@@ -4,7 +4,8 @@
     <template v-slot:breadcrumb>
       <a-breadcrumb separator=">">
         <a-breadcrumb-item><a href="/">Home</a></a-breadcrumb-item>
-        <a-breadcrumb-item :class="'active'">Quản lý đơn đặt hàng</a-breadcrumb-item>
+        <a-breadcrumb-item><a href="/order-management">Quản lý đơn đặt hàng</a></a-breadcrumb-item>
+        <a-breadcrumb-item :class="'active'">Chi tiết đơn đặt hàng</a-breadcrumb-item>
       </a-breadcrumb>
     </template>
     <a-form-model
@@ -86,6 +87,13 @@
               </a-steps>
             </a-col>
           </a-row>
+          <a-row :gutter="16">
+            <a-col :xs="24" :md="24" :lg="24">
+              <div style="display: flex; justify-content: center">
+                <a-button type="default" @click="goToOrderManagement">Quay lại</a-button>
+              </div>
+            </a-col>
+          </a-row>
         </a-card>
       </a-spin>
     </a-form-model>
@@ -163,26 +171,11 @@ export default {
         this.loading = false
       })
     },
-    // getListVoucher () {
-    //   this.loading = true
-    //   getListVoucher(this.$route.params.id).then(rs => {
-    //     if (rs) {
-    //       this.data = rs
-    //       this.loading = false
-    //     }
-    //   }).catch(err => {
-    //     const msg = this.handleApiError(err)
-    //     this.$notification.error({
-    //       message: '',
-    //       description: msg,
-    //       duration: 5
-    //     })
-    //   }).finally(res => {
-    //     this.loading = false
-    //   })
-    // },
     goToDetailVoucher (id) {
       this.$router.push({ name: 'import_export_management.detail', params: { id: id } })
+    },
+    goToOrderManagement () {
+      this.$router.push({ name: 'order_management' })
     }
   }
 }
@@ -190,5 +183,12 @@ export default {
 <style type="less">
 .ant-steps-item-content{
   width: 90%!important
+}
+.ant-steps-navigation .ant-steps-item:after {
+  display: none;
+}
+.block-header {
+  color: #076885 !important;
+  font-weight: bold;
 }
 </style>

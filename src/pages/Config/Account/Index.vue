@@ -2,6 +2,7 @@
   <main-layout>
     <template v-slot:breadcrumb>
       <a-breadcrumb separator=">">
+        <a-breadcrumb-item><a href="/">Home</a></a-breadcrumb-item>
         <a-breadcrumb-item><a href="/config">Cấu hình</a></a-breadcrumb-item>
         <a-breadcrumb-item :class="'active'">Tài khoản</a-breadcrumb-item>
       </a-breadcrumb>
@@ -71,6 +72,13 @@
                 </template>
               </a-table>
             </a-card>
+          </a-col>
+        </a-row>
+        <a-row :gutter="16">
+          <a-col :xs="24" :md="24" :lg="24">
+            <div style="display: flex; justify-content: center; margin: 20px 0">
+              <a-button type="default" @click="goToConfig">Quay lại</a-button>
+            </div>
           </a-col>
         </a-row>
       </div>
@@ -181,6 +189,9 @@ export default {
       }).finally(res => {
         this.loading = false
       })
+    },
+    goToConfig () {
+      this.$router.push({ name: 'config' })
     }
   }
 }
