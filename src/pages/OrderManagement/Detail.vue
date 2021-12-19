@@ -72,7 +72,7 @@
               <a-divider orientation="left">
                 <span class="block-header">Lịch sử tác động</span>
               </a-divider>
-              <a-steps direction="vertical" size="small">
+              <a-steps direction="vertical" progress-dot size="small">
                 <a-step v-for="(item, key) in form.listTrans" :key="key" >
                   <template slot="title">
                     <span>{{ item.createAt }}</span>
@@ -131,7 +131,7 @@ export default {
   },
   created () {
     this.getDetail()
-    this.getListVoucher()
+    // this.getListVoucher()
   },
   mounted () {
     this.scrollBarOfTable()
@@ -187,3 +187,8 @@ export default {
   }
 }
 </script>
+<style type="less">
+.ant-steps-item-content{
+  width: 90%!important
+}
+</style>
