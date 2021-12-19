@@ -94,6 +94,7 @@
                 :scroll="{ x: '100%' }"
                 :locale="{ emptyText: 'Chưa có dữ liệu' }"
                 @change="handleTableChange"
+                @expand="expandTable"
                 class="ant-table-bordered">
                 <template slot="rowIndex" slot-scope="text, record, index">
                   <span>{{ getTableRowIndex(pagination.pageSize, pagination.current, index) }} </span>
@@ -111,11 +112,14 @@
                 </template>
                 <a-table
                   slot="expandedRowRender"
-                  slot-scope="text, record"
+                  slot-scope="record"
                   :columns="columnsChild"
                   :data-source="record.listChild"
                   :pagination="false"
                 >
+                  <template slot="rowIndex" slot-scope="text, record, index">
+                    <span>{{ index+1 }} </span>
+                  </template>
                 </a-table>
               </a-table>
             </a-col>
@@ -132,7 +136,7 @@ import resizeableTitle from '@/utils/resizable-columns'
 import TableEmptyText from '@/utils/table-empty-text'
 import columns from './columns'
 import _merge from 'lodash/merge'
-import { searchPreOrder } from '@/api/pre-order'
+import { searchPreOrder, getListVoucher } from '@/api/pre-order'
 import { commonMethods, authComputed } from '@/store/helpers'
 import pdf from 'vue-pdf'
 import columnsChild from './columnChild'
@@ -237,9 +241,35 @@ export default {
       this.loading = true
       this.data = []
       searchPreOrder(params).then(res => {
+        res.data.map(item => {
+          item.listChild = []
+          return item
+        })
         this.data = this.convertPropToDisplayDate(res.data)
         this.pagination = _merge(this.pagination, this.handlePaginationData(res))
         this.loading = false
+      }).catch(err => {
+        const msg = this.handleApiError(err)
+        this.$notification.error({
+          message: '',
+          description: msg,
+          duration: 5
+        })
+      }).finally(res => {
+        this.loading = false
+      })
+    },
+    expandTable (expanded, record) {
+      if (expanded === true) {
+        this.getListDataChild(record)
+      }
+    },
+    getListDataChild (record) {
+      getListVoucher(record.id).then(rs => {
+        if (rs) {
+          record.listChild = rs
+          this.loading = false
+        }
       }).catch(err => {
         const msg = this.handleApiError(err)
         this.$notification.error({

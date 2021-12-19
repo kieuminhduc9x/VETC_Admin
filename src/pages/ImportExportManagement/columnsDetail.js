@@ -16,7 +16,7 @@ export default [
     width: 250
   },
   {
-    title: 'Số thùng',
+    title: 'Mã kiện hàng',
     dataIndex: 'cartonNo',
     scopedSlots: { customRender: 'cartonNo' },
     align: 'left',

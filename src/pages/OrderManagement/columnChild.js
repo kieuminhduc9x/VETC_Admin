@@ -1,12 +1,5 @@
 export default [
   {
-    slots: { title: 'actionTitle' },
-    dataIndex: 'operation',
-    scopedSlots: { customRender: 'operation' },
-    align: 'center',
-    width: 50
-  },
-  {
     title: 'STT',
     dataIndex: 'rowIndex',
     scopedSlots: { customRender: 'rowIndex' },
@@ -15,16 +8,16 @@ export default [
   },
   {
     title: 'Mã phiếu xuất nhập',
-    dataIndex: 'code',
-    scopedSlots: { customRender: 'code' },
+    dataIndex: 'voucherCode',
+    scopedSlots: { customRender: 'voucherCode' },
     align: 'left',
     ellipsis: true,
     width: 150
   },
   {
     title: 'Ngày nhập',
-    dataIndex: 'importDate',
-    scopedSlots: { customRender: 'importDate' },
+    dataIndex: 'importAt',
+    scopedSlots: { customRender: 'importAt' },
     align: 'center',
     ellipsis: true,
     width: 150
@@ -32,8 +25,8 @@ export default [
   },
   {
     title: 'Ngày xuất',
-    dataIndex: 'exportDate',
-    scopedSlots: { customRender: 'exportDate' },
+    dataIndex: 'exportAt',
+    scopedSlots: { customRender: 'exportAt' },
     align: 'center',
     ellipsis: true,
     width: 150
