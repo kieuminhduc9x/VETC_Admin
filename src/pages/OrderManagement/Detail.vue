@@ -99,7 +99,7 @@ import TableEmptyText from '@/utils/table-empty-text'
 import { commonMethods, authComputed } from '@/store/helpers'
 import moment from 'moment'
 import columnDetail from './columnDetail'
-import { getByIdPreOrder, getListVoucher } from '@/api/pre-order'
+import { getByIdPreOrder } from '@/api/pre-order'
 
 export default {
   components: {
