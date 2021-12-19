@@ -14,29 +14,37 @@ export default [
     width: 50
   },
   {
-    title: 'Mã phiếu xuất nhập',
-    dataIndex: 'voucherCode',
-    scopedSlots: { customRender: 'voucherCode' },
+    title: 'Shopee PO ID',
+    dataIndex: 'shopeePoId',
+    scopedSlots: { customRender: 'shopeePoId' },
+    align: 'left',
+    ellipsis: true,
+    width: 120
+  },
+  {
+    title: 'Mã kiện hàng',
+    dataIndex: 'cartonNo',
+    scopedSlots: { customRender: 'cartonNo' },
+    align: 'left',
+    ellipsis: true,
+    width: 200
+
+  },
+  {
+    title: 'Tên hàng',
+    dataIndex: 'descOfGoods',
+    scopedSlots: { customRender: 'descOfGoods' },
     align: 'left',
     ellipsis: true,
     width: 150
   },
   {
-    title: 'Ngày nhập',
-    dataIndex: 'importAt',
-    scopedSlots: { customRender: 'importAt' },
+    title: 'Ngày giao hàng',
+    dataIndex: 'dateOfReceived',
+    scopedSlots: { customRender: 'dateOfReceived' },
     align: 'center',
     ellipsis: true,
-    width: 150
-
-  },
-  {
-    title: 'Ngày xuất',
-    dataIndex: 'exportAt',
-    scopedSlots: { customRender: 'exportAt' },
-    align: 'center',
-    ellipsis: true,
-    width: 150
+    width: 120
   },
   {
     title: 'Trạng thái ',

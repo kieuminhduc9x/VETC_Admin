@@ -149,7 +149,7 @@ export default {
       isUpdate: false,
       modelObject: {
         id: '',
-        warehouseCode: '',
+        warehouseId: '',
         phone: '',
         imei: ''
       },
@@ -200,7 +200,9 @@ export default {
     },
     getData (value) {
       const params = {
-        warehouseId: value
+        page: this.pagination.current > 0 ? this.pagination.current - 1 : 0,
+        size: this.pagination.pageSize,
+        warehouseId: value !== '' ? value : null
       }
       this.loading = false
       this.data = []

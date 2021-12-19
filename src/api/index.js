@@ -66,9 +66,10 @@ const api = {
   importExportManagement: {
     search: '/voucher/admin/search',
     getById: '/voucher/admin/get-by-id',
-    checkPrintVoucher: '/voucher/admin/printed-output-voucher', // Kiểm tra trước khi in phiếu
+    checkPrintVoucher: '/voucher/admin/check-printed-output-voucher', // Kiểm tra trước khi in phiếu
     acceptExport: '/voucher/admin/accept-export', // Xác nhận xuất kho
-    acceptSuccessfulDelivery: '/voucher/admin/accept-successful-delivery' // Xác nhận giao hàng thành công
+    acceptSuccessfulDelivery: '/voucher/admin/accept-successful-delivery', // Xác nhận giao hàng thành công
+    print: '/voucher/admin/print-output-voucher' // In phiếu xuất
   },
   // Quản lý đơn đặt hàng
   preOrder: {
@@ -76,6 +77,14 @@ const api = {
     getById: '/pre-order/admin/get-by-id',
     import: '/pre-order/admin/import',
     listVoucher: '/pre-order/admin/list-voucher'
+  },
+  // Cấu hình thông tin tài khoản
+  account: {
+    search: '/user/admin/search',
+    create: '/user/admin/insert',
+    update: '/user/admin/update',
+    delete: '/user/admin/remove',
+    findById: ''
   }
 
 }

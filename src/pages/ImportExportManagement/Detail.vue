@@ -157,8 +157,11 @@
 </template>
 <script>
 import MainLayout from '@/pages/layouts/MainLayout'
-import { checkPrintVoucherImportExportManagement, getByIdImportExportManagement } from '@/api/import-export-management'
-import { previewReport } from '@/api/report'
+import {
+  checkPrintVoucherImportExportManagement,
+  getByIdImportExportManagement,
+  printImportExportManagement
+} from '@/api/import-export-management'
 import moment from 'moment'
 import columns from './columnsDetail'
 import PopupAcceptExport from './PopupAcceptExport'
@@ -241,16 +244,22 @@ export default {
     },
     printVoucher () {
       const params = {
-        fileType: 'pdf',
-        params: {
-        },
-        reportName: 'voucher'
+        voucherId: this.$route.params.id
       }
       this.loadingPdf = true
-      previewReport(params).then(rs => {
-        var file = new Blob([rs], { type: 'application/pdf' })
-        var fileURL = URL.createObjectURL(file)
-        window.open(fileURL)
+      printImportExportManagement(params).then(rs => {
+        const date = new Date(moment())
+        const fileName = 'Phieu_xuat_' + moment(date, 'YYYY_MM_DD ') + '.xlsx'
+        if (window.navigator.msSaveOrOpenBlob) {
+          window.navigator.msSaveBlob(rs, fileName)
+        } else {
+          const downloadLink = window.document.createElement('a')
+          downloadLink.href = window.URL.createObjectURL(rs)
+          downloadLink.download = fileName
+          document.body.appendChild(downloadLink)
+          downloadLink.click()
+          document.body.removeChild(downloadLink)
+        }
       }).catch(err => {
         const msg = this.handleApiError(err)
         this.$error({ content: msg })

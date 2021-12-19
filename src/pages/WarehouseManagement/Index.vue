@@ -139,7 +139,8 @@ export default {
         address: '',
         managerId: '',
         phone: '',
-        parentId: ''
+        parentId: '',
+        email: ''
       }
     }
   },
@@ -199,6 +200,7 @@ export default {
     closeForm () {
       this.visibleForm = false
       this.modelObject = {}
+      this.getData()
     },
     onDeleteRow (record) {
       this.$confirm({

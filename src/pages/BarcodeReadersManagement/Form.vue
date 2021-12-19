@@ -13,7 +13,7 @@
           <a-col :xs="24" :md="12" :lg="12">
             <a-form-model-item
               label="Kho hàng"
-              prop="warehouseCode"
+              prop="warehouseId"
               :rules="[
                 {
                   required: true,
@@ -22,11 +22,11 @@
                 }
               ]">
               <a-select
-                v-model="form.warehouseCode"
+                v-model="form.warehouseId"
                 :allowClear="true"
                 show-search
                 :filter-select-option="filterSelectOption">
-                <a-select-option v-for="item in listWarehouse" :key="item.code" :value="item.code">
+                <a-select-option v-for="item in listWarehouse" :key="item.id" :value="item.id">
                   {{ item.name }}
                 </a-select-option>
               </a-select>

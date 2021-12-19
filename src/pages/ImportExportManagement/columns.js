@@ -30,9 +30,18 @@ export default [
     width: 200
   },
   {
-    title: 'Ngày giao dịch',
+    title: 'Ngày nhập',
     dataIndex: 'importAt',
     scopedSlots: { customRender: 'importAt' },
+    align: 'center',
+    ellipsis: true,
+    width: 150
+
+  },
+  {
+    title: 'Ngày xuất',
+    dataIndex: 'exportAt',
+    scopedSlots: { customRender: 'exportAt' },
     align: 'center',
     ellipsis: true,
     width: 150

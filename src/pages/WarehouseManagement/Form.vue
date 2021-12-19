@@ -21,6 +21,10 @@
                   trigger: 'change'
                 },
                 {
+                  validator: checkCode,
+                  trigger: 'change'
+                },
+                {
                   max: 200,
                   message: 'Nhập tối đa 200 ký tự',
                   trigger: 'change'
@@ -121,7 +125,26 @@
           </a-col>
         </a-row>
         <a-row :gutter="16">
-          <a-col :xs="24" :md="24" :lg="24">
+          <a-col :xs="24" :md="12" :lg="12">
+            <a-form-model-item
+              label="Email kho"
+              prop="email"
+              :rules="
+                [
+                  {
+                    required: true,
+                    message: 'Email kho là bắt buộc',
+                    trigger:'change'
+                  },
+                  {
+                    validator: checkEmail,
+                    trigger: 'change'
+                  }
+                ]">
+              <a-input v-model="form.email"></a-input>
+            </a-form-model-item>
+          </a-col>
+          <a-col :xs="24" :md="12" :lg="12">
             <a-form-model-item
               label="Địa chỉ"
               prop="address"
@@ -166,7 +189,7 @@
   </a-drawer>
 </template>
 <script>
-import { phoneValidator } from '@/utils/helpers'
+import { phoneValidator, checkEmail, checkCode } from '@/utils/helpers'
 import {
   createWarehouseManagement,
   searchWarehouseManagement,
@@ -228,6 +251,8 @@ export default {
   },
   methods: {
     phoneValidator,
+    checkEmail,
+    checkCode,
     getListProvince () {
       listProvince().then(rs => {
         if (rs) {

@@ -43,3 +43,13 @@ export function acceptSuccessfulDeliveryImportExportManagement (parameter) {
     data: parameter
   })
 }
+
+// In phiếu xuất
+export function printImportExportManagement (parameter) {
+  return axios({
+    url: api.importExportManagement.print,
+    method: 'get',
+    params: parameter,
+    responseType: 'blob'
+  })
+}

@@ -101,6 +101,9 @@ router.beforeEach((routeTo, routeFrom, next) => {
           routeTo.name === 'profile' ||
           hasPrivilege(routerName) ||
           routeTo.name === 'config' ||
+          routeTo.name === 'config.account' ||
+          routeTo.name === 'config.account.create' ||
+          routeTo.name === 'config.account.update' ||
           routeTo.name === 'warehouse_management' ||
           routeTo.name === 'import_export_management.detail' ||
           routeTo.name === 'import_export_management' ||

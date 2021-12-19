@@ -285,17 +285,22 @@ export function trimString (str) {
   }
   return str
 }
+
+// Vailidate Email
 export function checkEmail (rule, value, callback) {
   if (value) {
-    const reg = new RegExp('/^([a-z0-9_\\.-]+)@([\\da-z\\.-]+)\\.([a-z\\.]{2,6})$/', 'g')
+    const reg = new RegExp('^([A-Za-z0-9_\\-.])+@([A-Za-z0-9_\\-.])+\\.([A-Za-z]{2,4})$', 'g')
     if (reg.test(value) === false) {
       callback(new Error('Email không đúng định dạng'))
     } else {
       callback()
     }
+  } else {
+    callback()
   }
-  callback()
 }
+
+// Validate địa chỉ Ip
 export function checkIP (rule, value, callback) {
   if (value) {
     const reg = new RegExp('^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$', 'g')
@@ -307,13 +312,6 @@ export function checkIP (rule, value, callback) {
   }
   callback()
 }
-export function checkRequiredDate (rule, value, callback) {
-  if (value) {
-    callback()
-  } else {
-    callback(new Error('Bắt buộc nhập'))
-  }
-}
 
 // Check validate password
 export function validatePassword (rule, value, callback) {
@@ -321,6 +319,20 @@ export function validatePassword (rule, value, callback) {
     const reg = new RegExp('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\\$%\\^&\\*])(?=.{6,})')
     if (reg.test(value) === false) {
       callback(new Error('Mật khẩu phải ít nhất 6 ký tự bao gồm chữ hoa, chữ thường, số và ký tự đặc biệt'))
+    } else {
+      callback()
+    }
+  } else {
+    callback()
+  }
+}
+
+// validate các field khi nhập
+export function checkCode (rule, value, callback) {
+  if (value) {
+    const reg = new RegExp(/^[a-zA-Z0-9_]+$/g, 'g')
+    if (reg.test(value) === false) {
+      callback(new Error('Chỉ được phép nhập ký tự chữ, số và _'))
     } else {
       callback()
     }

@@ -69,20 +69,6 @@ export const asyncRouterMap = [
     }
   },
 
-  // Cấu hình
-  {
-    path: '/admin/config',
-    name: 'config',
-    component: () => import('../pages/Config/index'),
-    meta: {
-      authRequired: true,
-      head: {
-        title: 'Cấu hình',
-        description: 'Cấu hình'
-      }
-    }
-  },
-
   // Quản lý kho hàng
   {
     path: '/warehouse-management',
@@ -165,7 +151,61 @@ export const asyncRouterMap = [
         description: 'Chi tiết đơn đặt hàng'
       }
     }
+  },
+
+  // Cấu hình
+  {
+    path: '/config',
+    name: 'config',
+    component: () => import('../pages/Config/Index'),
+    meta: {
+      authRequired: true,
+      head: {
+        title: 'Chi tiết đơn đặt hàng',
+        description: 'Chi tiết đơn đặt hàng'
+      }
+    }
+  },
+  {
+    path: '/config/account',
+    name: 'config.account',
+    component: () => import('../pages/Config/Account/Index'),
+    meta: {
+      authRequired: true,
+      head: {
+        title: 'Quản lý tài khoản',
+        description: 'Quản lý tài khoản'
+      }
+    }
+  },
+  // Thêm mới tài khoản
+  {
+    path: '/admin/config/account/create',
+    name: 'config.account.create',
+    component: () => import('../pages/Config/Account/Create'),
+    meta: {
+      authRequired: true,
+      head: {
+        title: 'Thêm mới tài khoản',
+        description: 'Thêm mới tài khoản'
+      }
+    }
+  },
+
+  // Cập nhật tài khoản
+  {
+    path: '/admin/config/account/update/:id',
+    name: 'config.account.update',
+    component: () => import('../pages/Config/Account/Update'),
+    meta: {
+      authRequired: true,
+      head: {
+        title: 'Cập nhật tài khoản',
+        description: 'Cập nhật tài khoản'
+      }
+    }
   }
+
 ]
 
 export const constantRouterMap = [

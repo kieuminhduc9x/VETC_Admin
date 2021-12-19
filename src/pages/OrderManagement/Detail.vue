@@ -36,7 +36,7 @@
                 </a-descriptions-item>
               </a-descriptions>
               <a-divider orientation="left">
-                <span class="block-header">Danh sách phiếu nhập xuất</span>
+                <span class="block-header">Danh sách kiện hàng</span>
               </a-divider>
               <!--            <div class="wrapper1">-->
               <!--              <div class="div1"></div>-->
@@ -149,6 +149,7 @@ export default {
       getByIdPreOrder({ preOrderId: this.$route.params.id }).then(rs => {
         if (rs) {
           this.form = rs
+          this.data = rs.listDetail
           this.loading = false
         }
       }).catch(err => {
@@ -162,24 +163,24 @@ export default {
         this.loading = false
       })
     },
-    getListVoucher () {
-      this.loading = true
-      getListVoucher(this.$route.params.id).then(rs => {
-        if (rs) {
-          this.data = rs
-          this.loading = false
-        }
-      }).catch(err => {
-        const msg = this.handleApiError(err)
-        this.$notification.error({
-          message: '',
-          description: msg,
-          duration: 5
-        })
-      }).finally(res => {
-        this.loading = false
-      })
-    },
+    // getListVoucher () {
+    //   this.loading = true
+    //   getListVoucher(this.$route.params.id).then(rs => {
+    //     if (rs) {
+    //       this.data = rs
+    //       this.loading = false
+    //     }
+    //   }).catch(err => {
+    //     const msg = this.handleApiError(err)
+    //     this.$notification.error({
+    //       message: '',
+    //       description: msg,
+    //       duration: 5
+    //     })
+    //   }).finally(res => {
+    //     this.loading = false
+    //   })
+    // },
     goToDetailVoucher (id) {
       this.$router.push({ name: 'import_export_management.detail', params: { id: id } })
     }

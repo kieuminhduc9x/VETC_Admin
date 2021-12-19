@@ -21,6 +21,7 @@
     "moment-timezone": "^0.5.33",
     "nprogress": "^0.2.0",
     "numeral": "^2.0.6",
+    "v-svg-icons": "^1.1.4",
     "vue": "^2.6.10",
     "vue-browser-detect-plugin": "^0.1.13",
     "vue-chartjs": "^3.5.1",

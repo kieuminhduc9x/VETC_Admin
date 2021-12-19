@@ -62,6 +62,12 @@
           <span>Quản lý đơn đặt hàng</span>
         </router-link>
       </a-menu-item>
+      <a-menu-item key="6" >
+        <router-link :to="{ name: 'config' }" class="title-menu">
+          <a-icon type="setting" />
+          <span>Cấu hình</span>
+        </router-link>
+      </a-menu-item>
     </a-menu>
   </a-layout-sider>
 </template>
@@ -103,6 +109,10 @@ export default {
         case 'order_management.detail':
           idx = '5'
           break
+        case 'config':
+        case 'config.create':
+          idx = '6'
+          break
       }
 
       return idx
@@ -126,6 +136,10 @@ export default {
         case 'order_management':
         case 'order_management.detail':
           k = '5'
+          break
+        case 'config':
+        case 'config.create':
+          k = '6'
           break
         default:
           k = '0'

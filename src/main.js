@@ -7,6 +7,8 @@ import store from './store/store'
 import App from './App'
 import { VueAxios } from './utils/request'
 import { Auth } from './utils/auth'
+import icons from 'v-svg-icons'
+
 // import Storage from 'vue-ls'
 import VueDraggableResizable from 'vue-draggable-resizable'
 import 'vue-draggable-resizable/dist/VueDraggableResizable.css'
@@ -15,6 +17,8 @@ import browserDetect from 'vue-browser-detect-plugin'
 import './directives/action'
 import './directives/permission'
 Vue.use(browserDetect)
+
+Vue.component('icon', icons)
 
 const pluginOptions = {
   globalOptions: { currency: 'VND' }
