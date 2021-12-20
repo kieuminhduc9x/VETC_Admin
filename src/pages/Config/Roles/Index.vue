@@ -4,33 +4,11 @@
     <template v-slot:breadcrumb>
       <a-breadcrumb separator=">">
         <a-breadcrumb-item><a href="/">Home</a></a-breadcrumb-item>
-        <a-breadcrumb-item :class="'active'">Máy quét mã vạch </a-breadcrumb-item>
+        <a-breadcrumb-item :class="'active'">Nhóm tài khoản </a-breadcrumb-item>
       </a-breadcrumb>
     </template>
     <a-collapse v-model="activeResultKey" expandIconPosition="left" style=" margin-top: 8px" class="collapse-left">
-      <a-collapse-panel header="Danh sách máy đọc mã vạch" key="1">
-        <a-row :gutter="16">
-          <a-col :xs="24" :md="10" :lg="10" :offset="1">
-            <a-form-model :model="filter" ref="ruleFilter">
-              <a-form-model-item
-                label="Chọn kho"
-                prop="warehouseId"
-                :rules="[]">
-                <a-select
-                  v-model="filter.warehouseId"
-                  :allowClear="true"
-                  show-search
-                  @change="changeWarehouse"
-                  :filter-select-option="filterSelectOption">
-                  <a-select-option :key="''" :value="''">--Tất cả--</a-select-option>
-                  <a-select-option v-for="item in listWarehouse" :key="item.id" :value="item.id">
-                    {{ item.name }}
-                  </a-select-option>
-                </a-select>
-              </a-form-model-item>
-            </a-form-model>
-          </a-col>
-        </a-row>
+      <a-collapse-panel header="Danh sách nhóm tài khoản" key="1">
         <a-row :gutter="16">
           <a-col :xs="24" :md="24" :lg="24">
             <div style="display: flex; justify-content: flex-end">
@@ -69,16 +47,16 @@
                 </template>
                 <template slot="operation" slot-scope="text, record">
                   <a-popover >
-                    <template slot="content">
+                    <template slot="content" >
                       <span>Sửa</span>
                     </template>
-                    <a-icon @click="showUpdate(record)" type="edit" style="margin-right: 8px; color: #086885"></a-icon>
+                    <a-icon type="edit" style="margin-right: 8px; color: #086885" @click="showUpdate(record)"></a-icon>
                   </a-popover>
                   <a-popover >
                     <template slot="content">
                       <span>Xóa</span>
                     </template>
-                    <a-icon type="delete" @click="onDeleteRow(record)" style="margin-right: 8px; color: red"></a-icon>
+                    <a-icon @click="onDeleteRow(record)" type="delete" style="margin-right: 8px; color: red"></a-icon>
                   </a-popover>
                 </template>
               </a-table>
@@ -104,12 +82,14 @@ import resizeableTitle from '@/utils/resizable-columns'
 import TableEmptyText from '@/utils/table-empty-text'
 import columns from './columns'
 import _merge from 'lodash/merge'
-import { deleteBarcodeReadersManagement, searchBarcodeReadersManagement } from '@/api/barcode-readers-management'
 import { commonMethods, authComputed } from '@/store/helpers'
 import pdf from 'vue-pdf'
 import FormWarehouse from './Form'
-import _ from 'lodash'
-import { searchWarehouseManagement } from '@/api/warehouse-management'
+// import _ from 'lodash'
+import {
+  deleteWarehouseManagement
+} from '@/api/warehouse-management'
+import { searchRoles, findByIdRoles } from '@/api/Config/roles'
 
 const ResizeableTitle = resizeableTitle(columns)
 export default {
@@ -144,24 +124,22 @@ export default {
       },
       loading: false,
       columns,
+      dataPdf: '',
+      loadingExport: false,
+      loadingPdf: false,
       visibleForm: false,
       isCreate: false,
       isUpdate: false,
       modelObject: {
         id: '',
-        warehouseId: '',
-        phone: '',
-        imei: ''
-      },
-      filter: {
-        warehouseId: ''
-      },
-      listWarehouse: []
+        code: '',
+        name: '',
+        listPrivilege: []
+      }
     }
   },
-  async created () {
-    await this.getListWarehouse('')
-    await this.getData('')
+  created () {
+    this.getData()
   },
   mounted () {
     this.scrollBarOfTable()
@@ -171,40 +149,22 @@ export default {
   },
   methods: {
     ...commonMethods,
-    changeWarehouse (value) {
-      this.getData(value)
-    },
-    getListWarehouse (value) {
-      this.loading = true
-      const params = {
-        pagination: false
-      }
-      searchWarehouseManagement(params).then(res => {
-        this.listWarehouse = res.data
-      }).catch(err => {
-        const msg = this.handleApiError(err)
-        this.$notification.error({
-          message: '',
-          description: msg,
-          duration: 5
-        })
-      }).finally(res => {
-        this.loading = false
+    findById (id) {
+      findByIdRoles({ roleId: id }).then(rs => {
+        if (rs) {
+          this.modelObject = rs
+        }
       })
     },
     handleTableChange (pagination, filters, sorter) {
       this.pagination = pagination
       this.getData()
     },
-    getData (value) {
-      const params = {
-        page: this.pagination.current > 0 ? this.pagination.current - 1 : 0,
-        size: this.pagination.pageSize,
-        warehouseId: value !== '' ? value : null
-      }
+    getData () {
+      const params = {}
       this.loading = true
       this.data = []
-      searchBarcodeReadersManagement(params).then(res => {
+      searchRoles(params).then(res => {
         this.data = this.convertPropToDisplayDate(res.data)
         this.pagination = _merge(this.pagination, this.handlePaginationData(res))
         this.loading = false
@@ -228,7 +188,8 @@ export default {
       this.visibleForm = true
       this.isCreate = false
       this.isUpdate = true
-      this.modelObject = _.cloneDeep(record)
+      // this.modelObject = _.cloneDeep(record)
+      this.findById(record.id)
     },
     closeForm () {
       this.visibleForm = false
@@ -253,7 +214,7 @@ export default {
     deleteGL (id) {
       const $this = this
       this.loading = true
-      deleteBarcodeReadersManagement({ id: id })
+      deleteWarehouseManagement({ id: id })
         .then(rs => {
           $this.getData()
           this.$success({

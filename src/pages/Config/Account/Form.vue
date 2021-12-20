@@ -97,7 +97,7 @@
   </div>
 </template>
 <script>
-import { createAccount, updateAccoount } from '@/api/Config/accounts'
+import { createAccount, updateAccount } from '@/api/Config/accounts'
 import { checkEmail, phoneValidator } from '@/utils/helpers'
 
 export default {
@@ -146,7 +146,7 @@ export default {
           }
           this.loading = true
           if (this.$route.params.id) {
-            updateAccoount(params).then(rs => {
+            updateAccount(params).then(rs => {
               if (rs) {
                 this.$success({ content: 'Cập nhật thông tin thành công' })
               }

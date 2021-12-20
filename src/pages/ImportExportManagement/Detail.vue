@@ -4,7 +4,7 @@
     <template v-slot:breadcrumb>
       <a-breadcrumb separator=">">
         <a-breadcrumb-item><a href="/">Home</a></a-breadcrumb-item>
-        <a-breadcrumb-item><a href="/import-export-management">Quản lý nhập xuất</a></a-breadcrumb-item>
+        <a-breadcrumb-item><a href="/import-export-management">Nhập xuất hàng</a></a-breadcrumb-item>
         <a-breadcrumb-item :class="'active'">Chi tiết</a-breadcrumb-item>
       </a-breadcrumb>
     </template>
@@ -108,9 +108,9 @@
                 <a-col :xs="24" :md="24" :lg="24">
                   <div style="display: flex; justify-content: center">
                     <a-button style="margin-right: 1rem" @click="goToBack">Quay lại</a-button>
-                    <a-button style="margin-right: 1rem" @click="checkPrintVoucher">In phiếu xuất</a-button>
-                    <a-button v-if="String(form.status) !== '2'" type="primary" style="margin-right: 1rem" @click="showAcceptExport">Xác nhận xuất hàng</a-button>
-                    <a-button v-if="String(form.status) === '2'" type="primary" style="margin-right: 1rem" @click="showAcceptDelivery">Xác nhận giao hàng thành công</a-button>
+                    <a-button v-if="String(form.status) !== '3'" style="margin-right: 1rem" @click="checkPrintVoucher">In phiếu xuất</a-button>
+                    <a-button v-if="String(form.status) === '1' " type="primary" style="margin-right: 1rem" @click="showAcceptExport">Xác nhận xuất hàng</a-button>
+                    <a-button v-if="String(form.status) === '2' " type="primary" style="margin-right: 1rem" @click="showAcceptDelivery">Xác nhận giao hàng thành công</a-button>
                   </div>
                 </a-col>
               </a-row>
@@ -121,7 +121,7 @@
     </a-form-model>
 
     <a-collapse v-model="activeKey" expandIconPosition="left" style=" margin-top: 8px" class="collapse-left">
-      <a-collapse-panel header="Danh sách đơn hàng" key="1">
+      <a-collapse-panel header="Danh sách kiện hàng" key="1">
         <a-card style="width: 100%; border: none" class="vts-table-container">
           <a-row :gutter="16" type="flex">
             <a-col :span="24">
@@ -133,7 +133,7 @@
                 :columns="columns"
                 :data-source="data"
                 :rowKey=" (rowKey, index ) => index"
-                :pagination="false"
+                :pagination="pagination"
                 :loading="loading"
                 :scroll="{ x: '100%' }"
                 :locale="{ emptyText: 'Chưa có dữ liệu' }"
@@ -141,9 +141,6 @@
                 class="ant-table-bordered">
                 <template slot="rowIndex" slot-scope="text, record, index">
                   <span>{{ getTableRowIndex(pagination.pageSize, pagination.current, index) }} </span>
-                </template>
-                <template slot="actionTitle" >
-                  <a-icon type="control"></a-icon>
                 </template>
               </a-table>
             </a-col>
@@ -166,6 +163,7 @@ import moment from 'moment'
 import columns from './columnsDetail'
 import PopupAcceptExport from './PopupAcceptExport'
 import PopupAcceptSuccessfullyDelivery from './PopupAcceptSuccessfullyDelivery'
+import _ from 'lodash'
 
 export default {
   components: {
@@ -210,6 +208,7 @@ export default {
           this.form.exportAt = moment(rs.exportAt, 'DD-MM-YYYY').format('YYYY-MM-DD')
           this.form.deliveredAt = moment(rs.deliveredAt, 'DD-MM-YYYY').format('YYYY-MM-DD')
           this.data = rs.listDetail
+          this.pagination = _.merge(this.pagination, this.handlePaginationData(rs.listDetail))
         }
       }).catch(err => {
         const msg = this.handleApiError(err)
@@ -224,12 +223,13 @@ export default {
     },
     handleTableChange (pagination, filters, sorter) {
       this.pagination = pagination
-      this.getData()
     },
     checkPrintVoucher () {
       const $this = this
+      this.loading = true
       checkPrintVoucherImportExportManagement({ voucherId: this.$route.params.id }).then(rs => {
         if (rs === true) {
+          this.loading = false
           this.$confirm({ content: 'Phiếu đã được in. Bạn có muốn tiếp tục in không?',
             okText: 'In',
             cancelText: 'Hủy',

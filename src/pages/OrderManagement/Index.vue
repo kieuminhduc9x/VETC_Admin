@@ -117,7 +117,7 @@
                   :data-source="record.listChild"
                   :pagination="false"
                 >
-                  <template slot="rowIndex" slot-scope="text, record, index">
+                  <template slot="rowIndex" slot-scope="text, recordC, index">
                     <span>{{ index+1 }} </span>
                   </template>
                 </a-table>

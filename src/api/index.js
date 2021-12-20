@@ -85,6 +85,15 @@ const api = {
     update: '/user/admin/update',
     delete: '/user/admin/remove',
     findById: ''
+  },
+
+  // Cấu hình nhóm tài khoản
+  roles: {
+    search: '/role/admin/getAll',
+    create: '/role/admin/create',
+    update: '/role/admin/update',
+    delete: '/role/admin/delete',
+    findById: '/role/admin/getById'
   }
 
 }

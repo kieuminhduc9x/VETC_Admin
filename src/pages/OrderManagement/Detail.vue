@@ -4,7 +4,7 @@
     <template v-slot:breadcrumb>
       <a-breadcrumb separator=">">
         <a-breadcrumb-item><a href="/">Home</a></a-breadcrumb-item>
-        <a-breadcrumb-item><a href="/order-management">Quản lý đơn đặt hàng</a></a-breadcrumb-item>
+        <a-breadcrumb-item><a href="/order-management">Đơn đặt hàng</a></a-breadcrumb-item>
         <a-breadcrumb-item :class="'active'">Chi tiết đơn đặt hàng</a-breadcrumb-item>
       </a-breadcrumb>
     </template>
@@ -73,7 +73,7 @@
               <a-divider orientation="left">
                 <span class="block-header">Lịch sử tác động</span>
               </a-divider>
-              <a-steps direction="vertical" progress-dot size="small">
+              <a-steps direction="vertical" progress-dot size="small" style="overflow: auto; height: 650px">
                 <a-step v-for="(item, key) in form.listTrans" :key="key" >
                   <template slot="title">
                     <span>{{ item.createAt }}</span>
@@ -89,7 +89,7 @@
           </a-row>
           <a-row :gutter="16">
             <a-col :xs="24" :md="24" :lg="24">
-              <div style="display: flex; justify-content: center">
+              <div style="display: flex; justify-content: center; margin-top: 50px">
                 <a-button type="default" @click="goToOrderManagement">Quay lại</a-button>
               </div>
             </a-col>
@@ -108,6 +108,7 @@ import { commonMethods, authComputed } from '@/store/helpers'
 import moment from 'moment'
 import columnDetail from './columnDetail'
 import { getByIdPreOrder } from '@/api/pre-order'
+import _ from 'lodash'
 
 export default {
   components: {
@@ -158,6 +159,7 @@ export default {
         if (rs) {
           this.form = rs
           this.data = rs.listDetail
+          this.pagination = _.merge(this.pagination, this.handlePaginationData(rs.listDetail))
           this.loading = false
         }
       }).catch(err => {

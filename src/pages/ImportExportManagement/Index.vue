@@ -4,7 +4,7 @@
     <template v-slot:breadcrumb>
       <a-breadcrumb separator=">">
         <a-breadcrumb-item><a href="/">Home</a></a-breadcrumb-item>
-        <a-breadcrumb-item :class="'active'">Quản lý nhập xuất</a-breadcrumb-item>
+        <a-breadcrumb-item :class="'active'">Nhập xuất hàng</a-breadcrumb-item>
       </a-breadcrumb>
     </template>
     <a-form-model

@@ -39,27 +39,27 @@
       :style="{ height: '100%', borderRight: 0, paddingTop: '0', }"
     >
       <a-menu-item key="2" >
-        <router-link :to="{ name: 'warehouse_management' }" class="title-menu">
-          <a-icon type="appstore"></a-icon>
-          <span>Quản lý danh mục kho</span>
+        <router-link :to="{ name: 'order_management' }" class="title-menu">
+          <a-icon type="project" />
+          <span>Đơn đặt hàng</span>
         </router-link>
       </a-menu-item>
       <a-menu-item key="3" >
-        <router-link :to="{ name: 'barcode_readers_management' }" class="title-menu">
-          <a-icon type="barcode"></a-icon>
-          <span>Máy đọc mã vạch</span>
+        <router-link :to="{ name: 'import_export_management' }" class="title-menu">
+          <a-icon type="export"></a-icon>
+          <span>Nhập xuất hàng</span>
         </router-link>
       </a-menu-item>
       <a-menu-item key="4" >
-        <router-link :to="{ name: 'import_export_management' }" class="title-menu">
-          <a-icon type="export"></a-icon>
-          <span>Quản lý nhập xuất</span>
+        <router-link :to="{ name: 'warehouse_management' }" class="title-menu">
+          <a-icon type="appstore"></a-icon>
+          <span>Danh mục kho</span>
         </router-link>
       </a-menu-item>
       <a-menu-item key="5" >
-        <router-link :to="{ name: 'order_management' }" class="title-menu">
-          <a-icon type="project" />
-          <span>Quản lý đơn đặt hàng</span>
+        <router-link :to="{ name: 'barcode_readers_management' }" class="title-menu">
+          <a-icon type="barcode"></a-icon>
+          <span>Máy quét mã vạch</span>
         </router-link>
       </a-menu-item>
       <a-menu-item key="6" >
@@ -95,22 +95,24 @@ export default {
         case 'dashboard':
           idx = '1'
           break
-        case 'warehouse_management':
+        case 'order_management':
+        case 'order_management.detail':
           idx = '2'
-          break
-        case 'barcode_readers_management':
-          idx = '3'
           break
         case 'import_export_management.detail':
         case 'import_export_management':
+          idx = '3'
+          break
+        case 'warehouse_management':
           idx = '4'
           break
-        case 'order_management':
-        case 'order_management.detail':
+        case 'barcode_readers_management':
           idx = '5'
           break
         case 'config':
         case 'config.create':
+        case 'config.update':
+        case 'config.roles':
           idx = '6'
           break
       }
@@ -123,22 +125,24 @@ export default {
         case 'dashboard':
           k = '1'
           break
-        case 'warehouse_management':
+        case 'order_management':
+        case 'order_management.detail':
           k = '2'
-          break
-        case 'barcode_readers_management':
-          k = '3'
           break
         case 'import_export_management':
         case 'import_export_management.detail':
+          k = '3'
+          break
+        case 'warehouse_management':
           k = '4'
           break
-        case 'order_management':
-        case 'order_management.detail':
+        case 'barcode_readers_management':
           k = '5'
           break
         case 'config':
         case 'config.create':
+        case 'config.update':
+        case 'config.roles':
           k = '6'
           break
         default:

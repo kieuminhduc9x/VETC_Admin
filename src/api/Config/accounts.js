@@ -15,7 +15,7 @@ export function createAccount (parameter) {
     data: parameter
   })
 }
-export function updateAccoount (parameter) {
+export function updateAccount (parameter) {
   return axios({
     url: api.account.update,
     method: 'post',

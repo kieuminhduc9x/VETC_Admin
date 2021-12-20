@@ -18,7 +18,7 @@
                 <a-upload
                   name="file"
                   :multiple="true"
-                  :accept="'.doc, docx,.pdf, .xlsx, .jpg, .png'"
+                  :accept="'.pdf, .xlsx, .jpg,.png'"
                   :show-upload-list="true"
                   :before-upload="beforeUpload"
                   :remove="removeFile"
@@ -71,7 +71,7 @@ export default {
       data.status = 'done'
       const object = {
         fileName: data.name,
-        fileType: data.type,
+        fileType: data.name.substr(data.name.lastIndexOf('.')),
         dataBase64: '',
         uid: data.uid
       }

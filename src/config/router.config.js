@@ -180,7 +180,7 @@ export const asyncRouterMap = [
   },
   // Thêm mới tài khoản
   {
-    path: '/admin/config/account/create',
+    path: '/config/account/create',
     name: 'config.account.create',
     component: () => import('../pages/Config/Account/Create'),
     meta: {
@@ -194,7 +194,7 @@ export const asyncRouterMap = [
 
   // Cập nhật tài khoản
   {
-    path: '/admin/config/account/update/:id',
+    path: '/config/account/update/:id',
     name: 'config.account.update',
     component: () => import('../pages/Config/Account/Update'),
     meta: {
@@ -202,6 +202,20 @@ export const asyncRouterMap = [
       head: {
         title: 'Cập nhật tài khoản',
         description: 'Cập nhật tài khoản'
+      }
+    }
+  },
+
+  // Cập nhật tài khoản
+  {
+    path: '/config/roles',
+    name: 'config.roles',
+    component: () => import('../pages/Config/Roles/Index'),
+    meta: {
+      authRequired: true,
+      head: {
+        title: 'Quản lý nhóm tài khoản',
+        description: 'Quản lý nhóm tài khoản'
       }
     }
   }

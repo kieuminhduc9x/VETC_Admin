@@ -1,62 +1,61 @@
 <template>
   <blank-layout>
     <a-spin :spinning="loading" class="app-spinning">
+      <div class="container">
+        <div class="top">
+          <div class="header">
+            <a href="/">
+              <!--            <img src="~@/assets/vna.png" class="logo" alt="logo">-->
+              <br>
+              <div class="title" >{{ $t('AppName') }}</div>
+            </a>
+          </div>
+          <div class="desc">
 
+          </div>
+        </div>
+        <div class="main" >
+          <a-form-model
+            id="formLogin"
+            class="user-layout-login"
+            ref="formLogin"
+            :model="formLogin"
+            :rules="rules"
+          >
+            <a-form-model-item prop="username" :label="$t('login.Username') ">
+              <a-input
+                size="large"
+                type="text"
+                :placeholder="$t('login.Username')"
+                v-model="formLogin.username"
+              >
+                <a-icon slot="prefix" type="user" :style="{ color: 'rgba(0,0,0,.25)' }"/>
+              </a-input>
+            </a-form-model-item>
+
+            <a-form-model-item :label="$t('login.Password') " prop="password">
+              <a-input
+                size="large"
+                type="password"
+                :placeholder="$t('login.Password')"
+                v-model="formLogin.password"
+              >
+                <a-icon slot="prefix" type="lock" :style="{ color: 'rgba(0,0,0,.25)' }"/>
+              </a-input>
+            </a-form-model-item>
+            <a-form-model-item>
+              <a-button
+                size="large"
+                @click="handleSubmit"
+                :loading="loading"
+                type="primary"
+                style="margin-top:24px"
+                block>{{ $t('login.Login') }}</a-button>
+            </a-form-model-item>
+          </a-form-model>
+        </div>
+      </div>
     </a-spin>
-    <div class="container">
-      <div class="top">
-        <div class="header">
-          <a href="/">
-            <img src="~@/assets/vna.png" class="logo" alt="logo">
-            <br>
-            <div class="title" >{{ $t('AppName') }}</div>
-          </a>
-        </div>
-        <div class="desc">
-
-        </div>
-      </div>
-      <div class="main" >
-        <a-form-model
-          id="formLogin"
-          class="user-layout-login"
-          ref="formLogin"
-          :model="formLogin"
-          :rules="rules"
-        >
-          <a-form-model-item prop="username" :label="$t('login.Username') ">
-            <a-input
-              size="large"
-              type="text"
-              :placeholder="$t('login.Username')"
-              v-model="formLogin.username"
-            >
-              <a-icon slot="prefix" type="user" :style="{ color: 'rgba(0,0,0,.25)' }"/>
-            </a-input>
-          </a-form-model-item>
-
-          <a-form-model-item :label="$t('login.Password') " prop="password">
-            <a-input
-              size="large"
-              type="password"
-              :placeholder="$t('login.Password')"
-              v-model="formLogin.password"
-            >
-              <a-icon slot="prefix" type="lock" :style="{ color: 'rgba(0,0,0,.25)' }"/>
-            </a-input>
-          </a-form-model-item>
-          <a-form-model-item>
-            <a-button
-              size="large"
-              @click="handleSubmit"
-              :loading="loading"
-              type="primary"
-              style="margin-top:24px"
-              block>{{ $t('login.Login') }}</a-button>
-          </a-form-model-item>
-        </a-form-model>
-      </div>
-    </div>
   </blank-layout>
 </template>
 <script>

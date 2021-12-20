@@ -25,23 +25,23 @@
                 </div>
               </router-link>
             </a-col>
+            <!--            <a-col :xs="24" :md="8" :lg="8">-->
+            <!--              <router-link :to="{name: 'config'}">-->
+            <!--                <div class="box-menu" style="display: flex; justify-items: flex-start">-->
+            <!--                  <div class="box-image">-->
+            <!--                    <div class="option-imgage">-->
+            <!--                      <icon name="settings" width="20px" height="20px"></icon>-->
+            <!--                    </div>-->
+            <!--                  </div>-->
+            <!--                  <div class="title-content">-->
+            <!--                    <h4 style="color: #076885; font-weight: bold">Cài đặt chung</h4>-->
+            <!--                    <p style="color: grey">Cấu hình thông tin chung cửa hàng của bạn</p>-->
+            <!--                  </div>-->
+            <!--                </div>-->
+            <!--              </router-link>-->
+            <!--            </a-col>-->
             <a-col :xs="24" :md="8" :lg="8">
-              <router-link :to="{name: 'config'}">
-                <div class="box-menu" style="display: flex; justify-items: flex-start">
-                  <div class="box-image">
-                    <div class="option-imgage">
-                      <icon name="settings" width="20px" height="20px"></icon>
-                    </div>
-                  </div>
-                  <div class="title-content">
-                    <h4 style="color: #076885; font-weight: bold">Cài đặt chung</h4>
-                    <p style="color: grey">Cấu hình thông tin chung cửa hàng của bạn</p>
-                  </div>
-                </div>
-              </router-link>
-            </a-col>
-            <a-col :xs="24" :md="8" :lg="8">
-              <router-link :to="{name: ''}">
+              <router-link :to="{name: 'config.roles'}">
                 <div class="box-menu" style="display: flex; justify-items: flex-start">
                   <div class="box-image">
                     <div class="option-imgage">

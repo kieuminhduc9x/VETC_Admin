@@ -126,6 +126,10 @@ var mixin = {
         return {
           total: res.page_meta.total_elements
         }
+      } else if (res.page_meta === undefined) {
+        return {
+          total: res.length
+        }
       }
       return {}
     },
