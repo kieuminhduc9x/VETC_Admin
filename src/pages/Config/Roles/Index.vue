@@ -165,7 +165,7 @@ export default {
       this.loading = true
       this.data = []
       searchRoles(params).then(res => {
-        this.data = this.convertPropToDisplayDate(res.data)
+        this.data = this.convertPropToDisplayDate(res)
         this.pagination = _merge(this.pagination, this.handlePaginationData(res))
         this.loading = false
       }).catch(err => {
