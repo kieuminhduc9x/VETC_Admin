@@ -59,7 +59,7 @@
 <script>
 import { checkCode } from '@/utils/helpers'
 import { SearchUser } from '@/api/user'
-import { addUser, createRoles, updateRoles } from '@/api/Config/roles'
+import { addUser } from '@/api/Config/roles'
 
 export default {
   components: {
