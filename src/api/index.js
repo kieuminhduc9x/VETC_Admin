@@ -93,7 +93,9 @@ const api = {
     create: '/role/admin/create',
     update: '/role/admin/update',
     delete: '/role/admin/delete',
-    findById: '/role/admin/getById'
+    findById: '/role/admin/getById',
+    addUser: '/role/admin/add-user',
+    removeUser: '/role/admin/remove-user'
   }
 
 }

@@ -36,3 +36,21 @@ export function findByIdRoles (parameter) {
     params: parameter
   })
 }
+
+// Thêm user vào vai trò
+export function addUser (parameter) {
+  return axios({
+    url: api.roles.addUser,
+    method: 'post',
+    data: parameter
+  })
+}
+
+// Xóa user khỏi vai trò
+export function removeUser (parameter) {
+  return axios({
+    url: api.roles.removeUser,
+    method: 'post',
+    data: parameter
+  })
+}

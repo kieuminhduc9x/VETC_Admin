@@ -1,83 +1,36 @@
 <template>
   <a-drawer
     :visible="visible"
-    :title="isCreate === true? 'Thêm mới' : 'Cập nhật'"
+    :title="isCreate === true ? 'Thêm mới' : isUpdate === true ? 'Cập nhật' : 'Chi tiết'"
     @close="closeForm"
-    width="600"
+    width="400"
     :destroy-on-close="false"
     :mask-closable="false"
   >
     <a-spin :spinning="loading">
       <a-form-model :model="form" ref="ruleForm">
         <a-row :gutter="16">
-          <a-col :xs="24" :md="12" :lg="12">
+          <a-col :xs="24" :md="24" :lg="24">
             <a-form-model-item
-              label="Mã vai trò"
-              prop="code"
+              label="Danh sách user"
+              prop="userId"
               :rules="[
                 {
                   required: true,
-                  message: 'Mã vai trò là bắt buộc',
-                  trigger: 'change'
-                },
-                {
-                  validator: checkCode,
-                  trigger: 'change'
-                },
-                {
-                  max: 200,
-                  message: 'Nhập tối đa 200 ký tự',
+                  message: 'User là bắt buộc',
                   trigger: 'change'
                 }
               ]">
-              <a-input v-model="form.code" @blur="DeepTrimValue(form)"></a-input>
-            </a-form-model-item>
-          </a-col>
-          <a-col :xs="24" :md="12" :lg="12">
-            <a-form-model-item
-              label="Tên vai trò"
-              prop="name"
-              :rules="[
-                {
-                  required: true,
-                  message: 'Tên vai trò là bắt buộc',
-                  trigger: 'change'
-                },
-                {
-                  max: 250,
-                  message: 'Nhập tối đa 250 ký tự',
-                  trigger: 'change'
-                }
-              ]">
-              <a-input v-model="form.name" @blur="DeepTrimValue(form)"></a-input>
-            </a-form-model-item>
-          </a-col>
-        </a-row>
-        <a-row :gutter="16">
-          <a-col :xs="24" :md="12" :lg="12">
-            <a-form-model-item
-              label="Privilege"
-              prop="listPrivilege"
-              :rules="
-                [
-                  {
-                    required: true,
-                    message: 'Privilege là bắt buộc',
-                    trigger:'change'
-                  },
-                ]">
               <a-select
-                mode="multiple"
                 show-search
                 :allowClear="true"
-                v-model="form.listPrivilege">
-                <a-select-option v-for="item in listPrivilege" :key="item.id" :value="item.id">
-                  {{ item.name }}
+                v-model="form.userId">
+                <a-select-option v-for="item in listUser" :key="item.id" :value="item.id">
+                  {{ item.fullName }}
                 </a-select-option>
               </a-select>
             </a-form-model-item>
           </a-col>
-
         </a-row>
       </a-form-model>
     </a-spin>
@@ -104,9 +57,9 @@
   </a-drawer>
 </template>
 <script>
-import { checkEmail, checkCode } from '@/utils/helpers'
+import { checkCode } from '@/utils/helpers'
 import { SearchUser } from '@/api/user'
-import { createRoles, updateRoles } from '@/api/Config/roles'
+import { addUser, createRoles, updateRoles } from '@/api/Config/roles'
 
 export default {
   components: {
@@ -124,6 +77,11 @@ export default {
       default: false
     },
     isUpdate: {
+      type: Boolean,
+      required: true,
+      default: false
+    },
+    isView: {
       type: Boolean,
       required: true,
       default: false
@@ -148,20 +106,19 @@ export default {
   data () {
     return {
       visible: false,
-      listPrivilege: [],
+      listUser: [],
       loading: false
     }
   },
   created () {
-    this.getListPrivilege()
+    this.getListUser()
   },
   methods: {
-    checkEmail,
     checkCode,
-    getListPrivilege () {
+    getListUser () {
       SearchUser({ pagination: false }).then(rs => {
         if (rs) {
-          this.listPrivilege = rs.data
+          this.listUser = rs.data
         }
       })
     },
@@ -174,42 +131,26 @@ export default {
     submitData () {
       this.$refs.ruleForm.validate(valid => {
         if (valid) {
-          const params = this.form
-          if (this.isCreate === true) {
-            this.loading = true
-            createRoles(params).then(rs => {
-              if (rs) {
-                this.$success({ content: 'Thêm mới thành công' })
-                this.closeForm()
-              }
-            }).catch(err => {
-              const msg = this.handleApiError(err)
-              this.$notification.error({
-                message: '',
-                description: msg,
-                duration: 5
-              })
-            }).finally(res => {
-              this.loading = false
-            })
-          } else {
-            this.loading = true
-            updateRoles(params).then(rs => {
-              if (rs) {
-                this.$success({ content: 'Cập nhật thành công' })
-                this.closeForm()
-              }
-            }).catch(err => {
-              const msg = this.handleApiError(err)
-              this.$notification.error({
-                message: '',
-                description: msg,
-                duration: 5
-              })
-            }).finally(res => {
-              this.loading = false
-            })
+          const params = {
+            userId: this.form.userId,
+            roleId: this.form.roleId
           }
+          this.loading = true
+          addUser(params).then(rs => {
+            if (rs) {
+              this.$success({ content: 'Thêm user thành công' })
+              this.closeForm()
+            }
+          }).catch(err => {
+            const msg = this.handleApiError(err)
+            this.$notification.error({
+              message: '',
+              description: msg,
+              duration: 5
+            })
+          }).finally(res => {
+            this.loading = false
+          })
         }
       })
     }

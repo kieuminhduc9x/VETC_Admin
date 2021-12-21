@@ -1,4 +1,11 @@
 export default [
+  // {
+  //   slots: { title: 'actionTitle' },
+  //   dataIndex: 'operation',
+  //   scopedSlots: { customRender: 'operation' },
+  //   width: 80,
+  //   align: 'center'
+  // },
   {
     title: 'STT',
     dataIndex: 'rowIndex',
@@ -20,7 +27,7 @@ export default [
     scopedSlots: { customRender: 'name' },
     align: 'left',
     ellipsis: true,
-    width: 250
+    width: 200
   },
   {
     title: 'Người tạo',
@@ -28,7 +35,7 @@ export default [
     scopedSlots: { customRender: 'createBy' },
     align: 'left',
     ellipsis: true,
-    width: 150
+    width: 120
   },
   {
     title: 'Ngày tạo',
@@ -37,12 +44,5 @@ export default [
     align: 'center',
     ellipsis: true,
     width: 120
-  },
-  {
-    slots: { title: 'actionTitle' },
-    dataIndex: 'operation',
-    scopedSlots: { customRender: 'operation' },
-    width: 80,
-    align: 'center'
   }
 ]
