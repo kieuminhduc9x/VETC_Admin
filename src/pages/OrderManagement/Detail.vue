@@ -76,7 +76,10 @@
               <a-steps direction="vertical" progress-dot size="small" style="overflow: auto; height: 650px">
                 <a-step v-for="(item, key) in form.listTrans" :key="key" >
                   <template slot="title">
-                    <span>{{ item.createAt }}</span>
+                    <div style="display: flex; justify-content: space-between;  margin-bottom: 5px ;">
+                      <span>{{ item.createAt }}</span>
+                      <a-icon type="file" style="margin-top: 5px; color: #2393ff" @click="showListFile(item)"></a-icon>
+                    </div>
                   </template>
                   <template slot="description">
                     <a v-if="item.voucherId" @click="goToDetailVoucher(item.voucherId)">{{ item.description }}</a>
@@ -97,7 +100,12 @@
         </a-card>
       </a-spin>
     </a-form-model>
-
+    <list-file
+      v-if="visibleDrawerListFile === true"
+      :visibleDrawerListFile="visibleDrawerListFile"
+      :listFile="listFile"
+      @closeDrawerListFile="closeDrawerListFile"
+    ></list-file>
   </main-layout>
 </template>
 
@@ -109,10 +117,12 @@ import moment from 'moment'
 import columnDetail from './columnDetail'
 import { getByIdPreOrder } from '@/api/pre-order'
 import _ from 'lodash'
+import ListFile from './ListFile'
 
 export default {
   components: {
-    MainLayout
+    MainLayout,
+    ListFile
   },
   mixins: [TableEmptyText],
   name: 'WarehouseManagement',
@@ -135,7 +145,9 @@ export default {
         showTotal: (total) => {
           return 'Tổng số dòng ' + total
         }
-      }
+      },
+      visibleDrawerListFile: false,
+      listFile: []
     }
   },
   created () {
@@ -178,6 +190,14 @@ export default {
     },
     goToOrderManagement () {
       this.$router.push({ name: 'order_management' })
+    },
+    showListFile (record) {
+      this.visibleDrawerListFile = true
+      this.listFile = record.listDocument
+    },
+    closeDrawerListFile () {
+      this.visibleDrawerListFile = false
+      this.listFile = []
     }
   }
 }
@@ -192,5 +212,8 @@ export default {
 .block-header {
   color: #076885 !important;
   font-weight: bold;
+}
+.ant-steps-item-title{
+  width: 90%!important;
 }
 </style>

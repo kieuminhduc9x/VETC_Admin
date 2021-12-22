@@ -83,7 +83,7 @@
                 class="btn-success uppercase"
                 style="margin: 20px"
                 @click="showCreate"
-              >Thêm user
+              >Thêm nhân viên
               </a-button>
             </div>
             <a-card style="width: 100%; border: none" class="vts-table-container">
@@ -341,7 +341,7 @@ export default {
     },
     confirmRemoveUser (record) {
       this.$confirm({
-        title: 'Bạn muốn xóa user này khỏi vai trò?',
+        title: 'Bạn muốn xóa nhân viên này khỏi vai trò?',
         okText: 'Có',
         okType: 'primary',
         cancelText: 'Không',
@@ -360,7 +360,7 @@ export default {
         .then(rs => {
           this.getData()
           this.$success({
-            content: 'Xóa user thành công',
+            content: 'Xóa nhân viên thành công',
             duration: 5
           })
         })

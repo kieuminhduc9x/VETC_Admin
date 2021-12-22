@@ -12,12 +12,12 @@
         <a-row :gutter="16">
           <a-col :xs="24" :md="24" :lg="24">
             <a-form-model-item
-              label="Danh sách user"
+              label="Danh sách nhân viên"
               prop="userId"
               :rules="[
                 {
                   required: true,
-                  message: 'User là bắt buộc',
+                  message: 'Nhân viên là bắt buộc',
                   trigger: 'change'
                 }
               ]">
@@ -58,8 +58,7 @@
 </template>
 <script>
 import { checkCode } from '@/utils/helpers'
-import { SearchUser } from '@/api/user'
-import { addUser } from '@/api/Config/roles'
+import { addUser, getListUserByRoleId } from '@/api/Config/roles'
 
 export default {
   components: {
@@ -116,9 +115,9 @@ export default {
   methods: {
     checkCode,
     getListUser () {
-      SearchUser({ pagination: false }).then(rs => {
+      getListUserByRoleId({ roleId: this.modelObject.roleId }).then(rs => {
         if (rs) {
-          this.listUser = rs.data
+          this.listUser = rs
         }
       })
     },

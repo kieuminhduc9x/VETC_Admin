@@ -54,3 +54,12 @@ export function removeUser (parameter) {
     data: parameter
   })
 }
+
+// lấy user theo vai trò
+export function getListUserByRoleId (parameter) {
+  return axios({
+    url: api.roles.getListUserByRoleId,
+    method: 'get',
+    params: parameter
+  })
+}

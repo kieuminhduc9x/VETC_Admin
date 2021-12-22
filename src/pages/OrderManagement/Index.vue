@@ -71,6 +71,8 @@
                 <a-button class="btn-success uppercase" @click="resetForm" style="margin-left: 10px">
                   Nhập lại
                 </a-button>
+                <a-button type="primary" class="btn-success uppercase" @click="showPopupImport" style="margin-left: 10px">Import
+                </a-button>
               </a-col>
             </a-row>
           </a-card>
@@ -127,6 +129,10 @@
         </a-card>
       </a-collapse-panel>
     </a-collapse>
+    <popup-import-order
+      v-if="visibleImport === true"
+      :visibleImport="visibleImport"
+      @closePopup="closePopup"></popup-import-order>
   </main-layout>
 </template>
 
@@ -141,12 +147,14 @@ import { commonMethods, authComputed } from '@/store/helpers'
 import pdf from 'vue-pdf'
 import columnsChild from './columnChild'
 import moment from 'moment'
+import PopupImportOrder from '@/pages/OrderManagement/PopupImportOrder'
 
 const ResizeableTitle = resizeableTitle(columns)
 export default {
   components: {
     MainLayout,
-    pdf
+    pdf,
+    PopupImportOrder
   },
   mixins: [TableEmptyText],
   name: 'WarehouseManagement',
@@ -183,7 +191,8 @@ export default {
         toDate: '',
         keyword: ''
       },
-      listStatus: []
+      listStatus: [],
+      visibleImport: false
     }
   },
   created () {
@@ -283,8 +292,14 @@ export default {
     },
     goToDetail (record) {
       this.$router.push({ name: 'order_management.detail', params: { id: record.id } })
+    },
+    showPopupImport () {
+      this.visibleImport = true
+    },
+    closePopup () {
+      this.visibleImport = false
+      this.getData()
     }
-
   }
 }
 </script>

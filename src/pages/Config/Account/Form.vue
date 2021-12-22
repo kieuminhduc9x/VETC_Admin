@@ -97,7 +97,7 @@
   </div>
 </template>
 <script>
-import { createAccount, updateAccount } from '@/api/Config/accounts'
+import { createAccount, updateAccount, findByIdAccount } from '@/api/Config/accounts'
 import { checkEmail, phoneValidator } from '@/utils/helpers'
 
 export default {
@@ -132,9 +132,31 @@ export default {
       loading: false
     }
   },
+  created () {
+    if (this.isEdit === true) {
+      this.getDetail()
+    }
+  },
   methods: {
     phoneValidator,
     checkEmail,
+    getDetail () {
+      this.loading = true
+      findByIdAccount({ userId: this.$route.params.id }).then(rs => {
+        if (rs) {
+          this.form = rs
+        }
+      }).catch(err => {
+        const msg = this.handleApiError(err)
+        this.$notification.error({
+          message: '',
+          description: msg,
+          duration: 5
+        })
+      }).finally(res => {
+        this.loading = false
+      })
+    },
     save () {
       this.$refs.ruleForm.validate(valid => {
         if (valid) {
@@ -142,7 +164,8 @@ export default {
             id: this.$route.params.id || '',
             fullName: this.form.fullName,
             email: this.form.email,
-            phone: this.form.phone
+            phone: this.form.phone,
+            status: 1
           }
           this.loading = true
           if (this.$route.params.id) {

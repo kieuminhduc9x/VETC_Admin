@@ -76,7 +76,9 @@ const api = {
     search: '/pre-order/admin/search',
     getById: '/pre-order/admin/get-by-id',
     import: '/pre-order/admin/import',
-    listVoucher: '/pre-order/admin/list-voucher'
+    listVoucher: '/pre-order/admin/list-voucher',
+    getDetailFile: '/document/get-file',
+    importOrder: '/pre-order/admin/init'
   },
   // Cấu hình thông tin tài khoản
   account: {
@@ -84,7 +86,7 @@ const api = {
     create: '/user/admin/insert',
     update: '/user/admin/update',
     delete: '/user/admin/remove',
-    findById: ''
+    findById: '/user/admin/get-by-id'
   },
 
   // Cấu hình nhóm tài khoản
@@ -95,7 +97,8 @@ const api = {
     delete: '/role/admin/delete',
     findById: '/role/admin/getById',
     addUser: '/role/admin/add-user',
-    removeUser: '/role/admin/remove-user'
+    removeUser: '/role/admin/remove-user',
+    getListUserByRoleId: 'role/admin/get-user-not-in-role'
   }
 
 }

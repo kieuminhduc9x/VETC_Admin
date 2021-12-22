@@ -29,3 +29,10 @@ export function deleteAccount (parameter) {
     data: parameter
   })
 }
+export function findByIdAccount (parameter) {
+  return axios({
+    url: api.account.findById,
+    method: 'get',
+    params: parameter
+  })
+}

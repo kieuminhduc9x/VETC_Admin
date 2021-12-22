@@ -28,10 +28,27 @@ export function importPreOrder (parameter) {
   })
 }
 
-// Import đơn hàng
+// getList voucher
 export function getListVoucher (parameter) {
   return axios({
     url: api.preOrder.listVoucher + '/' + parameter,
     method: 'get'
+  })
+}
+
+// Chi tiết file
+export function getDetailFile (parameter) {
+  return axios({
+    url: api.preOrder.getDetailFile + '/documentId=' + parameter,
+    method: 'get'
+  })
+}
+
+// Import đơn hàng
+export function importFileOrder (parameter) {
+  return axios({
+    url: api.preOrder.importOrder,
+    method: 'post',
+    data: parameter
   })
 }

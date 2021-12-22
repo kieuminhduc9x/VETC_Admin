@@ -206,7 +206,7 @@ export const asyncRouterMap = [
     }
   },
 
-  // Cập nhật tài khoản
+  // quản lý nhóm tài khoản
   {
     path: '/config/roles',
     name: 'config.roles',

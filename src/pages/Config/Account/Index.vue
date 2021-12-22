@@ -12,10 +12,8 @@
         <a-row :gutter="16">
           <a-col :xs="24" :md="8" :lg="8">
             <h3 style="font-weight: bold;color: #076885">Danh sách tài khoản</h3>
-            <p style="color: #076885">Bạn có thể cấp quyền quản lý cửa hàng cho người khác</p>
             <a-button type="primary" style="margin: 15px 0" @click="goToCreate">
               <a-icon type="plus-circle"></a-icon>Thêm tài khoản</a-button>
-            <p style="color: #076885">Bạn có thể đăng xuất các nhân viên quản trị khỏi website cửa hàng của bạn</p>
           </a-col>
           <a-col :xs="24" :md="16" :lg="16">
             <div style="margin: 10px 0">
@@ -98,13 +96,7 @@ export default {
   data () {
     return {
       columns,
-      data: [
-        {
-          name: 'Kiều Minh Đức',
-          email: 'kieuduc1999tn@gmail.com',
-          role: 'Quyền thêm người dùng'
-        }
-      ],
+      data: [],
       pagination: {
         current: 1,
         total: 1,
@@ -135,7 +127,7 @@ export default {
       this.$router.push({ name: 'config.account.create' })
     },
     goToUpdate (record) {
-      this.$router.push({ name: 'config.account.update', params: { id: record.userId } })
+      this.$router.push({ name: 'config.account.update', params: { id: record.id } })
     },
     search () {
 
