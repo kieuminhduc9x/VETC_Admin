@@ -191,8 +191,8 @@
                       </span>
                       <span @click="cancelRow(index)" style="cursor: pointer; padding-left: 12px">
                         <a-icon
-                            type="stop"
-                            :style="{color: '#ee0033', fontSize: '14px'}"
+                          type="stop"
+                          :style="{color: '#ee0033', fontSize: '14px'}"
                         />
                       </span>
                     </div>

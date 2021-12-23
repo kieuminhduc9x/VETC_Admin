@@ -39,8 +39,9 @@ export function getListVoucher (parameter) {
 // Chi tiết file
 export function getDetailFile (parameter) {
   return axios({
-    url: api.preOrder.getDetailFile + '/documentId=' + parameter,
-    method: 'get'
+    url: api.preOrder.getDetailFile,
+    method: 'get',
+    params: parameter
   })
 }
 

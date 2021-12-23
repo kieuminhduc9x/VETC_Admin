@@ -64,7 +64,7 @@ export default {
       default: false
     },
     listFile: {
-      type: Object,
+      type: Array,
       required: true
     }
   },
@@ -89,7 +89,6 @@ export default {
     }
   },
   created () {
-    this.getListWarehouse()
   },
   methods: {
     closeForm () {
@@ -98,9 +97,61 @@ export default {
       this.$emit('closeDrawerListFile')
     },
     detailFile (record) {
-      getDetailFile(record.id).then(rs => {
-        console.log(rs)
-      })
+      const fileType = record.fileName.substr(record.fileName.lastIndexOf('.'))
+      console.log(fileType)
+      if (fileType === '.pdf') {
+        // bật tab review pdf
+        getDetailFile({ documentId: record.id }).then(rs => {
+          if (rs) {
+            var file = new Blob([rs], { type: 'application/pdf' })
+            var fileURL = URL.createObjectURL(file)
+            window.open(fileURL)
+          }
+        }).catch(err => {
+          const msg = this.handleApiError(err)
+          this.$error({ content: msg })
+        }).finally(res => {
+          this.loadingPdf = false
+        })
+      } else {
+        // Tải xuống
+        getDetailFile({ documentId: record.id }).then(rs => {
+          if (rs) {
+            const fileName = record.fileName
+            const data = this.base64toBlob(rs, fileName)
+            if (window.navigator.msSaveOrOpenBlob) {
+              window.navigator.msSaveBlob(rs, fileName)
+            } else {
+              const downloadLink = window.document.createElement('a')
+              downloadLink.href = window.URL.createObjectURL(data)
+              downloadLink.download = fileName
+              document.body.appendChild(downloadLink)
+              downloadLink.click()
+              document.body.removeChild(downloadLink)
+            }
+          }
+        })
+      }
+    },
+    base64toBlob (base64Data, contentType) {
+      contentType = contentType || ''
+      var sliceSize = 1024
+      var byteCharacters = atob(base64Data)
+      var bytesLength = byteCharacters.length
+      var slicesCount = Math.ceil(bytesLength / sliceSize)
+      var byteArrays = new Array(slicesCount)
+
+      for (var sliceIndex = 0; sliceIndex < slicesCount; ++sliceIndex) {
+        var begin = sliceIndex * sliceSize
+        var end = Math.min(begin + sliceSize, bytesLength)
+
+        var bytes = new Array(end - begin)
+        for (var offset = begin, i = 0; offset < end; ++i, ++offset) {
+          bytes[i] = byteCharacters[offset].charCodeAt(0)
+        }
+        byteArrays[sliceIndex] = new Uint8Array(bytes)
+      }
+      return new Blob(byteArrays, { type: contentType })
     }
   }
 }
