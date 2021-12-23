@@ -98,12 +98,13 @@ export default {
     },
     detailFile (record) {
       const fileType = record.fileName.substr(record.fileName.lastIndexOf('.'))
-      console.log(fileType)
       if (fileType === '.pdf') {
         // bật tab review pdf
         getDetailFile({ documentId: record.id }).then(rs => {
           if (rs) {
-            var file = new Blob([rs], { type: 'application/pdf' })
+            const fileName = record.fileName
+            const data = this.base64toBlob(rs, fileName)
+            var file = new Blob([data], { type: 'application/pdf' })
             var fileURL = URL.createObjectURL(file)
             window.open(fileURL)
           }
