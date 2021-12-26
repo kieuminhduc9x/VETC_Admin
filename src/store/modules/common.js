@@ -1,8 +1,6 @@
 import { listProvince } from '@/api/common'
 export const state = {
   provinces: null,
-  select_hub: false,
-  hub_id: null,
   select_store: false,
   store_id: null
 }
@@ -10,9 +8,6 @@ export const state = {
 export const getters = {
   provinces (state) {
     return state.provinces
-  },
-  select_hub (state) {
-    return state.select_hub
   },
   select_store (state) {
     return state.select_store
@@ -22,12 +17,6 @@ export const getters = {
 export const mutations = {
   SET_PROVINCES: (state, provinces) => {
     state.provinces = provinces
-  },
-  SET_SELECT_HUB: (state, selectHub) => {
-    state.select_hub = selectHub
-  },
-  SET_HUB: (state, hub) => {
-    state.hub_id = hub
   },
   SET_SELECT_STORE: (state, selectStore) => {
     state.select_store = selectStore
@@ -50,12 +39,6 @@ export const actions = {
       commit('SET_PROVINCES', provinceData)
       return provinceData
     })
-  },
-  updateSelectHub ({ commit, state, rootState }, payload) {
-    commit('SET_SELECT_HUB', payload)
-  },
-  updateHub ({ commit, state, rootState }, payload) {
-    commit('SET_HUB', payload)
   },
   updateSelectStore ({ commit, state, rootState }, payload) {
     commit('SET_SELECT_STORE', payload)

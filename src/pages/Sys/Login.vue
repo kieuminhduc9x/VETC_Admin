@@ -115,7 +115,10 @@ export default {
       })
     },
     loginSuccess (res) {
-      // this.updateSelectStore(true)
+      if (res) {
+        this.updateSelectStore(true)
+      }
+
       // if (this.$auth.hasPrivilege('search_order') === true) {
       //   this.$router.push({ name: 'search_order' })
       // } else {

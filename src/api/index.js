@@ -7,6 +7,7 @@ const api = {
   // SendSms: '/account/sms',
   // SendSmsErr: '/account/sms_err',
   changePassword: '/auth/admin/changePassword',
+  GetStoreForUser: '/user/admin/getListWarehouse',
 
   // Global List
   GlobalListItems: '/globalList/searchGlobalList',

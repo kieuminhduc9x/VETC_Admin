@@ -24,6 +24,7 @@
                     <a-select
                       v-model="filters.warehouseId"
                       :allowClear="true"
+                      :disabled="disabledWarehouse"
                       show-search
                       :filter-select-option="filterSelectOption">
                       <a-select-option :key="''" :value="''">--Tất cả--</a-select-option>
@@ -146,8 +147,8 @@ import _merge from 'lodash/merge'
 import { searchImportExportManagement } from '@/api/import-export-management'
 import { commonMethods, authComputed } from '@/store/helpers'
 import pdf from 'vue-pdf'
-import { searchWarehouseManagement } from '@/api/warehouse-management'
 import moment from 'moment'
+import { GetStoreForUser } from '@/api/user'
 
 const ResizeableTitle = resizeableTitle(columns)
 export default {
@@ -156,7 +157,7 @@ export default {
     pdf
   },
   mixins: [TableEmptyText],
-  name: 'WarehouseManagement',
+  name: 'ImportExportManagement',
   data () {
     this.components = {
       header: {
@@ -191,7 +192,9 @@ export default {
         exportFromDate: '',
         exportToDate: ''
       },
-      listWarehouse: []
+      listWarehouse: [],
+      disabledWarehouse: false,
+      store: JSON.parse(window.localStorage.getItem('store'))
     }
   },
   created () {
@@ -200,6 +203,14 @@ export default {
   },
   mounted () {
     this.scrollBarOfTable()
+    console.log(this.store)
+    if (this.store !== 'All') {
+      this.filters.warehouseId = this.store.id
+      this.disabledWarehouse = true
+    } else {
+      this.getListWarehouse()
+      this.disabledWarehouse = false
+    }
   },
   computed: {
     ...authComputed
@@ -235,8 +246,8 @@ export default {
       const params = {
         pagination: false
       }
-      searchWarehouseManagement(params).then(res => {
-        this.listWarehouse = res.data
+      GetStoreForUser(params).then(res => {
+        this.listWarehouse = res
       }).catch(err => {
         const msg = this.handleApiError(err)
         this.$notification.error({
@@ -299,3 +310,8 @@ export default {
   }
 }
 </script>
+<style lang="less">
+.ant-select-selection-selected-value{
+  color: black;
+}
+</style>

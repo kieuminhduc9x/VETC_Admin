@@ -31,8 +31,8 @@
                   <a-select-option :key="'All'" :value="'All'">--Tất cả--</a-select-option>
                   <a-select-option
                     v-for="item in list_store"
-                    :key="'p-g-' + item.hrvWarehouseId"
-                    :value="item.hrvWarehouseId">
+                    :key="'p-g-' + item.id"
+                    :value="item.id">
                     <a-tooltip placement="bottomLeft">
                       <template slot="title">
                         <span>{{ item.code + ' - ' + item.name + ' (' + item.address + ')' }}</span>
@@ -70,9 +70,9 @@
 
 <script>
 import { authComputed, commonMethods } from '@/store/helpers'
-// import {
-//   GetStoreForUser
-// } from '@/api/user'
+import {
+  GetStoreForUser
+} from '@/api/user'
 export default {
   name: 'Store',
   data () {
@@ -102,17 +102,16 @@ export default {
       }
     }
   },
-  async created () {
-    // this.fetchStore()
+  created () {
+    this.fetchStore()
   },
   mounted () {
-    // if (!this.store && this.isLoggedIn) {
-    //   this.updateSelectStore(true)
-    //   this.fetchStore()
-    // } else {
-    //   this.updateSelectStore(false)
-    // }
-    // this.fetchStore()
+    if (!this.store && this.isLoggedIn === true) {
+      this.updateSelectStore(true)
+      this.fetchStore()
+    } else {
+      this.updateSelectStore(false)
+    }
   },
 
   methods: {
@@ -127,13 +126,13 @@ export default {
           let objectStore
           if (this.storeForm.store === 'All') {
             this.list_store.forEach(item => {
-              Arrstore.push(item.hrvWarehouseId)
+              Arrstore.push(item.id)
             })
           } else {
             Arrstore.push(this.storeForm.store)
           }
           if (this.storeForm.store !== 'All') {
-            objectStore = this.list_store.find(item => item.hrvWarehouseId === this.storeForm.store)
+            objectStore = this.list_store.find(item => item.id === this.storeForm.store)
           } else {
             objectStore = 'All'
           }
@@ -155,41 +154,41 @@ export default {
           }
         }
       })
+    },
+    fetchStore () {
+      this.loading = true
+      GetStoreForUser({ userId: this.currentUser.id }).then(res => {
+        this.list_store = res
+        if (res.length > 0) {
+          const storeId = JSON.parse(window.localStorage.getItem('store_id'))
+          if (!storeId) {
+            this.storeForm.store = res[0].id
+          } else if (storeId.length > 1) {
+            this.storeForm.store = 'All'
+          } else if (storeId.length === 1) {
+            storeId.forEach(item => {
+              this.storeForm.store = item
+            })
+          }
+        } else {
+          this.updateSelectStore(false)
+        }
+      }).catch(err => {
+        const msg = this.handleApiError(err)
+        this.$notification.error({
+          message: '',
+          description: msg,
+          duration: 5
+        })
+      }).finally(res => {
+        this.loading = false
+      })
     }
-    // fetchStore () {
-    //   this.loading = true
-    //   GetStoreForUser({ userId: this.currentUser.userId }).then(res => {
-    //     this.list_store = res
-    //     if (res.length > 0) {
-    //       const storeId = JSON.parse(window.localStorage.getItem('store_id'))
-    //       if (!storeId) {
-    //         this.storeForm.store = res[0].hrvWarehouseId
-    //       } else if (storeId.length > 1) {
-    //         this.storeForm.store = 'All'
-    //       } else if (storeId.length === 1) {
-    //         storeId.forEach(item => {
-    //           this.storeForm.store = item
-    //         })
-    //       }
-    //     } else {
-    //       this.updateSelectStore(false)
-    //     }
-    //   }).catch(err => {
-    //     const msg = this.handleApiError(err)
-    //     this.$notification.error({
-    //       message: '',
-    //       description: msg,
-    //       duration: 5
-    //     })
-    //   }).finally(res => {
-    //     this.loading = false
-    //   })
-    // }
 
   },
   watch: {
     currentUser: function (newVal, oldVal) { // watch it
-      if (this.currentUser.userId) {
+      if (this.currentUser.id) {
         this.fetchStore()
       }
     }

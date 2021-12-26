@@ -44,3 +44,10 @@ export function changePassword (parameter) {
     data: parameter
   })
 }
+export function GetStoreForUser (parameter) {
+  return axios({
+    url: api.GetStoreForUser,
+    method: 'get',
+    params: parameter
+  })
+}
