@@ -38,31 +38,31 @@
       :default-open-keys="[openKeys]"
       :style="{ height: '100%', borderRight: 0, paddingTop: '0', }"
     >
-      <a-menu-item key="2" >
+      <a-menu-item v-if="$auth.hasPrivilege('PRE_ORDER_MANAGEMENT')" key="2" >
         <router-link :to="{ name: 'order_management' }" class="title-menu">
           <a-icon type="project" />
           <span>Đơn đặt hàng</span>
         </router-link>
       </a-menu-item>
-      <a-menu-item key="3" >
+      <a-menu-item v-if="$auth.hasPrivilege('VOUCHER_MANAGEMENT')" key="3" >
         <router-link :to="{ name: 'import_export_management' }" class="title-menu">
           <a-icon type="export"></a-icon>
           <span>Nhập xuất hàng</span>
         </router-link>
       </a-menu-item>
-      <a-menu-item key="4" >
+      <a-menu-item v-if="$auth.hasPrivilege('WAREHOUSE_MANAGEMENT')" key="4" >
         <router-link :to="{ name: 'warehouse_management' }" class="title-menu">
           <a-icon type="appstore"></a-icon>
           <span>Danh mục kho</span>
         </router-link>
       </a-menu-item>
-      <a-menu-item key="5" >
+      <a-menu-item v-if="$auth.hasPrivilege('SCAN_DEVICE_MANAGEMENT')" key="5" >
         <router-link :to="{ name: 'barcode_readers_management' }" class="title-menu">
           <a-icon type="barcode"></a-icon>
           <span>Máy quét mã vạch</span>
         </router-link>
       </a-menu-item>
-      <a-menu-item key="6" >
+      <a-menu-item v-if="$auth.hasAnyPrivilege(['USER_MANAGEMENT','ROLE_MANAGEMENT'])" key="6" >
         <router-link :to="{ name: 'config' }" class="title-menu">
           <a-icon type="setting" />
           <span>Cấu hình</span>

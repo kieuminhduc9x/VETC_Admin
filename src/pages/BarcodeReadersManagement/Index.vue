@@ -35,6 +35,7 @@
           <a-col :xs="24" :md="24" :lg="24">
             <div style="display: flex; justify-content: flex-end">
               <a-button
+                v-if="$auth.hasPrivilege('SCAN_DEVICE_MANAGEMENT_CREATE')"
                 :loading="loading"
                 type="primary"
                 class="btn-success uppercase"
@@ -72,13 +73,13 @@
                     <template slot="content">
                       <span>Sửa</span>
                     </template>
-                    <a-icon @click="showUpdate(record)" type="edit" style="margin-right: 8px; color: #086885"></a-icon>
+                    <a-icon v-if="$auth.hasPrivilege('SCAN_DEVICE_MANAGEMENT_UPDATE')" @click="showUpdate(record)" type="edit" style="margin-right: 8px; color: #086885"></a-icon>
                   </a-popover>
                   <a-popover >
                     <template slot="content">
                       <span>Xóa</span>
                     </template>
-                    <a-icon type="delete" @click="onDeleteRow(record)" style="margin-right: 8px; color: red"></a-icon>
+                    <a-icon v-if="$auth.hasPrivilege('SCAN_DEVICE_MANAGEMENT_DELETE')" type="delete" @click="onDeleteRow(record)" style="margin-right: 8px; color: red"></a-icon>
                   </a-popover>
                 </template>
               </a-table>

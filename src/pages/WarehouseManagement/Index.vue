@@ -13,6 +13,7 @@
           <a-col :xs="24" :md="24" :lg="24">
             <div style="display: flex; justify-content: flex-end">
               <a-button
+                v-if="$auth.hasPrivilege('WAREHOUSE_MANAGEMENT_CREATE')"
                 :loading="loading"
                 type="primary"
                 class="btn-success uppercase"
@@ -50,13 +51,13 @@
                     <template slot="content" >
                       <span>Sửa</span>
                     </template>
-                    <a-icon type="edit" style="margin-right: 8px; color: #086885" @click="showUpdate(record)"></a-icon>
+                    <a-icon v-if="$auth.hasPrivilege('WAREHOUSE_MANAGEMENT_UPDATE')" type="edit" style="margin-right: 8px; color: #086885" @click="showUpdate(record)"></a-icon>
                   </a-popover>
                   <a-popover >
                     <template slot="content">
                       <span>Xóa</span>
                     </template>
-                    <a-icon @click="onDeleteRow(record)" type="delete" style="margin-right: 8px; color: red"></a-icon>
+                    <a-icon v-if="$auth.hasPrivilege('WAREHOUSE_MANAGEMENT_DELETE')" @click="onDeleteRow(record)" type="delete" style="margin-right: 8px; color: red"></a-icon>
                   </a-popover>
                 </template>
               </a-table>

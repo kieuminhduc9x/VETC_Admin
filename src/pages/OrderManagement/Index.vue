@@ -66,12 +66,12 @@
                 :lg="24"
                 class="filter-item-container"
                 style="display: flex;flex-wrap: wrap; margin-top: 17px; justify-content: center">
-                <a-button type="primary" class="btn-success uppercase" @click="search">Tìm kiếm
+                <a-button v-if="$auth.hasPrivilege('PRE_ORDER_MANAGEMENT_SEARCH')" type="primary" class="btn-success uppercase" @click="search">Tìm kiếm
                 </a-button>
                 <a-button class="btn-success uppercase" @click="resetForm" style="margin-left: 10px">
                   Nhập lại
                 </a-button>
-                <a-button type="primary" class="btn-success uppercase" @click="showPopupImport" style="margin-left: 10px">Import
+                <a-button v-if="$auth.hasPrivilege('PRE_ORDER_MANAGEMENT_INIT')" type="primary" class="btn-success uppercase" @click="showPopupImport" style="margin-left: 10px">Import
                 </a-button>
               </a-col>
             </a-row>
@@ -109,7 +109,7 @@
                     <template slot="content" >
                       <span>Chi tiết</span>
                     </template>
-                    <a-icon type="eye" @click="goToDetail(record)" style=" color: #086885"></a-icon>
+                    <a-icon v-if="$auth.hasPrivilege('PRE_ORDER_MANAGEMENT_DETAIL')" type="eye" @click="goToDetail(record)" style=" color: #086885"></a-icon>
                   </a-popover>
                 </template>
                 <a-table

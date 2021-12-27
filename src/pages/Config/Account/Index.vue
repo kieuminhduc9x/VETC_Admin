@@ -12,7 +12,7 @@
         <a-row :gutter="16">
           <a-col :xs="24" :md="8" :lg="8">
             <h3 style="font-weight: bold;color: #076885">Danh sách tài khoản</h3>
-            <a-button type="primary" style="margin: 15px 0" @click="goToCreate">
+            <a-button v-if="$auth.hasPrivilege('USER_MANAGEMENT_INSERT')" type="primary" style="margin: 15px 0" @click="goToCreate">
               <a-icon type="plus-circle"></a-icon>Thêm tài khoản</a-button>
           </a-col>
           <a-col :xs="24" :md="16" :lg="16">
@@ -42,7 +42,7 @@
                     <template slot="title">
                       {{ record.fullName }}
                     </template>
-                    <span style="display: block;color: #076885; font-weight: bold; text-align: left; cursor: pointer" @click="goToUpdate(record)">{{ record.fullName }}</span>
+                    <span style="display: block;color: #076885; font-weight: bold; text-align: left; cursor: pointer" @click=" $auth.hasPrivilege('USER_MANAGEMENT_UPDATE') === true ? goToUpdate(record) : ''">{{ record.fullName }}</span>
                   </a-tooltip>
                   <a-tooltip placement="bottomLeft">
                     <template slot="title">
@@ -66,7 +66,7 @@
                   <a-icon type="control" />
                 </template>
                 <template slot="operation" slot-scope="text, record">
-                  <a-icon @click="deleteRecord(record)" type="delete" style="color: red"/>
+                  <a-icon v-if="$auth.hasPrivilege('USER_MANAGEMENT_REMOVE')" @click="deleteRecord(record)" type="delete" style="color: red"/>
                 </template>
               </a-table>
             </a-card>

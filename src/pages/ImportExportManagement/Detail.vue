@@ -108,9 +108,9 @@
                 <a-col :xs="24" :md="24" :lg="24">
                   <div style="display: flex; justify-content: center">
                     <a-button style="margin-right: 1rem" @click="goToBack">Quay lại</a-button>
-                    <a-button v-if="String(form.status) !== '3'" style="margin-right: 1rem" @click="checkPrintVoucher">In phiếu xuất</a-button>
-                    <a-button v-if="String(form.status) === '1' " type="primary" style="margin-right: 1rem" @click="showAcceptExport">Xác nhận xuất hàng</a-button>
-                    <a-button v-if="String(form.status) === '2' " type="primary" style="margin-right: 1rem" @click="showAcceptDelivery">Xác nhận giao hàng thành công</a-button>
+                    <a-button v-if="String(form.status) !== '3' && $auth.hasPrivilege('VOUCHER_MANAGEMENT_PRINT_OUTPUT_VOUCHER')" style="margin-right: 1rem" @click="checkPrintVoucher">In phiếu xuất</a-button>
+                    <a-button v-if="String(form.status) === '1' && $auth.hasPrivilege('VOUCHER_MANAGEMENT_ACCEPT_EXPORT')" type="primary" style="margin-right: 1rem" @click="showAcceptExport">Xác nhận xuất hàng</a-button>
+                    <a-button v-if="String(form.status) === '2' && $auth.hasPrivilege('VOUCHER_MANAGEMENT_ACCEPT_SUCCESSFUL_DELIVERY') " type="primary" style="margin-right: 1rem" @click="showAcceptDelivery">Xác nhận giao hàng thành công</a-button>
                   </div>
                 </a-col>
               </a-row>

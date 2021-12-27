@@ -12,13 +12,6 @@
         <a-row :gutter="16">
           <a-col :xs="24" :md="12" :lg="12">
             <div style="display: flex; justify-content: flex-end;margin:35px">
-              <!--              <a-button-->
-              <!--                :loading="loading"-->
-              <!--                type="primary"-->
-              <!--                class="btn-success uppercase"-->
-              <!--                style="margin: 20px"-->
-              <!--                @click="showCreate">Thêm mới-->
-              <!--              </a-button>-->
             </div>
             <a-card style="width: 100%; border: none" class="vts-table-container">
               <a-row :gutter="16" type="flex">

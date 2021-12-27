@@ -85,7 +85,7 @@
                 :lg="24"
                 class="filter-item-container"
                 style="display: flex;flex-wrap: wrap; margin-top: 17px; justify-content: center">
-                <a-button type="primary" class="btn-success uppercase" @click="search">Tìm kiếm
+                <a-button v-if="$auth.hasPrivilege('VOUCHER_MANAGEMENT_SEARCH')" type="primary" class="btn-success uppercase" @click="search">Tìm kiếm
                 </a-button>
                 <a-button class="btn-success uppercase" @click="resetForm" style="margin-left: 10px">
                   Nhập lại
@@ -126,7 +126,7 @@
                     <template slot="content" >
                       <span>Chi tiết</span>
                     </template>
-                    <a-icon type="eye" @click="goToDetail(record)" style=" color: #086885"></a-icon>
+                    <a-icon v-if="$auth.hasPrivilege('VOUCHER_MANAGEMENT_DETAIL')" type="eye" @click="goToDetail(record)" style=" color: #086885"></a-icon>
                   </a-popover>
                 </template>
               </a-table>

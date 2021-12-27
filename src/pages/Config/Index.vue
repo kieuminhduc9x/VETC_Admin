@@ -10,7 +10,11 @@
       <div style="padding: 2rem">
         <a-card style="border: none; padding: 2rem">
           <a-row :gutter="16">
-            <a-col :xs="24" :md="8" :lg="8">
+            <a-col
+              :xs="24"
+              :md="8"
+              :lg="8"
+              v-if="$auth.hasAnyPrivilege(['USER_MANAGEMENT_SEARCH', 'USER_MANAGEMENT_INSERT','USER_MANAGEMENT_UPDATE', 'USER_MANAGEMENT_REMOVE','USER_MANAGEMENT_DETAIL'])">
               <router-link :to="{name: 'config.account'}">
                 <div class="box-menu" style="display: flex; justify-items: flex-start">
                   <div class="box-image">
@@ -40,7 +44,7 @@
             <!--                </div>-->
             <!--              </router-link>-->
             <!--            </a-col>-->
-            <a-col :xs="24" :md="8" :lg="8">
+            <a-col :xs="24" :md="8" :lg="8" v-if="$auth.hasAnyPrivilege(['ROLE_MANAGEMENT_GET_ALL', 'ROLE_MANAGEMENT_DETAIL','ROLE_MANAGEMENT_CREATE', 'ROLE_MANAGEMENT_UPDATE','ROLE_MANAGEMENT_DELETE'])">
               <router-link :to="{name: 'config.roles'}">
                 <div class="box-menu" style="display: flex; justify-items: flex-start">
                   <div class="box-image">
