@@ -161,8 +161,8 @@ export const asyncRouterMap = [
     meta: {
       authRequired: true,
       head: {
-        title: 'Chi tiết đơn đặt hàng',
-        description: 'Chi tiết đơn đặt hàng'
+        title: 'Cấu hình',
+        description: 'Cấu hình'
       }
     }
   },
