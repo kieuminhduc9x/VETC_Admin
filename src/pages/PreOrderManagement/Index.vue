@@ -147,7 +147,7 @@ import { commonMethods, authComputed } from '@/store/helpers'
 import pdf from 'vue-pdf'
 import columnsChild from './columnChild'
 import moment from 'moment'
-import PopupImportOrder from '@/pages/OrderManagement/PopupImportOrder'
+import PopupImportOrder from './PopupImportOrder'
 
 const ResizeableTitle = resizeableTitle(columns)
 export default {
@@ -291,7 +291,7 @@ export default {
       })
     },
     goToDetail (record) {
-      this.$router.push({ name: 'order_management.detail', params: { id: record.id } })
+      this.$router.push({ name: 'pre_order_management.detail', params: { id: record.id } })
     },
     showPopupImport () {
       this.visibleImport = true

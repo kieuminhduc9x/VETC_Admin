@@ -304,7 +304,7 @@ export default {
       })
     },
     goToDetail (record) {
-      this.$router.push({ name: 'import_export_management.detail', params: { id: record.id } })
+      this.$router.push({ name: 'voucher_management.detail', params: { id: record.id } })
     }
 
   }

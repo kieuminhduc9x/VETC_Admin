@@ -18,7 +18,8 @@ Auth.install = function (Vue, options) {
     user: user,
     isLoggedIn: store.getters['auth/loggedIn'](),
     roles: store.getters['auth/roles'],
-    permissions: store.getters['auth/permissions']
+    permissions: store.getters['auth/permissions'],
+    privilege: store.getters['auth/currentUser']['listPrivilege']
   }
   auth.login = function (ticket, username, password) {
     const params = { ticket, username, password }

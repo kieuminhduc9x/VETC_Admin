@@ -99,7 +99,8 @@ router.beforeEach((routeTo, routeFrom, next) => {
       if (routeTo.name === 'dashboard' ||
           routeTo.name === 'home' ||
           routeTo.name === 'profile' ||
-          hasPrivilege(routerName)) {
+          hasPrivilege(routerName) === true ||
+          hasAnyPrivilege(['USER_MANAGEMENT', 'ROLE_MANAGEMENT']) === true) {
         return next()
       } else {
         notification.error({
@@ -119,6 +120,12 @@ router.beforeEach((routeTo, routeFrom, next) => {
   function hasPrivilege (privilege) {
     const privileges = store.getters['auth/currentUser']['listPrivilege']
     return privileges && privileges.includes(privilege)
+  }
+  function hasAnyPrivilege (privilege) {
+    const privileges = store.getters['auth/currentUser']['listPrivilege']
+    return privileges.some((item, index) => {
+      return privilege.includes(item)
+    })
   }
 })
 
