@@ -99,18 +99,7 @@ router.beforeEach((routeTo, routeFrom, next) => {
       if (routeTo.name === 'dashboard' ||
           routeTo.name === 'home' ||
           routeTo.name === 'profile' ||
-          hasPrivilege(routerName) ||
-          routeTo.name === 'config' ||
-          routeTo.name === 'config.account' ||
-          routeTo.name === 'config.account.create' ||
-          routeTo.name === 'config.account.update' ||
-          routeTo.name === 'config.roles' ||
-          routeTo.name === 'warehouse_management' ||
-          routeTo.name === 'import_export_management.detail' ||
-          routeTo.name === 'import_export_management' ||
-          routeTo.name === 'barcode_readers_management' ||
-          routeTo.name === 'order_management.detail' ||
-          routeTo.name === 'order_management') {
+          hasPrivilege(routerName)) {
         return next()
       } else {
         notification.error({
