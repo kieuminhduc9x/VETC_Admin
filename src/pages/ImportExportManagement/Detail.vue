@@ -246,7 +246,7 @@ export default {
       const params = {
         voucherId: this.$route.params.id
       }
-      this.loadingPdf = true
+      this.loading = true
       printImportExportManagement(params).then(rs => {
         const date = new Date(moment())
         const fileName = 'Phieu_xuat_' + moment(date, 'YYYY_MM_DD ') + '.xlsx'
@@ -264,7 +264,7 @@ export default {
         const msg = this.handleApiError(err)
         this.$error({ content: msg })
       }).finally(res => {
-        this.loadingPdf = false
+        this.loading = false
       })
     },
     showAcceptExport () {
