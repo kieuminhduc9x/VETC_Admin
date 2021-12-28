@@ -239,6 +239,7 @@ export default {
           })
         } else {
           $this.printVoucher()
+          $this.loading = false
         }
       })
     },
@@ -282,7 +283,7 @@ export default {
       this.getById()
     },
     goToBack () {
-      this.$router.push({ name: 'import_export_management' })
+      this.$router.push({ name: 'voucher_management' })
     }
   }
 }

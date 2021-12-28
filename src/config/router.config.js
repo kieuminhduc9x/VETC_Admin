@@ -77,45 +77,45 @@ export const asyncRouterMap = [
     meta: {
       authRequired: true,
       head: {
-        title: 'Quản lý kho hàng',
-        description: 'Quản lý kho hàng'
+        title: 'Danh mục kho',
+        description: 'Danh mục kho'
       }
     }
   },
 
   // Quản lý máy đọc mã vạch
   {
-    path: '/barcode-readers-management',
-    name: 'barcode_readers_management',
-    component: () => import('../pages/BarcodeReadersManagement/Index'),
+    path: '/scan-device-management',
+    name: 'scan_device_management',
+    component: () => import('../pages/ScanDeviceManagement/Index'),
     meta: {
       authRequired: true,
       head: {
-        title: 'Quản lý danh sách máy đọc mã vạch',
-        description: 'Quản lý danh sách máy đọc mã vạch'
+        title: 'Quản lý máy quét mã vạch',
+        description: 'Quản lý máy quét mã vạch'
       }
     }
   },
 
   // Quản lý Nhập xuất
   {
-    path: '/import-export-management',
-    name: 'import_export_management',
-    component: () => import('../pages/ImportExportManagement/Index'),
+    path: '/voucher-management',
+    name: 'voucher_management',
+    component: () => import('../pages/VoucherManagement/Index'),
     meta: {
       authRequired: true,
       head: {
-        title: 'Quản lý nhập xuất',
-        description: 'Quản lý nhập xuất'
+        title: 'Nhập xuất hàng',
+        description: 'Nhập xuất hàng'
       }
     }
   },
 
   // Chi tiết phiếu xuất nhập kho
   {
-    path: '/import-export-management/:id/detail',
-    name: 'import_export_management.detail',
-    component: () => import('../pages/ImportExportManagement/Detail'),
+    path: '/voucher-management/:id/detail',
+    name: 'voucher_management.detail',
+    component: () => import('../pages/VoucherManagement/Detail'),
     meta: {
       authRequired: true,
       head: {
@@ -127,9 +127,9 @@ export const asyncRouterMap = [
 
   // Quản lý đơn đặt hàng
   {
-    path: '/order-management',
-    name: 'order_management',
-    component: () => import('../pages/OrderManagement/Index'),
+    path: '/pre-order-management',
+    name: 'pre_order_management',
+    component: () => import('../pages/PreOrderManagement/Index'),
     meta: {
       authRequired: true,
       head: {
@@ -141,9 +141,9 @@ export const asyncRouterMap = [
 
   // Chi tiết đơn đặt hàng
   {
-    path: '/order-management/detail/:id',
-    name: 'order_management.detail',
-    component: () => import('../pages/OrderManagement/Detail'),
+    path: '/pre-order-management/detail/:id',
+    name: 'pre_order_management.detail',
+    component: () => import('../pages/PreOrderManagement/Detail'),
     meta: {
       authRequired: true,
       head: {
@@ -167,9 +167,9 @@ export const asyncRouterMap = [
     }
   },
   {
-    path: '/config/account',
-    name: 'config.account',
-    component: () => import('../pages/Config/Account/Index'),
+    path: '/config/user-management',
+    name: 'user_management',
+    component: () => import('../pages/Config/User/Index'),
     meta: {
       authRequired: true,
       head: {
@@ -180,9 +180,9 @@ export const asyncRouterMap = [
   },
   // Thêm mới tài khoản
   {
-    path: '/config/account/create',
-    name: 'config.account.create',
-    component: () => import('../pages/Config/Account/Create'),
+    path: '/config/user-management/create',
+    name: 'user_management.create',
+    component: () => import('../pages/Config/User/Create'),
     meta: {
       authRequired: true,
       head: {
@@ -194,9 +194,9 @@ export const asyncRouterMap = [
 
   // Cập nhật tài khoản
   {
-    path: '/config/account/update/:id',
-    name: 'config.account.update',
-    component: () => import('../pages/Config/Account/Update'),
+    path: '/config/user-management/update/:id',
+    name: 'user_management.update',
+    component: () => import('../pages/Config/User/Update'),
     meta: {
       authRequired: true,
       head: {
@@ -208,8 +208,8 @@ export const asyncRouterMap = [
 
   // quản lý nhóm tài khoản
   {
-    path: '/config/roles',
-    name: 'config.roles',
+    path: '/config/role-management',
+    name: 'role_management',
     component: () => import('../pages/Config/Roles/Index'),
     meta: {
       authRequired: true,

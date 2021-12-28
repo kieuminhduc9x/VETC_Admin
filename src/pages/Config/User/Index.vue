@@ -124,10 +124,10 @@ export default {
       this.getData()
     },
     goToCreate () {
-      this.$router.push({ name: 'config.account.create' })
+      this.$router.push({ name: 'user_management.create' })
     },
     goToUpdate (record) {
-      this.$router.push({ name: 'config.account.update', params: { id: record.id } })
+      this.$router.push({ name: 'user_management.update', params: { id: record.id } })
     },
     search () {
 

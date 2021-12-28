@@ -38,31 +38,31 @@
       :default-open-keys="[openKeys]"
       :style="{ height: '100%', borderRight: 0, paddingTop: '0', }"
     >
-      <a-menu-item v-if="$auth.hasPrivilege('PRE_ORDER_MANAGEMENT')" key="2" >
-        <router-link :to="{ name: 'order_management' }" class="title-menu">
+      <a-menu-item v-if="$auth.hasPrivilege('PRE_ORDER_MANAGEMENT') === true" key="2" >
+        <router-link :to="{ name: 'pre_order_management' }" class="title-menu">
           <a-icon type="project" />
           <span>Đơn đặt hàng</span>
         </router-link>
       </a-menu-item>
-      <a-menu-item v-if="$auth.hasPrivilege('VOUCHER_MANAGEMENT')" key="3" >
-        <router-link :to="{ name: 'import_export_management' }" class="title-menu">
+      <a-menu-item v-if="$auth.hasPrivilege('VOUCHER_MANAGEMENT') === true" key="3" >
+        <router-link :to="{ name: 'voucher_management' }" class="title-menu">
           <a-icon type="export"></a-icon>
           <span>Nhập xuất hàng</span>
         </router-link>
       </a-menu-item>
-      <a-menu-item v-if="$auth.hasPrivilege('WAREHOUSE_MANAGEMENT')" key="4" >
+      <a-menu-item v-if="$auth.hasPrivilege('WAREHOUSE_MANAGEMENT') === true" key="4" >
         <router-link :to="{ name: 'warehouse_management' }" class="title-menu">
           <a-icon type="appstore"></a-icon>
           <span>Danh mục kho</span>
         </router-link>
       </a-menu-item>
-      <a-menu-item v-if="$auth.hasPrivilege('SCAN_DEVICE_MANAGEMENT')" key="5" >
-        <router-link :to="{ name: 'barcode_readers_management' }" class="title-menu">
+      <a-menu-item v-if="$auth.hasPrivilege('SCAN_DEVICE_MANAGEMENT') === true" key="5" >
+        <router-link :to="{ name: 'scan_device_management' }" class="title-menu">
           <a-icon type="barcode"></a-icon>
           <span>Máy quét mã vạch</span>
         </router-link>
       </a-menu-item>
-      <a-menu-item v-if="$auth.hasAnyPrivilege(['USER_MANAGEMENT','ROLE_MANAGEMENT'])" key="6" >
+      <a-menu-item v-if="$auth.hasAnyPrivilege(['USER_MANAGEMENT','ROLE_MANAGEMENT']) === true" key="6" >
         <router-link :to="{ name: 'config' }" class="title-menu">
           <a-icon type="setting" />
           <span>Cấu hình</span>
@@ -95,24 +95,24 @@ export default {
         case 'dashboard':
           idx = '1'
           break
-        case 'order_management':
-        case 'order_management.detail':
+        case 'pre_order_management':
+        case 'pre_order_management.detail':
           idx = '2'
           break
-        case 'import_export_management.detail':
-        case 'import_export_management':
+        case 'voucher_management.detail':
+        case 'voucher_management':
           idx = '3'
           break
         case 'warehouse_management':
           idx = '4'
           break
-        case 'barcode_readers_management':
+        case 'scan_device_management':
           idx = '5'
           break
         case 'config':
         case 'config.create':
         case 'config.update':
-        case 'config.roles':
+        case 'role_management':
           idx = '6'
           break
       }
@@ -125,24 +125,24 @@ export default {
         case 'dashboard':
           k = '1'
           break
-        case 'order_management':
-        case 'order_management.detail':
+        case 'pre_order_management':
+        case 'pre_order_management.detail':
           k = '2'
           break
-        case 'import_export_management':
-        case 'import_export_management.detail':
+        case 'voucher_management':
+        case 'voucher_management.detail':
           k = '3'
           break
         case 'warehouse_management':
           k = '4'
           break
-        case 'barcode_readers_management':
+        case 'scan_device_management':
           k = '5'
           break
         case 'config':
         case 'config.create':
         case 'config.update':
-        case 'config.roles':
+        case 'role_management':
           k = '6'
           break
         default:

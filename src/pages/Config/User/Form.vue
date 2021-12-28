@@ -203,7 +203,7 @@ export default {
       })
     },
     goToBack () {
-      this.$router.push({ name: 'config.account' })
+      this.$router.push({ name: 'user_management' })
     }
   }
 }

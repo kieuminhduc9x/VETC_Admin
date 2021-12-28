@@ -16,6 +16,7 @@ import VueCurrencyInput from 'vue-currency-input'
 import browserDetect from 'vue-browser-detect-plugin'
 import './directives/action'
 import './directives/permission'
+import './directives/privilege'
 Vue.use(browserDetect)
 
 Vue.component('icon', icons)
