@@ -137,7 +137,7 @@ export default {
           this.loading = true
           addUser(params).then(rs => {
             if (rs) {
-              this.$success({ content: 'Thêm user thành công' })
+              this.$success({ content: 'Thêm nhân viên thành công' })
               this.closeForm()
             }
           }).catch(err => {
