@@ -3,36 +3,44 @@ import api from '@/api'
 
 export function searchAccount (parameter) {
   return axios({
-    url: api.account.search,
+    url: api.user.search,
     method: 'get',
     params: parameter
   })
 }
 export function createAccount (parameter) {
   return axios({
-    url: api.account.create,
+    url: api.user.create,
     method: 'post',
     data: parameter
   })
 }
 export function updateAccount (parameter) {
   return axios({
-    url: api.account.update,
+    url: api.user.update,
     method: 'post',
     data: parameter
   })
 }
 export function deleteAccount (parameter) {
   return axios({
-    url: api.account.delete,
+    url: api.user.delete,
     method: 'post',
     data: parameter
   })
 }
 export function findByIdAccount (parameter) {
   return axios({
-    url: api.account.findById,
+    url: api.user.findById,
     method: 'get',
     params: parameter
+  })
+}
+
+export function resetPasswordAccount (parameter) {
+  return axios({
+    url: api.user.resetPassword,
+    method: 'post',
+    data: parameter
   })
 }

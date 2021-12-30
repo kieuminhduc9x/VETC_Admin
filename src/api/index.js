@@ -82,12 +82,13 @@ const api = {
     importOrder: '/pre-order/admin/init'
   },
   // Cấu hình thông tin tài khoản
-  account: {
+  user: {
     search: '/user/admin/search',
     create: '/user/admin/insert',
     update: '/user/admin/update',
     delete: '/user/admin/remove',
-    findById: '/user/admin/get-by-id'
+    findById: '/user/admin/get-by-id',
+    resetPassword: '/user/admin/reset-password'
   },
 
   // Cấu hình nhóm tài khoản
