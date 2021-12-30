@@ -327,6 +327,7 @@ export default {
       const fileType = record.fileName.substr(record.fileName.lastIndexOf('.'))
       if (fileType === '.pdf' || fileType === '.png' || fileType === '.jpg') {
         // bật tab review pdf
+        this.loading = true
         getDetailFile({ documentId: record.id }).then(rs => {
           if (rs) {
             const fileName = record.fileName
@@ -339,10 +340,11 @@ export default {
           const msg = this.handleApiError(err)
           this.$error({ content: msg })
         }).finally(res => {
-          this.loadingPdf = false
+          this.loading = false
         })
       } else {
         // Tải xuống
+        this.loading = true
         getDetailFile({ documentId: record.id }).then(rs => {
           if (rs) {
             const fileName = record.fileName
@@ -358,6 +360,11 @@ export default {
               document.body.removeChild(downloadLink)
             }
           }
+        }).catch(err => {
+          const msg = this.handleApiError(err)
+          this.$error({ content: msg })
+        }).finally(res => {
+          this.loading = false
         })
       }
     },
