@@ -76,13 +76,7 @@
             <a-form-model-item
               label="Kho cấp trên"
               prop="parentId"
-              :rules="[
-                {
-                  required: true,
-                  message: 'Kho cấp trên là bắt buộc',
-                  trigger: 'change'
-                },
-              ]">
+              :rules="[]">
               <a-select v-model="form.parentId" >
                 <a-select-option v-for="item in listWarehouse" :key="item.id" :value="item.id">
                   {{ item.name }}
