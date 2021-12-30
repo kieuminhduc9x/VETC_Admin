@@ -121,13 +121,10 @@
     </a-form-model>
 
     <a-collapse v-model="activeKey" expandIconPosition="left" style=" margin-top: 8px" class="collapse-left">
-      <a-collapse-panel header="Danh sách kiện hàng" key="1">
+      <a-collapse-panel header="Danh sách kiện hàng và tài liệu đính kèm" key="1">
         <a-card style="width: 100%; border: none" class="vts-table-container">
           <a-row :gutter="16" type="flex">
-            <a-col :span="24">
-              <div class="wrapper1">
-                <div class="div1"></div>
-              </div>
+            <a-col :span="12">
               <a-table
                 ref="tb1"
                 :columns="columns"
@@ -138,6 +135,23 @@
                 :scroll="{ x: '100%' }"
                 :locale="{ emptyText: 'Chưa có dữ liệu' }"
                 @change="handleTableChange"
+                class="ant-table-bordered">
+                <template slot="rowIndex" slot-scope="text, record, index">
+                  <span>{{ getTableRowIndex(pagination.pageSize, pagination.current, index) }} </span>
+                </template>
+              </a-table>
+            </a-col>
+            <a-col :span="12">
+              <a-table
+                ref="tb1"
+                :columns="columnsDocument"
+                :data-source="dataDocument"
+                :rowKey=" (rowKey, index ) => index"
+                :pagination="paginationDocument"
+                :loading="loading"
+                :scroll="{ x: '100%' }"
+                :locale="{ emptyText: 'Chưa có dữ liệu' }"
+                @change="handleTableChangeDocument"
                 class="ant-table-bordered">
                 <template slot="rowIndex" slot-scope="text, record, index">
                   <span>{{ getTableRowIndex(pagination.pageSize, pagination.current, index) }} </span>
@@ -161,6 +175,7 @@ import {
 } from '@/api/import-export-management'
 import moment from 'moment'
 import columns from './columnsDetail'
+import columnsDocument from './columnsDocument'
 import PopupAcceptExport from './PopupAcceptExport'
 import PopupAcceptSuccessfullyDelivery from './PopupAcceptSuccessfullyDelivery'
 import _ from 'lodash'
@@ -175,10 +190,24 @@ export default {
     return {
       moment,
       columns,
+      columnsDocument,
       activeKey: [1, 2, 3],
       form: {},
       data: [],
+      dataDocument: [],
       pagination: {
+        current: 1,
+        total: 1,
+        pageSize: 15,
+        pageSizes: 500,
+        showSizeChanger: true,
+        showQuickJumper: true,
+        pageSizeOptions: ['15', '25', '50'],
+        showTotal: (total) => {
+          return 'Tổng số dòng ' + total
+        }
+      },
+      paginationDocument: {
         current: 1,
         total: 1,
         pageSize: 15,
@@ -208,7 +237,9 @@ export default {
           this.form.exportAt = moment(rs.exportAt, 'DD-MM-YYYY').format('YYYY-MM-DD')
           this.form.deliveredAt = moment(rs.deliveredAt, 'DD-MM-YYYY').format('YYYY-MM-DD')
           this.data = rs.listDetail
+          this.dataDocument = rs.listDocument
           this.pagination = _.merge(this.pagination, this.handlePaginationData(rs.listDetail))
+          this.paginationDocument = _.merge(this.paginationDocument, this.handlePaginationData(rs.listDocument))
         }
       }).catch(err => {
         const msg = this.handleApiError(err)
@@ -223,6 +254,9 @@ export default {
     },
     handleTableChange (pagination, filters, sorter) {
       this.pagination = pagination
+    },
+    handleTableChangeDocument (pagination, filters, sorter) {
+      this.paginationDocument = pagination
     },
     checkPrintVoucher () {
       const $this = this

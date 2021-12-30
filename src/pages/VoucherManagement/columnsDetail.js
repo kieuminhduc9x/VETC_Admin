@@ -8,12 +8,12 @@ export default [
     width: 50
   },
   {
-    title: 'IMEI thiết bị',
-    dataIndex: 'imeiScanDevice',
-    scopedSlots: { customRender: 'imeiScanDevice' },
+    title: 'Shoppe PO Id',
+    dataIndex: 'shopeePoId',
+    scopedSlots: { customRender: 'shopeePoId' },
     align: 'right',
     ellipsis: true,
-    width: 250
+    width: 150
   },
   {
     title: 'Mã kiện hàng',
