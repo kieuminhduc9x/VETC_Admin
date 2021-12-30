@@ -100,6 +100,7 @@ export default {
       const fileType = record.fileName.substr(record.fileName.lastIndexOf('.'))
       if (fileType === '.pdf') {
         // bật tab review pdf
+        this.loading = true
         getDetailFile({ documentId: record.id }).then(rs => {
           if (rs) {
             const fileName = record.fileName
@@ -112,10 +113,28 @@ export default {
           const msg = this.handleApiError(err)
           this.$error({ content: msg })
         }).finally(res => {
-          this.loadingPdf = false
+          this.loading = false
+        })
+      } else if (fileType === '.png' || fileType === '.jpg') {
+        // bật tab review pdf
+        this.loading = true
+        getDetailFile({ documentId: record.id }).then(rs => {
+          if (rs) {
+            const fileName = record.fileName
+            const data = this.base64toBlob(rs, fileName)
+            var file = new Blob([data], { type: 'image/png' })
+            var fileURL = URL.createObjectURL(file)
+            window.open(fileURL)
+          }
+        }).catch(err => {
+          const msg = this.handleApiError(err)
+          this.$error({ content: msg })
+        }).finally(res => {
+          this.loading = false
         })
       } else {
         // Tải xuống
+        this.loading = true
         getDetailFile({ documentId: record.id }).then(rs => {
           if (rs) {
             const fileName = record.fileName
@@ -131,6 +150,11 @@ export default {
               document.body.removeChild(downloadLink)
             }
           }
+        }).catch(err => {
+          const msg = this.handleApiError(err)
+          this.$error({ content: msg })
+        }).finally(res => {
+          this.loading = false
         })
       }
     },
