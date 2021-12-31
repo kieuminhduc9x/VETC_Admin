@@ -340,8 +340,8 @@ export default {
         okType: 'primary',
         cancelText: 'Không',
         onOk: () => {
-          if (record.userId) {
-            this.removeUser(record.userId)
+          if (record.userRoleId) {
+            this.removeUser(record.userRoleId)
           }
         },
         onCancel () {
@@ -350,7 +350,7 @@ export default {
     },
     removeUser (id) {
       this.loading = true
-      removeUser({ userId: id })
+      removeUser({ userRoleId: id })
         .then(rs => {
           this.getData()
           this.$success({
