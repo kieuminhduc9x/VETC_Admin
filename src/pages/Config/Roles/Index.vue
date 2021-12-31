@@ -4,6 +4,7 @@
     <template v-slot:breadcrumb>
       <a-breadcrumb separator=">">
         <a-breadcrumb-item><a href="/">Home</a></a-breadcrumb-item>
+        <a-breadcrumb-item><a href="/config">Cấu hình</a></a-breadcrumb-item>
         <a-breadcrumb-item :class="'active'">Nhóm tài khoản </a-breadcrumb-item>
       </a-breadcrumb>
     </template>

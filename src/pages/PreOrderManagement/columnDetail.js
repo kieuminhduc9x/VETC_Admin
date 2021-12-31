@@ -1,11 +1,11 @@
 export default [
-  {
-    slots: { title: 'actionTitle' },
-    dataIndex: 'operation',
-    scopedSlots: { customRender: 'operation' },
-    align: 'center',
-    width: 50
-  },
+  // {
+  //   slots: { title: 'actionTitle' },
+  //   dataIndex: 'operation',
+  //   scopedSlots: { customRender: 'operation' },
+  //   align: 'center',
+  //   width: 50
+  // },
   {
     title: 'STT',
     dataIndex: 'rowIndex',

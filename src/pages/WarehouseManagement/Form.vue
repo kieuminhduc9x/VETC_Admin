@@ -3,7 +3,7 @@
     :visible="visible"
     :title="isCreate === true? 'Thêm mới' : 'Cập nhật'"
     @close="closeForm"
-    width="1000"
+    width="850"
     :destroy-on-close="false"
     :mask-closable="false"
   >
@@ -158,7 +158,7 @@
             </a-form-model-item>
           </a-col>
         </a-row>
-        <a-row :gutter="16">
+        <a-row :gutter="16" v-if="isUpdate === true">
           <a-col :xs="24" :md="12" :lg="12"></a-col>
           <a-col :xs="24" :md="12" :lg="12">
             <div style="margin: 10px 0">
@@ -168,7 +168,7 @@
             </div>
           </a-col>
         </a-row>
-        <a-row :gutter="16" >
+        <a-row :gutter="16" v-if="isUpdate === true">
           <a-col :xs="24" :md="12" :lg="12">
             <a-table
               :columns="columnsDevice"
