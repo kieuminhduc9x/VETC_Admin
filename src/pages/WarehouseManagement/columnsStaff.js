@@ -21,5 +21,12 @@ export default [
     align: 'left',
     ellipsis: true,
     width: 200
+  },
+  {
+    slots: { title: 'actionTitle' },
+    dataIndex: 'operation',
+    scopedSlots: { customRender: 'operation' },
+    width: 80,
+    align: 'center'
   }
 ]

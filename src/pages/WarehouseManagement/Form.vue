@@ -3,7 +3,7 @@
     :visible="visible"
     :title="isCreate === true? 'Thêm mới' : 'Cập nhật'"
     @close="closeForm"
-    width="800"
+    width="1000"
     :destroy-on-close="false"
     :mask-closable="false"
   >
@@ -158,7 +158,17 @@
             </a-form-model-item>
           </a-col>
         </a-row>
-        <a-row :gutter="16" v-if="isUpdate === true">
+        <a-row :gutter="16">
+          <a-col :xs="24" :md="12" :lg="12"></a-col>
+          <a-col :xs="24" :md="12" :lg="12">
+            <div style="margin: 10px 0">
+              <a-button type="primary" @click="addRowUser">
+                <a-icon type="plus-circle"></a-icon>
+              </a-button>
+            </div>
+          </a-col>
+        </a-row>
+        <a-row :gutter="16" >
           <a-col :xs="24" :md="12" :lg="12">
             <a-table
               :columns="columnsDevice"
@@ -174,18 +184,84 @@
             </a-table>
           </a-col>
           <a-col :xs="24" :md="12" :lg="12">
-            <a-table
-              :columns="columnsStaff"
-              :data-source="form.listUser"
-              :rowKey=" (rowKey, index ) => index"
-              :pagination="paginationStaff"
-              :scroll="{ x: '100%' }"
-              :locale="{ emptyText: 'Chưa có dữ liệu' }"
-              class="ant-table-bordered">
-              <template slot="rowIndex" slot-scope="text, record, index">
-                <span>{{ index + 1 }} </span>
-              </template>
-            </a-table>
+            <a-form-model ref="formUserValidate" :model="formUser">
+              <a-table
+                :columns="columnsStaff"
+                :data-source="form.listUser"
+                :rowKey=" (rowKey, index ) => index"
+                :pagination="paginationStaff"
+                :scroll="{ x: '100%' }"
+                :locale="{ emptyText: 'Chưa có dữ liệu' }"
+                class="ant-table-bordered">
+                <template slot="rowIndex" slot-scope="text, record, index">
+                  <span>{{ index + 1 }} </span>
+                </template>
+                <template slot="userName" slot-scope="text, record, index">
+                  <a-form-model-item
+                    v-if="record.editable === true"
+                    ref="id"
+                    :prop="'items.' + index + '.id'"
+                  >
+                    <a-select
+                      @change="changeUser(record)"
+                      v-model="record.id">
+                      <a-select-option v-for="item in listUser" :key="item.id" :value="item.id">
+                        {{ item.userName }}
+                      </a-select-option>
+                    </a-select>
+                  </a-form-model-item>
+                  <template v-else>
+                    {{ record.userName }}
+                  </template>
+                </template>
+                <template slot="fullName" slot-scope="text, record, index">
+                  <a-form-model-item
+                    v-if="record.editable === true"
+                    ref="fullName"
+                    :prop="'items.' + index + '.fullName'"
+                  >
+                    <a-input :disabled="true" v-model="record.fullName">
+                    </a-input>
+                  </a-form-model-item>
+                  <template v-else>
+                    {{ record.userName }}
+                  </template>
+                </template>
+                <template slot="actionTitle">
+                  <a-icon type="control" :style="{fontSize: '14px'}"/>
+                </template>
+                <template slot="operation" slot-scope="text, record, index">
+                  <div v-if="record.editable">
+                    <span @click="saveRowUser(record)" style="padding-right:12px;cursor: pointer">
+                      <a-icon
+                        type="save"
+                        :style="{color: '#F98500',fontSize: '14px'}"
+                      />
+                    </span>
+                    <span @click="deleteRowUser( index)" style="cursor: pointer">
+                      <a-icon
+                        type="delete"
+                        :style="{color: '#ee0033', fontSize: '14px'}"
+                      />
+                    </span>
+                  </div>
+                  <div v-else>
+                    <span @click="showEditRowUser(record.id)" style="padding-right:12px;cursor: pointer">
+                      <a-icon
+                        type="form"
+                        :style="{color: '#ee0033',fontSize: '14px'}"
+                      />
+                    </span>
+                    <span @click="deleteRowUser(index)" style="cursor: pointer">
+                      <a-icon
+                        type="delete"
+                        :style="{color: '#ee0033', fontSize: '14px'}"
+                      />
+                    </span>
+                  </div>
+                </template>
+              </a-table>
+            </a-form-model>
           </a-col>
         </a-row>
       </a-form-model>
@@ -223,6 +299,7 @@ import { listProvince } from '@/api/common'
 import { SearchUser } from '@/api/user'
 import columnsStaff from './columnsStaff'
 import columnsDevice from './columnsDevice'
+import { listUserNotInWarehouse } from '@/api/Config/accounts'
 
 export default {
   components: {
@@ -247,18 +324,20 @@ export default {
     modelObject: {
       type: Object,
       required: true
+    },
+    warehouseId: {
+      type: Number,
+      required: true
     }
   },
   computed: {
     form () {
       return this.modelObject
-    }
-  },
-  mounted () {
-    if (this.visibleForm === true) {
-      this.visible = true
-    } else {
-      this.visible = false
+    },
+    formUser () {
+      return {
+        items: this.modelObject.listUser
+      }
     }
   },
   data () {
@@ -269,6 +348,7 @@ export default {
       listWarehouse: [],
       listProvince: [],
       listManage: [],
+      listUser: [],
       loading: false,
       paginationDevice: {
         current: 1,
@@ -300,11 +380,31 @@ export default {
     this.getListProvince()
     this.getListWarehouse()
     this.getListManage()
+    this.getListUserNotInWarehouse(this.warehouseId)
+  },
+  mounted () {
+    if (this.visibleForm === true) {
+      this.visible = true
+    } else {
+      this.visible = false
+    }
   },
   methods: {
     phoneValidator,
     checkEmail,
     checkCode,
+    changeUser (record) {
+      if (record) {
+        const user = this.listUser.find(item => item.id === record.id)
+        record.userName = user.userName
+        record.fullName = user.fullName
+      }
+    },
+    getListUserNotInWarehouse (id) {
+      listUserNotInWarehouse(id).then(rs => {
+        this.listUser = rs
+      })
+    },
     getListProvince () {
       listProvince().then(rs => {
         if (rs) {
@@ -383,6 +483,44 @@ export default {
           }
         }
       })
+    },
+    appendRowEmpty (numberRow) {
+      if (this.form.listUser.length + numberRow > this.paginationStaff.pageSize) {
+        this.form.listUser.splice(this.paginationStaff.pageSize - numberRow, numberRow)
+      }
+      for (let i = 0; i < numberRow; i++) {
+        const newData = {
+          id: '',
+          userName: '',
+          fullName: '',
+          editable: true
+        }
+        this.form.listUser = [newData, ...this.form.listUser]
+        this.expandedRowKeys = []
+      }
+    },
+    addRowUser () {
+      this.appendRowEmpty(1)
+    },
+    showEditRowUser (id) {
+      const newData = [...this.data]
+      for (let i = 0; i < newData.length; i++) {
+        if (newData[i].editable) {
+          this.saveRow(newData[i])
+        }
+        if (newData[i].id === id) {
+          newData[i].editable = true
+        }
+      }
+      this.data = newData
+    },
+    saveRowUser (record) {
+      record.editable = false
+    },
+    deleteRowUser (index) {
+      if (index) {
+        this.form.listUser.splice(index, 1)
+      }
     }
   }
 }

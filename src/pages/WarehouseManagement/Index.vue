@@ -72,6 +72,7 @@
       :isCreate="isCreate"
       :isUpdate="isUpdate"
       :modelObject="modelObject"
+      :warehouseId="warehouseId"
       @closeForm="closeForm"
     ></form-warehouse>
   </main-layout>
@@ -142,7 +143,8 @@ export default {
         phone: '',
         parentId: '',
         email: ''
-      }
+      },
+      warehouseId: ''
     }
   },
   created () {
@@ -197,6 +199,7 @@ export default {
       this.isUpdate = true
       // this.modelObject = _.cloneDeep(record)
       this.findById(record.id)
+      this.warehouseId = record.id
     },
     closeForm () {
       this.visibleForm = false

@@ -44,3 +44,11 @@ export function resetPasswordAccount (parameter) {
     data: parameter
   })
 }
+
+// Danh sách tài khoản k thuộc kho
+export function listUserNotInWarehouse (parameter) {
+  return axios({
+    url: '/warehouse/admin/' + parameter + '/list-user-not-in-warehouse',
+    method: 'get'
+  })
+}
