@@ -283,7 +283,8 @@ export default {
     },
     printVoucher () {
       const params = {
-        voucherId: this.$route.params.id
+        voucherId: this.$route.params.id,
+        preOrderId: this.form.preOrderId
       }
       this.loading = true
       printImportExportManagement(params).then(rs => {
