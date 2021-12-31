@@ -162,7 +162,7 @@
           <a-col :xs="24" :md="12" :lg="12"></a-col>
           <a-col :xs="24" :md="12" :lg="12">
             <div style="margin: 10px 0">
-              <a-button type="primary" @click="addRowUser">
+              <a-button :disabled="disabledAddUser" type="primary" @click="addRowUser">
                 <a-icon type="plus-circle"></a-icon>
               </a-button>
             </div>
@@ -188,7 +188,7 @@
               <a-table
                 :columns="columnsStaff"
                 :data-source="form.listUser"
-                :rowKey=" (rowKey, index ) => index"
+                :rowKey=" (record, index ) => index"
                 :pagination="paginationStaff"
                 :scroll="{ x: '100%' }"
                 :locale="{ emptyText: 'Chưa có dữ liệu' }"
@@ -199,32 +199,18 @@
                 <template slot="userName" slot-scope="text, record, index">
                   <a-form-model-item
                     v-if="record.editable === true"
-                    ref="id"
                     :prop="'items.' + index + '.id'"
                   >
                     <a-select
                       @change="changeUser(record)"
                       v-model="record.id">
                       <a-select-option v-for="item in listUser" :key="item.id" :value="item.id">
-                        {{ item.userName }}
+                        {{ item.userName + '-' + item.fullName }}
                       </a-select-option>
                     </a-select>
                   </a-form-model-item>
                   <template v-else>
-                    {{ record.userName }}
-                  </template>
-                </template>
-                <template slot="fullName" slot-scope="text, record, index">
-                  <a-form-model-item
-                    v-if="record.editable === true"
-                    ref="fullName"
-                    :prop="'items.' + index + '.fullName'"
-                  >
-                    <a-input :disabled="true" v-model="record.fullName">
-                    </a-input>
-                  </a-form-model-item>
-                  <template v-else>
-                    {{ record.userName }}
+                    {{ record.userName + '-' + record.fullName }}
                   </template>
                 </template>
                 <template slot="actionTitle">
@@ -238,7 +224,7 @@
                         :style="{color: '#F98500',fontSize: '14px'}"
                       />
                     </span>
-                    <span @click="deleteRowUser( index)" style="cursor: pointer">
+                    <span @click="deleteRowUser(index)" style="cursor: pointer">
                       <a-icon
                         type="delete"
                         :style="{color: '#ee0033', fontSize: '14px'}"
@@ -373,7 +359,8 @@ export default {
         showTotal: (total) => {
           return 'Tổng số dòng ' + total
         }
-      }
+      },
+      disabledAddUser: false
     }
   },
   created () {
@@ -501,26 +488,26 @@ export default {
     },
     addRowUser () {
       this.appendRowEmpty(1)
+      this.disabledAddUser = true
     },
     showEditRowUser (id) {
-      const newData = [...this.data]
+      const newData = [...this.form.listUser]
       for (let i = 0; i < newData.length; i++) {
         if (newData[i].editable) {
-          this.saveRow(newData[i])
+          this.saveRowUser(newData[i])
         }
         if (newData[i].id === id) {
           newData[i].editable = true
         }
       }
-      this.data = newData
+      this.form.listUser = newData
     },
     saveRowUser (record) {
       record.editable = false
+      this.disabledAddUser = false
     },
     deleteRowUser (index) {
-      if (index) {
-        this.form.listUser.splice(index, 1)
-      }
+      this.form.listUser.splice(index, 1)
     }
   }
 }

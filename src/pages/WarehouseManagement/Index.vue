@@ -197,7 +197,6 @@ export default {
       this.visibleForm = true
       this.isCreate = false
       this.isUpdate = true
-      // this.modelObject = _.cloneDeep(record)
       this.findById(record.id)
       this.warehouseId = record.id
     },
