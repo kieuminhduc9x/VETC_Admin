@@ -4,7 +4,7 @@
     <template v-slot:breadcrumb>
       <a-breadcrumb separator=">">
         <a-breadcrumb-item><a href="/">Home</a></a-breadcrumb-item>
-        <a-breadcrumb-item><a href="/order-management">Đơn đặt hàng</a></a-breadcrumb-item>
+        <a-breadcrumb-item><a href="/pre-order-management">Đơn đặt hàng</a></a-breadcrumb-item>
         <a-breadcrumb-item :class="'active'">Chi tiết đơn đặt hàng</a-breadcrumb-item>
       </a-breadcrumb>
     </template>
@@ -55,17 +55,6 @@
                 style="border: none; margin-top: 25px">
                 <template slot="rowIndex" slot-scope="text, record, index">
                   <span>{{ getTableRowIndex(pagination.pageSize, pagination.current, index) }} </span>
-                </template>
-                <template slot="actionTitle" >
-                  <a-icon type="control"></a-icon>
-                </template>
-                <template slot="operation" >
-                  <a-popover >
-                    <template slot="content" >
-                      <span>Chi tiết</span>
-                    </template>
-                    <a-icon type="eye" style=" color: #086885"></a-icon>
-                  </a-popover>
                 </template>
               </a-table>
             </a-col>

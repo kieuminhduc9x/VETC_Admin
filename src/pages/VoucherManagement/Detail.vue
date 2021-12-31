@@ -4,7 +4,7 @@
     <template v-slot:breadcrumb>
       <a-breadcrumb separator=">">
         <a-breadcrumb-item><a href="/">Home</a></a-breadcrumb-item>
-        <a-breadcrumb-item><a href="/import-export-management">Nhập xuất hàng</a></a-breadcrumb-item>
+        <a-breadcrumb-item><a href="/voucher-management">Nhập xuất hàng</a></a-breadcrumb-item>
         <a-breadcrumb-item :class="'active'">Chi tiết</a-breadcrumb-item>
       </a-breadcrumb>
     </template>

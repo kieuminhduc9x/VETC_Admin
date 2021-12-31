@@ -187,8 +187,8 @@ export default {
       loadingExport: false,
       filters: {
         status: '',
-        fromDate: '',
-        toDate: '',
+        fromDate: undefined,
+        toDate: undefined,
         keyword: ''
       },
       listStatus: [],
@@ -220,7 +220,20 @@ export default {
       return fromDate.valueOf() >= toDate.valueOf()
     },
     getListStatus () {
-      this.listStatus = []
+      this.listStatus = [
+        {
+          value: '1',
+          name: 'Tạo đơn'
+        },
+        {
+          value: '2',
+          name: 'Đang vận chuyển'
+        },
+        {
+          value: '3',
+          name: 'Hoàn thành'
+        }
+      ]
     },
     resetForm (e) {
       this.$refs.ruleFilter.resetFields()
@@ -244,8 +257,8 @@ export default {
         size: this.pagination.pageSize,
         status: this.filters.status,
         keyword: this.filters.keyword,
-        fromDate: this.filters.fromDate !== '' ? moment(this.filters.fromDate, 'YYYY-MM-DD').format('YYYY-MM-DD') : '',
-        toDate: this.filters.toDate !== '' ? moment(this.filters.toDate, 'YYYY-MM-DD').format('YYYY-MM-DD') : ''
+        fromDate: moment.isMoment(this.filters.fromDate) ? moment(this.filters.fromDate, 'YYYY-MM-DD').format('YYYY-MM-DD') : '',
+        toDate: moment.isMoment(this.filters.toDate) ? moment(this.filters.toDate, 'YYYY-MM-DD').format('YYYY-MM-DD') : ''
       }
       this.loading = true
       this.data = []
