@@ -237,9 +237,9 @@ export default {
       getByIdImportExportManagement({ voucherId: this.$route.params.id }).then(rs => {
         if (rs) {
           this.form = rs
-          this.form.importAt = moment(rs.importAt, 'DD-MM-YYYY').format('YYYY-MM-DD')
-          this.form.exportAt = moment(rs.exportAt, 'DD-MM-YYYY').format('YYYY-MM-DD')
-          this.form.deliveredAt = moment(rs.deliveredAt, 'DD-MM-YYYY').format('YYYY-MM-DD')
+          this.form.importAt = rs.importAt !== null ? moment(rs.importAt, 'DD-MM-YYYY').format('YYYY-MM-DD') : ''
+          this.form.exportAt = rs.exportAt !== null ? moment(rs.exportAt, 'DD-MM-YYYY').format('YYYY-MM-DD') : ''
+          this.form.deliveredAt = rs.deliveredAt !== null ? moment(rs.deliveredAt, 'DD-MM-YYYY').format('YYYY-MM-DD') : ''
           this.data = rs.listDetail
           this.dataDocument = rs.listDocument
           this.pagination = _.merge(this.pagination, this.handlePaginationData(rs.listDetail))
