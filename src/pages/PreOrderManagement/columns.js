@@ -30,6 +30,14 @@ export default [
     width: 200
   },
   {
+    title: 'Kho đích cuối',
+    dataIndex: 'receiveAddress',
+    scopedSlots: { customRender: 'receiveAddress' },
+    align: 'left',
+    ellipsis: true,
+    width: 350
+  },
+  {
     title: 'Ngày tạo',
     dataIndex: 'createAt',
     scopedSlots: { customRender: 'createAt' },
@@ -44,7 +52,7 @@ export default [
     scopedSlots: { customRender: 'completeAt' },
     align: 'left',
     ellipsis: true,
-    width: 250
+    width: 150
   },
   {
     title: 'Trạng thái ',

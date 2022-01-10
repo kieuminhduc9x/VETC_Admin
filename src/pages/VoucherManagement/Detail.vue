@@ -102,7 +102,17 @@
                     </a-date-picker>
                   </a-form-model-item>
                 </a-col>
-                <a-col :xs="24" :md="6" :lg="6" class="filter-item-container"></a-col>
+                <a-col :xs="24" :md="6" :lg="6" class="filter-item-container">
+                  <a-form-model-item
+                    label="Kho đích cuối"
+                    prop="receiveAddress"
+                    :rules="[]">
+                    <a-input
+                      :disabled="true"
+                      v-model="form.receiveAddress">
+                    </a-input>
+                  </a-form-model-item>
+                </a-col>
               </a-row>
               <a-row :gutter="16">
                 <a-col :xs="24" :md="24" :lg="24">
