@@ -35,6 +35,9 @@
                 <a-descriptions-item label="Trạng thái">
                   {{ form.statusName }}
                 </a-descriptions-item>
+                <a-descriptions-item label="Kho đích cuối">
+                  {{ form.receiveAddress }}
+                </a-descriptions-item>
               </a-descriptions>
               <a-divider orientation="left">
                 <span class="block-header">Danh sách kiện hàng</span>

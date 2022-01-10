@@ -118,6 +118,14 @@
                 <template slot="rowIndex" slot-scope="text, record, index">
                   <span>{{ getTableRowIndex(pagination.pageSize, pagination.current, index) }} </span>
                 </template>
+                <template slot="receiveAddress" slot-scope="text, record">
+                  <a-tooltip placement="bottomLeft">
+                    <template slot="title">
+                      <span>{{ record.receiveAddress }}</span>
+                    </template>
+                    <span>{{ record.receiveAddress }}</span>
+                  </a-tooltip>
+                </template>
                 <template slot="actionTitle" >
                   <a-icon type="control"></a-icon>
                 </template>
