@@ -22,7 +22,7 @@ export default [
     width: 150
   },
   {
-    title: 'Mã đơn hàng',
+    title: 'Mã phiếu',
     dataIndex: 'voucherCode',
     scopedSlots: { customRender: 'voucherCode' },
     align: 'left',
@@ -48,7 +48,7 @@ export default [
 
   },
   {
-    title: 'Kho chuyển đến',
+    title: 'Mã đơn hàng',
     dataIndex: 'preOrderNo',
     scopedSlots: { customRender: 'preOrderNo' },
     align: 'left',
@@ -56,11 +56,19 @@ export default [
     width: 250
   },
   {
+    title: 'Kho đích cuối',
+    dataIndex: 'receiveAddress',
+    scopedSlots: { customRender: 'receiveAddress' },
+    align: 'left',
+    ellipsis: true,
+    width: 350
+  },
+  {
     title: 'Trạng thái đơn hàng',
     dataIndex: 'statusName',
     scopedSlots: { customRender: 'statusName' },
     align: 'left',
     ellipsis: true,
-    width: 120
+    width: 150
   }
 ]

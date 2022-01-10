@@ -109,7 +109,7 @@ export default {
       this.loading = true
       acceptSuccessfulDeliveryImportExportManagement(params).then(rs => {
         if (rs) {
-          this.$success({ content: 'Xác nhận xuất kho thành công' })
+          this.$success({ content: 'Xác nhận giao hàng thành công' })
           this.closeModal()
         }
       }).catch(err => {

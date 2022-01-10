@@ -104,6 +104,14 @@
                 <template slot="actionTitle" >
                   <a-icon type="control"></a-icon>
                 </template>
+                <template slot="receiveAddress" slot-scope="text, record">
+                  <a-tooltip placement="bottomLeft">
+                    <template slot="title">
+                      <span>{{ record.receiveAddress }}</span>
+                    </template>
+                    <span>{{ record.receiveAddress }}</span>
+                  </a-tooltip>
+                </template>
                 <template slot="operation" slot-scope="text, record">
                   <a-popover >
                     <template slot="content" >
