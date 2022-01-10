@@ -118,12 +118,60 @@
                 <template slot="rowIndex" slot-scope="text, record, index">
                   <span>{{ getTableRowIndex(pagination.pageSize, pagination.current, index) }} </span>
                 </template>
+                <template slot="warehouseName" slot-scope="text, record">
+                  <a-tooltip placement="bottomLeft">
+                    <template slot="title">
+                      <span>{{ record.warehouseName }}</span>
+                    </template>
+                    <span>{{ record.warehouseName }}</span>
+                  </a-tooltip>
+                </template>
+                <template slot="voucherCode" slot-scope="text, record">
+                  <a-tooltip placement="bottomLeft">
+                    <template slot="title">
+                      <span>{{ record.voucherCode }}</span>
+                    </template>
+                    <span>{{ record.voucherCode }}</span>
+                  </a-tooltip>
+                </template>
+                <template slot="importAt" slot-scope="text, record">
+                  <a-tooltip placement="bottomLeft">
+                    <template slot="title">
+                      <span>{{ record.importAt }}</span>
+                    </template>
+                    <span>{{ record.importAt }}</span>
+                  </a-tooltip>
+                </template>
+                <template slot="exportAt" slot-scope="text, record">
+                  <a-tooltip placement="bottomLeft">
+                    <template slot="title">
+                      <span>{{ record.exportAt }}</span>
+                    </template>
+                    <span>{{ record.exportAt }}</span>
+                  </a-tooltip>
+                </template>
+                <template slot="preOrderNo" slot-scope="text, record">
+                  <a-tooltip placement="bottomLeft">
+                    <template slot="title">
+                      <span>{{ record.preOrderNo }}</span>
+                    </template>
+                    <span>{{ record.preOrderNo }}</span>
+                  </a-tooltip>
+                </template>
                 <template slot="receiveAddress" slot-scope="text, record">
                   <a-tooltip placement="bottomLeft">
                     <template slot="title">
                       <span>{{ record.receiveAddress }}</span>
                     </template>
                     <span>{{ record.receiveAddress }}</span>
+                  </a-tooltip>
+                </template>
+                <template slot="statusName" slot-scope="text, record">
+                  <a-tooltip placement="bottomLeft">
+                    <template slot="title">
+                      <span>{{ record.statusName }}</span>
+                    </template>
+                    <span>{{ record.statusName }}</span>
                   </a-tooltip>
                 </template>
                 <template slot="actionTitle" >

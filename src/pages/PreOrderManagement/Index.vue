@@ -104,12 +104,52 @@
                 <template slot="actionTitle" >
                   <a-icon type="control"></a-icon>
                 </template>
+                <template slot="parentNo" slot-scope="text, record">
+                  <a-tooltip placement="bottomLeft">
+                    <template slot="title">
+                      <span>{{ record.parentNo }}</span>
+                    </template>
+                    <span>{{ record.parentNo }}</span>
+                  </a-tooltip>
+                </template>
+                <template slot="no" slot-scope="text, record">
+                  <a-tooltip placement="bottomLeft">
+                    <template slot="title">
+                      <span>{{ record.no }}</span>
+                    </template>
+                    <span>{{ record.no }}</span>
+                  </a-tooltip>
+                </template>
                 <template slot="receiveAddress" slot-scope="text, record">
                   <a-tooltip placement="bottomLeft">
                     <template slot="title">
                       <span>{{ record.receiveAddress }}</span>
                     </template>
                     <span>{{ record.receiveAddress }}</span>
+                  </a-tooltip>
+                </template>
+                <template slot="createAt" slot-scope="text, record">
+                  <a-tooltip placement="bottomLeft">
+                    <template slot="title">
+                      <span>{{ record.createAt }}</span>
+                    </template>
+                    <span>{{ record.createAt }}</span>
+                  </a-tooltip>
+                </template>
+                <template slot="completeAt" slot-scope="text, record">
+                  <a-tooltip placement="bottomLeft">
+                    <template slot="title">
+                      <span>{{ record.completeAt }}</span>
+                    </template>
+                    <span>{{ record.completeAt }}</span>
+                  </a-tooltip>
+                </template>
+                <template slot="statusName" slot-scope="text, record">
+                  <a-tooltip placement="bottomLeft">
+                    <template slot="title">
+                      <span>{{ record.statusName }}</span>
+                    </template>
+                    <span>{{ record.statusName }}</span>
                   </a-tooltip>
                 </template>
                 <template slot="operation" slot-scope="text, record">

@@ -181,6 +181,22 @@
               <template slot="rowIndex" slot-scope="text, record, index">
                 <span>{{ index + 1 }} </span>
               </template>
+              <template slot="imei" slot-scope="text, record">
+                <a-tooltip placement="bottomLeft">
+                  <template slot="title">
+                    <span>{{ record.imei }}</span>
+                  </template>
+                  <span>{{ record.imei }}</span>
+                </a-tooltip>
+              </template>
+              <template slot="phone" slot-scope="text, record">
+                <a-tooltip placement="bottomLeft">
+                  <template slot="title">
+                    <span>{{ record.phone }}</span>
+                  </template>
+                  <span>{{ record.phone }}</span>
+                </a-tooltip>
+              </template>
             </a-table>
           </a-col>
           <a-col :xs="24" :md="12" :lg="12">
@@ -210,7 +226,12 @@
                     </a-select>
                   </a-form-model-item>
                   <template v-else>
-                    {{ record.userName + '-' + record.fullName }}
+                    <a-tooltip placement="bottomLeft">
+                      <template slot="title">
+                        <span>{{ record.userName + '-' + record.fullName }}</span>
+                      </template>
+                      <span>{{ record.userName + '-' + record.fullName }}</span>
+                    </a-tooltip>
                   </template>
                 </template>
                 <template slot="actionTitle">

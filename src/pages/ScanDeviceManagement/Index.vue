@@ -68,6 +68,54 @@
                 <template slot="rowIndex" slot-scope="text, record, index">
                   <span>{{ getTableRowIndex(pagination.pageSize, pagination.current, index) }} </span>
                 </template>
+                <template slot="warehouseCode" slot-scope="text, record">
+                  <a-tooltip placement="bottomLeft">
+                    <template slot="title">
+                      <span>{{ record.warehouseCode }}</span>
+                    </template>
+                    <span>{{ record.warehouseCode }}</span>
+                  </a-tooltip>
+                </template>
+                <template slot="warehouseName" slot-scope="text, record">
+                  <a-tooltip placement="bottomLeft">
+                    <template slot="title">
+                      <span>{{ record.warehouseName }}</span>
+                    </template>
+                    <span>{{ record.warehouseName }}</span>
+                  </a-tooltip>
+                </template>
+                <template slot="provinceName" slot-scope="text, record">
+                  <a-tooltip placement="bottomLeft">
+                    <template slot="title">
+                      <span>{{ record.provinceName }}</span>
+                    </template>
+                    <span>{{ record.provinceName }}</span>
+                  </a-tooltip>
+                </template>
+                <template slot="warehouseAddress" slot-scope="text, record">
+                  <a-tooltip placement="bottomLeft">
+                    <template slot="title">
+                      <span>{{ record.warehouseAddress }}</span>
+                    </template>
+                    <span>{{ record.warehouseAddress }}</span>
+                  </a-tooltip>
+                </template>
+                <template slot="phone" slot-scope="text, record">
+                  <a-tooltip placement="bottomLeft">
+                    <template slot="title">
+                      <span>{{ record.phone }}</span>
+                    </template>
+                    <span>{{ record.phone }}</span>
+                  </a-tooltip>
+                </template>
+                <template slot="imei" slot-scope="text, record">
+                  <a-tooltip placement="bottomLeft">
+                    <template slot="title">
+                      <span>{{ record.imei }}</span>
+                    </template>
+                    <span>{{ record.imei }}</span>
+                  </a-tooltip>
+                </template>
                 <template slot="operation" slot-scope="text, record">
                   <a-popover >
                     <template slot="content">

@@ -59,6 +59,54 @@
                 <template slot="rowIndex" slot-scope="text, record, index">
                   <span>{{ getTableRowIndex(pagination.pageSize, pagination.current, index) }} </span>
                 </template>
+                <template slot="shopeePoId" slot-scope="text, record">
+                  <a-tooltip placement="bottomLeft">
+                    <template slot="title">
+                      <span>{{ record.shopeePoId }}</span>
+                    </template>
+                    <span>{{ record.shopeePoId }}</span>
+                  </a-tooltip>
+                </template>
+                <template slot="cartonNo" slot-scope="text, record">
+                  <a-tooltip placement="bottomLeft">
+                    <template slot="title">
+                      <span>{{ record.cartonNo }}</span>
+                    </template>
+                    <span>{{ record.cartonNo }}</span>
+                  </a-tooltip>
+                </template>
+                <template slot="descOfGoods" slot-scope="text, record">
+                  <a-tooltip placement="bottomLeft">
+                    <template slot="title">
+                      <span>{{ record.descOfGoods }}</span>
+                    </template>
+                    <span>{{ record.descOfGoods }}</span>
+                  </a-tooltip>
+                </template>
+                <template slot="currentWarehouseName" slot-scope="text, record">
+                  <a-tooltip placement="bottomLeft">
+                    <template slot="title">
+                      <span>{{ record.currentWarehouseName }}</span>
+                    </template>
+                    <span>{{ record.currentWarehouseName }}</span>
+                  </a-tooltip>
+                </template>
+                <template slot="dateOfReceived" slot-scope="text, record">
+                  <a-tooltip placement="bottomLeft">
+                    <template slot="title">
+                      <span>{{ record.dateOfReceived }}</span>
+                    </template>
+                    <span>{{ record.dateOfReceived }}</span>
+                  </a-tooltip>
+                </template>
+                <template slot="statusName" slot-scope="text, record">
+                  <a-tooltip placement="bottomLeft">
+                    <template slot="title">
+                      <span>{{ record.statusName }}</span>
+                    </template>
+                    <span>{{ record.statusName }}</span>
+                  </a-tooltip>
+                </template>
               </a-table>
             </a-col>
             <a-col :xs="24" :md="8" :lg="8">

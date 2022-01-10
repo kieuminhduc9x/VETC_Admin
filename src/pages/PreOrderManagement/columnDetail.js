@@ -1,11 +1,4 @@
 export default [
-  // {
-  //   slots: { title: 'actionTitle' },
-  //   dataIndex: 'operation',
-  //   scopedSlots: { customRender: 'operation' },
-  //   align: 'center',
-  //   width: 50
-  // },
   {
     title: 'STT',
     dataIndex: 'rowIndex',
@@ -34,6 +27,14 @@ export default [
     title: 'Tên hàng',
     dataIndex: 'descOfGoods',
     scopedSlots: { customRender: 'descOfGoods' },
+    align: 'left',
+    ellipsis: true,
+    width: 150
+  },
+  {
+    title: 'Kho hiện tại',
+    dataIndex: 'currentWarehouseName',
+    scopedSlots: { customRender: 'currentWarehouseName' },
     align: 'left',
     ellipsis: true,
     width: 150

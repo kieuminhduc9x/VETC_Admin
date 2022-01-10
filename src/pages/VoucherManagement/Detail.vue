@@ -149,6 +149,30 @@
                 <template slot="rowIndex" slot-scope="text, record, index">
                   <span>{{ getTableRowIndex(pagination.pageSize, pagination.current, index) }} </span>
                 </template>
+                <template slot="shopeePoId" slot-scope="text, record">
+                  <a-tooltip placement="bottomLeft">
+                    <template slot="title">
+                      <span>{{ record.shopeePoId }}</span>
+                    </template>
+                    <span>{{ record.shopeePoId }}</span>
+                  </a-tooltip>
+                </template>
+                <template slot="cartonNo" slot-scope="text, record">
+                  <a-tooltip placement="bottomLeft">
+                    <template slot="title">
+                      <span>{{ record.cartonNo }}</span>
+                    </template>
+                    <span>{{ record.cartonNo }}</span>
+                  </a-tooltip>
+                </template>
+                <template slot="createAt" slot-scope="text, record">
+                  <a-tooltip placement="bottomLeft">
+                    <template slot="title">
+                      <span>{{ record.createAt }}</span>
+                    </template>
+                    <span>{{ record.createAt }}</span>
+                  </a-tooltip>
+                </template>
               </a-table>
             </a-col>
             <a-col :span="12">

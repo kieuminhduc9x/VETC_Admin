@@ -44,26 +44,38 @@
                     <template slot="rowIndex" slot-scope="text, record, index">
                       <span>{{ getTableRowIndex(pagination.pageSize, pagination.current, index) }} </span>
                     </template>
-                    <!--                    <template slot="operation" slot-scope="text, record">-->
-                    <!--                      <a-popover >-->
-                    <!--                        <template slot="content" >-->
-                    <!--                          <span>Chi tiết</span>-->
-                    <!--                        </template>-->
-                    <!--                        <a-icon type="eyes" style="margin-right: 8px; color: #086885" @click="showView(record)"></a-icon>-->
-                    <!--                      </a-popover>-->
-                    <!--                      <a-popover >-->
-                    <!--                        <template slot="content" >-->
-                    <!--                          <span>Sửa</span>-->
-                    <!--                        </template>-->
-                    <!--                        <a-icon type="edit" style="margin-right: 8px; color: #086885" @click="showUpdate(record)"></a-icon>-->
-                    <!--                      </a-popover>-->
-                    <!--                      <a-popover >-->
-                    <!--                        <template slot="content">-->
-                    <!--                          <span>Xóa</span>-->
-                    <!--                        </template>-->
-                    <!--                        <a-icon @click="onDeleteRow(record)" type="delete" style="margin-right: 8px; color: red"></a-icon>-->
-                    <!--                      </a-popover>-->
-                    <!--                    </template>-->
+                    <template slot="code" slot-scope="text, record">
+                      <a-tooltip placement="bottomLeft">
+                        <template slot="title">
+                          <span>{{ record.code }}</span>
+                        </template>
+                        <span>{{ record.code }}</span>
+                      </a-tooltip>
+                    </template>
+                    <template slot="name" slot-scope="text, record">
+                      <a-tooltip placement="bottomLeft">
+                        <template slot="title">
+                          <span>{{ record.name }}</span>
+                        </template>
+                        <span>{{ record.name }}</span>
+                      </a-tooltip>
+                    </template>
+                    <template slot="createBy" slot-scope="text, record">
+                      <a-tooltip placement="bottomLeft">
+                        <template slot="title">
+                          <span>{{ record.createBy }}</span>
+                        </template>
+                        <span>{{ record.createBy }}</span>
+                      </a-tooltip>
+                    </template>
+                    <template slot="createAt" slot-scope="text, record">
+                      <a-tooltip placement="bottomLeft">
+                        <template slot="title">
+                          <span>{{ record.createAt }}</span>
+                        </template>
+                        <span>{{ record.createAt }}</span>
+                      </a-tooltip>
+                    </template>
                   </a-table>
                 </a-col>
               </a-row>
@@ -100,12 +112,44 @@
                     <template slot="rowIndex" slot-scope="text, record, index">
                       <span>{{ getTableRowIndex(pagination.pageSize, pagination.current, index) }} </span>
                     </template>
+                    <template slot="userName" slot-scope="text, record">
+                      <a-tooltip placement="bottomLeft">
+                        <template slot="title">
+                          <span>{{ record.userName }}</span>
+                        </template>
+                        <span>{{ record.userName }}</span>
+                      </a-tooltip>
+                    </template>
+                    <template slot="fullName" slot-scope="text, record">
+                      <a-tooltip placement="bottomLeft">
+                        <template slot="title">
+                          <span>{{ record.fullName }}</span>
+                        </template>
+                        <span>{{ record.fullName }}</span>
+                      </a-tooltip>
+                    </template>
+                    <template slot="email" slot-scope="text, record">
+                      <a-tooltip placement="bottomLeft">
+                        <template slot="title">
+                          <span>{{ record.email }}</span>
+                        </template>
+                        <span>{{ record.email }}</span>
+                      </a-tooltip>
+                    </template>
+                    <template slot="phone" slot-scope="text, record">
+                      <a-tooltip placement="bottomLeft">
+                        <template slot="title">
+                          <span>{{ record.phone }}</span>
+                        </template>
+                        <span>{{ record.phone }}</span>
+                      </a-tooltip>
+                    </template>
                     <template slot="operation" slot-scope="text, record">
                       <a-popover >
                         <template slot="content">
                           <span>Xóa</span>
                         </template>
-                        <a-icon @click="confirmRemoveUser(record)" type="delete" style="margin-right: 8px; color: red"></a-icon>
+                        <a-icon @click="confirmRemoveUser(record)" type="delete" style="color: red"></a-icon>
                       </a-popover>
                     </template>
                   </a-table>
