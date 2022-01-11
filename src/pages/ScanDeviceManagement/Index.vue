@@ -286,7 +286,7 @@ export default {
     },
     onDeleteRow (record) {
       this.$confirm({
-        title: 'Bạn muốn xóa bản ghinày?',
+        title: 'Bạn muốn xóa bản ghi này?',
         okText: 'Có',
         okType: 'primary',
         cancelText: 'Không',

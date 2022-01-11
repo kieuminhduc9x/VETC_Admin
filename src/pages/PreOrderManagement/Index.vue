@@ -159,6 +159,12 @@
                     </template>
                     <a-icon v-if="$auth.hasPrivilege('PRE_ORDER_MANAGEMENT_DETAIL')" type="eye" @click="goToDetail(record)" style=" color: #086885"></a-icon>
                   </a-popover>
+                  <a-popover >
+                    <template slot="content" >
+                      <span>Xóa</span>
+                    </template>
+                    <a-icon v-if="$auth.hasPrivilege('PRE_ORDER_MANAGEMENT_DELETE') && record.status === '1'" type="delete" @click="deleteRecord(record)" style=" color: #086885; margin-left: 8px"></a-icon>
+                  </a-popover>
                 </template>
                 <a-table
                   slot="expandedRowRender"
@@ -190,7 +196,7 @@ import resizeableTitle from '@/utils/resizable-columns'
 import TableEmptyText from '@/utils/table-empty-text'
 import columns from './columns'
 import _merge from 'lodash/merge'
-import { searchPreOrder, getListVoucher } from '@/api/pre-order'
+import { searchPreOrder, getListVoucher, deleteOrder } from '@/api/pre-order'
 import { commonMethods, authComputed } from '@/store/helpers'
 import pdf from 'vue-pdf'
 import columnsChild from './columnChild'
@@ -280,6 +286,10 @@ export default {
         {
           value: '3',
           name: 'Hoàn thành'
+        },
+        {
+          value: '4',
+          name: 'Đã xóa'
         }
       ]
     },
@@ -360,6 +370,44 @@ export default {
     closePopup () {
       this.visibleImport = false
       this.getData()
+    },
+    deleteRecord (record) {
+      this.$confirm({
+        title: 'Bạn muốn xóa đơn đặt hàng này?',
+        okText: 'Có',
+        okType: 'primary',
+        cancelText: 'Không',
+        onOk: () => {
+          if (record.id) {
+            this.deleteGL(record.id)
+          }
+        },
+        onCancel () {
+        }
+      })
+    },
+    deleteGL (id) {
+      const $this = this
+      this.loading = true
+      deleteOrder(id)
+        .then(rs => {
+          $this.getData()
+          this.$success({
+            message: 'Quản lý đơn đặt hàng',
+            description: 'Xóa đơn đặt hàng thành công',
+            duration: 5
+          })
+        })
+        .catch(err => {
+          const msg = this.handleApiError(err)
+          this.$notification.error({
+            message: '',
+            description: msg,
+            duration: 5
+          })
+        }).finally(res => {
+          this.loading = false
+        })
     }
   }
 }

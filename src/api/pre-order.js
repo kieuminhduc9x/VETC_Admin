@@ -53,3 +53,12 @@ export function importFileOrder (parameter) {
     data: parameter
   })
 }
+
+// Xóa đơn hàng
+export function deleteOrder (parameter) {
+  return axios({
+    url: 'order/admin/' + parameter + '/delete',
+    method: 'post',
+    data: parameter
+  })
+}

@@ -15,29 +15,44 @@
         <a-collapse-panel header="Điều kiện tìm kiếm" key="1">
           <a-card style="width: 100%;border: none" class="search-container">
             <a-row :gutter="16" type="flex" justify="center">
-              <a-col :xs="24" :md="6" :lg="6" class="filter-item-container">
-                <a-form-model :model="filters" ref="ruleFilter">
-                  <a-form-model-item
-                    label="Chọn kho"
-                    prop="warehouseId"
-                    :rules="[]">
-                    <a-select
-                      v-model="filters.warehouseId"
-                      :allowClear="true"
-                      :disabled="disabledWarehouse"
-                      show-search
-                      :filter-select-option="filterSelectOption">
-                      <a-select-option :key="''" :value="''">--Tất cả--</a-select-option>
-                      <a-select-option v-for="item in listWarehouse" :key="item.id" :value="item.id">
-                        {{ item.name }}
-                      </a-select-option>
-                    </a-select>
-                  </a-form-model-item>
-                </a-form-model>
+              <a-col :xs="24" :md="4" :lg="4" class="filter-item-container">
+                <a-form-model-item
+                  label="Chọn kho"
+                  prop="warehouseId"
+                  :rules="[]">
+                  <a-select
+                    v-model="filters.warehouseId"
+                    :allowClear="true"
+                    :disabled="disabledWarehouse"
+                    show-search
+                    :filter-select-option="filterSelectOption">
+                    <a-select-option :key="''" :value="''">--Tất cả--</a-select-option>
+                    <a-select-option v-for="item in listWarehouse" :key="item.id" :value="item.id">
+                      {{ item.name }}
+                    </a-select-option>
+                  </a-select>
+                </a-form-model-item>
               </a-col>
-              <a-col :xs="24" :md="6" :lg="6" class="filter-item-container">
+              <a-col :xs="24" :md="4" :lg="4" class="filter-item-container">
                 <a-form-model-item prop="billCode" label="Mã đơn hàng">
                   <a-input v-model="filters.voucherCode"></a-input>
+                </a-form-model-item>
+              </a-col>
+              <a-col :xs="24" :md="4" :lg="4" class="filter-item-container">
+                <a-form-model-item
+                  label="Trạng thái"
+                  prop="status"
+                  :rules="[]">
+                  <a-select
+                    v-model="filters.status"
+                    :allowClear="true"
+                    show-search
+                    :filter-select-option="filterSelectOption">
+                    <a-select-option :key="''" :value="''">--Tất cả--</a-select-option>
+                    <a-select-option v-for="item in listStatus" :key="item.value" :value="item.value">
+                      {{ item.name }}
+                    </a-select-option>
+                  </a-select>
                 </a-form-model-item>
               </a-col>
               <a-col :xs="24" :md="3" :lg="3" class="filter-item-container">
@@ -246,11 +261,26 @@ export default {
         importFromDate: '',
         importToDate: '',
         exportFromDate: '',
-        exportToDate: ''
+        exportToDate: '',
+        status: ''
       },
       listWarehouse: [],
       disabledWarehouse: false,
-      store: JSON.parse(window.localStorage.getItem('store'))
+      store: JSON.parse(window.localStorage.getItem('store')),
+      listStatus: [
+        {
+          value: '1',
+          name: 'Đã nhập'
+        },
+        {
+          value: '2',
+          name: 'Đã xuất'
+        },
+        {
+          value: '3',
+          name: 'Giao hàng thành công'
+        }
+      ]
     }
   },
   created () {
@@ -340,7 +370,8 @@ export default {
         importFromDate: this.filters.importFromDate !== '' ? moment(this.filters.importFromDate, 'YYYY-MM-DD').format('YYYY-MM-DD') : '',
         importToDate: this.filters.importToDate !== '' ? moment(this.filters.importToDate, 'YYYY-MM-DD').format('YYYY-MM-DD') : '',
         exportFromDate: this.filters.exportFromDate !== '' ? moment(this.filters.exportFromDate, 'YYYY-MM-DD').format('YYYY-MM-DD') : '',
-        exportToDate: this.filters.exportToDate !== '' ? moment(this.filters.exportToDate, 'YYYY-MM-DD').format('YYYY-MM-DD') : ''
+        exportToDate: this.filters.exportToDate !== '' ? moment(this.filters.exportToDate, 'YYYY-MM-DD').format('YYYY-MM-DD') : '',
+        status: this.filters.status
       }
       this.loading = true
       this.data = []

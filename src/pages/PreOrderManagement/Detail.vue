@@ -134,6 +134,7 @@
             <a-col :xs="24" :md="24" :lg="24">
               <div style="display: flex; justify-content: center; margin-top: 50px">
                 <a-button type="default" @click="goToOrderManagement">Quay lại</a-button>
+                <a-button v-if="$auth.hasPrivilege('PRE_ORDER_MANAGEMENT_DELETE') && this.form.status === '1'" type="primary" @click="deletePreOrder" style="margin-left: 10px">Xóa đơn đặt hàng</a-button>
               </div>
             </a-col>
           </a-row>
@@ -155,7 +156,7 @@ import TableEmptyText from '@/utils/table-empty-text'
 import { commonMethods, authComputed } from '@/store/helpers'
 import moment from 'moment'
 import columnDetail from './columnDetail'
-import { getByIdPreOrder } from '@/api/pre-order'
+import { deleteOrder, getByIdPreOrder } from '@/api/pre-order'
 import _ from 'lodash'
 import ListFile from './ListFile'
 
@@ -238,6 +239,42 @@ export default {
     closeDrawerListFile () {
       this.visibleDrawerListFile = false
       this.listFile = []
+    },
+    deletePreOrder () {
+      this.$confirm({
+        title: 'Bạn muốn xóa đơn đặt hàng này?',
+        okText: 'Có',
+        okType: 'primary',
+        cancelText: 'Không',
+        onOk: () => {
+          this.deleteGL(this.form.id)
+        },
+        onCancel () {
+        }
+      })
+    },
+    deleteGL (id) {
+      const $this = this
+      this.loading = true
+      deleteOrder(id)
+        .then(rs => {
+          $this.getData()
+          this.$success({
+            message: 'Quản lý đơn đặt hàng',
+            description: 'Xóa đơn đặt hàng thành công',
+            duration: 5
+          })
+        })
+        .catch(err => {
+          const msg = this.handleApiError(err)
+          this.$notification.error({
+            message: '',
+            description: msg,
+            duration: 5
+          })
+        }).finally(res => {
+          this.loading = false
+        })
     }
   }
 }
