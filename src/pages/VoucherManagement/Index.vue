@@ -34,8 +34,8 @@
                 </a-form-model-item>
               </a-col>
               <a-col :xs="24" :md="4" :lg="4" class="filter-item-container">
-                <a-form-model-item prop="billCode" label="Mã đơn hàng">
-                  <a-input v-model="filters.voucherCode"></a-input>
+                <a-form-model-item prop="preOrderNo" label="Mã đơn hàng">
+                  <a-input v-model="filters.preOrderNo"></a-input>
                 </a-form-model-item>
               </a-col>
               <a-col :xs="24" :md="4" :lg="4" class="filter-item-container">
@@ -257,7 +257,7 @@ export default {
       loadingExport: false,
       filters: {
         warehouseId: '',
-        voucherCode: '',
+        preOrderNo: '',
         importFromDate: '',
         importToDate: '',
         exportFromDate: '',
@@ -366,7 +366,7 @@ export default {
         page: this.pagination.current > 0 ? this.pagination.current - 1 : 0,
         size: this.pagination.pageSize,
         warehouseId: this.filters.warehouseId,
-        voucherCode: this.filters.voucherCode,
+        preOrderNo: this.filters.preOrderNo,
         importFromDate: this.filters.importFromDate !== '' ? moment(this.filters.importFromDate, 'YYYY-MM-DD').format('YYYY-MM-DD') : '',
         importToDate: this.filters.importToDate !== '' ? moment(this.filters.importToDate, 'YYYY-MM-DD').format('YYYY-MM-DD') : '',
         exportFromDate: this.filters.exportFromDate !== '' ? moment(this.filters.exportFromDate, 'YYYY-MM-DD').format('YYYY-MM-DD') : '',

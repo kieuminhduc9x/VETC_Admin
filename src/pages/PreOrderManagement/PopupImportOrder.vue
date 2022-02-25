@@ -26,6 +26,7 @@
                   <a-button> <a-icon type="upload" /> Upload File</a-button>
                 </a-upload>
               </a-form-model-item>
+              <a href="/templates/file-mau-import-don-dat-hang.xlsx" download>Tải file mẫu</a>
             </a-col>
           </a-row>
         </a-form-model>
@@ -36,6 +37,7 @@
 <script>
 
 import { importFileOrder } from '@/api/pre-order'
+// import { axios } from '@/utils/request'
 
 export default {
   props: {
