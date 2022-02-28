@@ -24,7 +24,7 @@ export default [
     // width: 200
   },
   {
-    title: 'Ngày tạo',
+    title: 'Ngày nhập',
     dataIndex: 'createAt',
     scopedSlots: { customRender: 'createAt' },
     align: 'center',

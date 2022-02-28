@@ -18,7 +18,7 @@
                 <a-upload
                   name="file"
                   :multiple="true"
-                  :accept="'.doc, docx,.pdf,.xlsx'"
+                  :accept="'.doc, docx,.pdf,.xlsx,.jpg,.png,.jpeg'"
                   :show-upload-list="true"
                   :before-upload="beforeUpload"
                   :remove="removeFile"
