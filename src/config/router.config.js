@@ -114,7 +114,7 @@ export const asyncRouterMap = [
   // Chi tiết phiếu xuất nhập kho
   {
     path: '/voucher-management/:id/detail',
-    name: 'voucher_management.detail',
+    name: 'voucher_management_detail',
     component: () => import('../pages/VoucherManagement/Detail'),
     meta: {
       authRequired: true,

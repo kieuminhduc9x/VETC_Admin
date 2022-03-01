@@ -227,7 +227,7 @@ export default {
       })
     },
     goToDetailVoucher (id) {
-      this.$router.push({ name: 'voucher_management.detail', params: { id: id } })
+      this.$router.push({ name: 'voucher_management_detail', params: { id: id } })
     },
     goToOrderManagement () {
       this.$router.push({ name: 'pre_order_management' })

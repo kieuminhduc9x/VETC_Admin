@@ -44,7 +44,7 @@
           <span>Đơn đặt hàng</span>
         </router-link>
       </a-menu-item>
-      <a-menu-item v-if="$auth.hasPrivilege('VOUCHER_MANAGEMENT') === true" key="3" >
+      <a-menu-item v-if="$auth.hasAnyPrivilege(['VOUCHER_MANAGEMENT','VOUCHER_MANAGEMENT_DETAIL']) === true" key="3" >
         <router-link :to="{ name: 'voucher_management' }" class="title-menu">
           <a-icon type="export"></a-icon>
           <span>Nhập xuất hàng</span>
@@ -99,7 +99,7 @@ export default {
         case 'pre_order_management.detail':
           idx = '2'
           break
-        case 'voucher_management.detail':
+        case 'voucher_management_detail':
         case 'voucher_management':
           idx = '3'
           break
@@ -130,7 +130,7 @@ export default {
           k = '2'
           break
         case 'voucher_management':
-        case 'voucher_management.detail':
+        case 'voucher_management_detail':
           k = '3'
           break
         case 'warehouse_management':

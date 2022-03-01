@@ -14,8 +14,8 @@
       <a-collapse v-model="activeSearchKey" expandIconPosition="left" class="collapse-left">
         <a-collapse-panel header="Điều kiện tìm kiếm" key="1">
           <a-card style="width: 100%;border: none" class="search-container">
-            <a-row :gutter="16" type="flex" justify="center">
-              <a-col :xs="24" :md="4" :lg="4" class="filter-item-container">
+            <a-row :gutter="16" type="flex" justify="start">
+              <a-col :xs="24" :md="6" :lg="6" class="filter-item-container">
                 <a-form-model-item
                   label="Chọn kho"
                   prop="warehouseId"
@@ -33,12 +33,17 @@
                   </a-select>
                 </a-form-model-item>
               </a-col>
-              <a-col :xs="24" :md="4" :lg="4" class="filter-item-container">
+              <a-col :xs="24" :md="6" :lg="6" class="filter-item-container">
                 <a-form-model-item prop="preOrderNo" label="Mã đơn hàng">
                   <a-input v-model="filters.preOrderNo"></a-input>
                 </a-form-model-item>
               </a-col>
-              <a-col :xs="24" :md="4" :lg="4" class="filter-item-container">
+              <a-col :xs="24" :md="6" :lg="6" class="filter-item-container">
+                <a-form-model-item prop="cartonNo" label="Mã kiện hàng">
+                  <a-input v-model="filters.cartonNo"></a-input>
+                </a-form-model-item>
+              </a-col>
+              <a-col :xs="24" :md="6" :lg="6" class="filter-item-container">
                 <a-form-model-item
                   label="Trạng thái"
                   prop="status"
@@ -55,7 +60,7 @@
                   </a-select>
                 </a-form-model-item>
               </a-col>
-              <a-col :xs="24" :md="3" :lg="3" class="filter-item-container">
+              <a-col :xs="24" :md="6" :lg="6" class="filter-item-container">
                 <a-form-model-item prop="importFromDate" label="Ngày nhập từ ngày">
                   <a-date-picker
                     placeholder="DD/MM/YYYY"
@@ -64,7 +69,7 @@
                     v-model="filters.importFromDate"/>
                 </a-form-model-item>
               </a-col>
-              <a-col :xs="24" :md="3" :lg="3" class="filter-item-container">
+              <a-col :xs="24" :md="6" :lg="6" class="filter-item-container">
                 <a-form-model-item prop="importToDate" label="Đến ngày">
                   <a-date-picker
                     placeholder="DD/MM/YYYY"
@@ -73,7 +78,7 @@
                     v-model="filters.importToDate"/>
                 </a-form-model-item>
               </a-col>
-              <a-col :xs="24" :md="3" :lg="3" class="filter-item-container">
+              <a-col :xs="24" :md="6" :lg="6" class="filter-item-container">
                 <a-form-model-item prop="exportFromDate" label="Ngày xuất từ ngày">
                   <a-date-picker
                     placeholder="DD/MM/YYYY"
@@ -82,7 +87,7 @@
                     v-model="filters.exportFromDate"/>
                 </a-form-model-item>
               </a-col>
-              <a-col :xs="24" :md="3" :lg="3" class="filter-item-container">
+              <a-col :xs="24" :md="6" :lg="6" class="filter-item-container">
                 <a-form-model-item prop="exportToDate" label="Đến ngày">
                   <a-date-picker
                     placeholder="DD/MM/YYYY"
@@ -257,12 +262,13 @@ export default {
       loadingExport: false,
       filters: {
         warehouseId: '',
-        preOrderNo: '',
+        preOderNo: '',
         importFromDate: '',
         importToDate: '',
         exportFromDate: '',
         exportToDate: '',
-        status: ''
+        status: '',
+        cartonNo: ''
       },
       listWarehouse: [],
       disabledWarehouse: false,
@@ -289,7 +295,6 @@ export default {
   },
   mounted () {
     this.scrollBarOfTable()
-    console.log(this.store)
     if (this.store !== 'All') {
       this.filters.warehouseId = this.store.id
       this.disabledWarehouse = true
@@ -371,7 +376,8 @@ export default {
         importToDate: this.filters.importToDate !== '' ? moment(this.filters.importToDate, 'YYYY-MM-DD').format('YYYY-MM-DD') : '',
         exportFromDate: this.filters.exportFromDate !== '' ? moment(this.filters.exportFromDate, 'YYYY-MM-DD').format('YYYY-MM-DD') : '',
         exportToDate: this.filters.exportToDate !== '' ? moment(this.filters.exportToDate, 'YYYY-MM-DD').format('YYYY-MM-DD') : '',
-        status: this.filters.status
+        status: this.filters.status,
+        cartonNo: this.filters.cartonNo
       }
       this.loading = true
       this.data = []
@@ -391,7 +397,7 @@ export default {
       })
     },
     goToDetail (record) {
-      this.$router.push({ name: 'voucher_management.detail', params: { id: record.id } })
+      this.$router.push({ name: 'voucher_management_detail', params: { id: record.id } })
     }
 
   }
