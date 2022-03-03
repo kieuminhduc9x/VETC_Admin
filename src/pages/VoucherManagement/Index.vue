@@ -298,6 +298,7 @@ export default {
     if (this.store !== 'All') {
       this.filters.warehouseId = this.store.id
       this.disabledWarehouse = true
+      this.getData()
     } else {
       this.getListWarehouse()
       this.disabledWarehouse = false
