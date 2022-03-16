@@ -302,6 +302,7 @@ export default {
     } else {
       this.getListWarehouse()
       this.disabledWarehouse = false
+      this.getData()
     }
   },
   computed: {
@@ -401,6 +402,24 @@ export default {
       this.$router.push({ name: 'voucher_management_detail', params: { id: record.id } })
     }
 
+  },
+  watch: {
+    '$store.state': {
+      handler (v, newVal) {
+        const store = localStorage.getItem('store')
+        this.store = JSON.parse(store)
+        if (this.store !== 'All') {
+          this.filters.warehouseId = this.store.id
+          this.disabledWarehouse = true
+          this.getData()
+        } else {
+          this.getListWarehouse()
+          this.disabledWarehouse = false
+          this.getData()
+        }
+      },
+      deep: true
+    }
   }
 }
 </script>
