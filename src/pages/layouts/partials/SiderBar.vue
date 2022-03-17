@@ -12,9 +12,9 @@
     </div> -->
     <div
       class="ant-layout-sider-trigger sider--top cl-sider--top"
-      style="width: 270px;"
+      style="width: 40px;"
       @click="() => {collapsed = !collapsed; showSidebar()}"><i
-        aria-label="icon: left"
+        aria-label="icon: right"
         class="anticon anticon-left"
         id="icon-siderbar">
         <svg
@@ -38,34 +38,16 @@
       :default-open-keys="[openKeys]"
       :style="{ height: '100%', borderRight: 0, paddingTop: '0', }"
     >
-      <a-menu-item v-if="$auth.hasPrivilege('PRE_ORDER_MANAGEMENT') === true" key="2" >
-        <router-link :to="{ name: 'pre_order_management' }" class="title-menu">
+      <a-menu-item key="2" >
+        <router-link :to="{ name: 'hau_kiem' }" class="title-menu">
           <a-icon type="project" />
-          <span>Đơn đặt hàng</span>
+          <span>Hậu kiểm</span>
         </router-link>
       </a-menu-item>
-      <a-menu-item v-if="$auth.hasAnyPrivilege(['VOUCHER_MANAGEMENT','VOUCHER_MANAGEMENT_DETAIL']) === true" key="3" >
-        <router-link :to="{ name: 'voucher_management' }" class="title-menu">
-          <a-icon type="export"></a-icon>
-          <span>Nhập xuất hàng</span>
-        </router-link>
-      </a-menu-item>
-      <a-menu-item v-if="$auth.hasPrivilege('WAREHOUSE_MANAGEMENT') === true" key="4" >
-        <router-link :to="{ name: 'warehouse_management' }" class="title-menu">
-          <a-icon type="appstore"></a-icon>
-          <span>Danh mục kho</span>
-        </router-link>
-      </a-menu-item>
-      <a-menu-item v-if="$auth.hasPrivilege('SCAN_DEVICE_MANAGEMENT') === true" key="5" >
-        <router-link :to="{ name: 'scan_device_management' }" class="title-menu">
-          <a-icon type="barcode"></a-icon>
-          <span>Máy quét mã vạch</span>
-        </router-link>
-      </a-menu-item>
-      <a-menu-item v-if="$auth.hasAnyPrivilege(['USER_MANAGEMENT','ROLE_MANAGEMENT']) === true" key="6" >
-        <router-link :to="{ name: 'config' }" class="title-menu">
-          <a-icon type="setting" />
-          <span>Cấu hình</span>
+      <a-menu-item key="3" >
+        <router-link :to="{ name: 'giam_sat' }" class="title-menu">
+          <a-icon type="appstore" />
+          <span>Giám sát</span>
         </router-link>
       </a-menu-item>
     </a-menu>
@@ -79,7 +61,7 @@ export default {
   name: 'SideBar',
   data () {
     return {
-      collapsed: false
+      collapsed: true
     }
   },
   computed: {
@@ -95,12 +77,10 @@ export default {
         case 'dashboard':
           idx = '1'
           break
-        case 'pre_order_management':
-        case 'pre_order_management.detail':
+        case 'hau_kiem':
           idx = '2'
           break
-        case 'voucher_management_detail':
-        case 'voucher_management':
+        case 'giam_sat':
           idx = '3'
           break
         case 'warehouse_management':
@@ -125,12 +105,10 @@ export default {
         case 'dashboard':
           k = '1'
           break
-        case 'pre_order_management':
-        case 'pre_order_management.detail':
+        case 'hau_kiem':
           k = '2'
           break
-        case 'voucher_management':
-        case 'voucher_management_detail':
+        case 'giam_sat':
           k = '3'
           break
         case 'warehouse_management':

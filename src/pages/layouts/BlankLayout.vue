@@ -42,7 +42,7 @@ export default {
                 text-align: center;
 
                 .header {
-
+                    background-color: green!important;
                     line-height: 44px;
 
                     .badge {

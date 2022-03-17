@@ -2,7 +2,7 @@
   <a-layout-header class="header-public">
     <div class="head-logo">
       <router-link :to="{ name: 'dashboard' }">
-        <img src="@/assets/logo-VNAE.png" alt="VNA">
+        <img src="@/assets/vetc.png" alt="VETC">
       </router-link>
     </div>
   </a-layout-header>

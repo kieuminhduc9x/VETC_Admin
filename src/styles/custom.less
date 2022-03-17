@@ -11,7 +11,7 @@
   color: @color-4 !important;
 }
 .ant-card-head {
-  background-color: @color-2 !important;
+  background-color: white !important;
 }
 
 .font-header {
@@ -83,15 +83,15 @@
   justify-content: space-between;
   align-items: center;
   // box-shadow: 0px 1px 4px rgba(0, 21, 41, 0.12);
-  background: @color-1 !important;
-  border-bottom: 1px solid @color-1;
+  background: limegreen !important;
+  border-bottom: 1px solid limegreen;
   z-index: 2;
   padding: 0 10px;
 
   .head-menu {
     .ant-menu-horizontal {
       padding-left: 5px;
-      background: @color-4 !important;
+      background: limegreen !important;
       border: none;
 
       .ant-menu-submenu-title {
@@ -149,7 +149,7 @@
 }
 
 .ant-layout-header .headline {
-  color: @color-1 !important;
+  color: white !important;
 }
 
 .ant-menu-horizontal {
@@ -157,8 +157,8 @@
   flex-direction: row-reverse;
   border-bottom: 0 transparent;
   line-height: @layout-header-height - 3;
-  background: @color-1 !important;
-  border-bottom: 1px solid @color-1;
+  background: limegreen !important;
+  border-bottom: 1px solid limegreen;
 
   .ant-menu-item {
     padding: 0 5px;
@@ -240,7 +240,7 @@
 }
 
 .head-logo {
-  background-color: #FFFFFF;
+  background-color: white!important;
   border: 1px solid #B5B4B4 !important;
 }
 
@@ -445,12 +445,12 @@
 .ant-breadcrumb-custom {
   display: flex;
   justify-content: space-between;
-  background: #fff;
+  background: #05a551!important;
   align-items: center;
 }
 .ant-breadcrumb {
   width: 100%;
-  background: @white;
+  background: #05a551;
   position: relative;
   margin: 0px;
   padding: 10px 8px;
@@ -458,7 +458,7 @@
 
   a, .ant-breadcrumb-link {
     text-transform: uppercase;
-    color: @black;
+    color: white;
     font-weight: bold;
 
     &:hover {
@@ -468,12 +468,13 @@
   }
 
   .ant-breadcrumb-separator {
-    color: fade(@black, 55%);
+    //color: fade(@black, 55%);
+    color: white;
   }
 
   .active {
     a, .ant-breadcrumb-link {
-      color: @color-3;
+      color: white;
     }
   }
 }
@@ -967,7 +968,7 @@
 }
 .ant-card-head {
   min-height: 32px;
-  background-color: @color-2 !important;
+  background-color: white !important;
   color: black;
 }
 
@@ -1019,8 +1020,8 @@
 //  background: #0781b229 !important;
 //}
 .head-logo {
-  background-color: #FFFFFF;
-  border: 1px solid @color-4;
+  background-color: white;
+  border: 1px solid white;
 
 }
 
@@ -1060,7 +1061,7 @@
 
 .ant-layout-header {
   border-bottom: none;
-  background-color: @color-4 !important;
+  background-color: #25b22d !important;
 }
 
 .headline {
@@ -1072,7 +1073,7 @@
   padding: 0 3px 0 0;
 }
 .vna-link {
-  color: @color-1;
+  color: #25b22d;
   cursor: pointer;
 }
 .search-container label {
@@ -1092,4 +1093,34 @@
 }
 .ant-btn-link {
   color: #337992!important;
+}
+thead, .ant-table-thead > tr > th{
+  background-color: #25b22d!important;
+}
+.ant-table-bordered .ant-table-header > table, .ant-table-bordered .ant-table-body > table, .ant-table-bordered .ant-table-fixed-left table, .ant-table-bordered .ant-table-fixed-right table  {
+  border: 1px solid #25b22d;
+}
+.ant-btn-yellow {
+  background-color: #faad14;
+  color: white;
+}
+.ant-btn-success {
+  background-color: #1890ff;
+  color: white;
+}
+.ant-btn-gray {
+  background-color: gray;
+  color: white;
+}
+
+.ant-btn-green {
+  background-color: #25b22d;
+  color: white;
+}
+.ant-btn-yellow:hover, .ant-btn-success:hover, .ant-btn-gray:hover {
+  background-color: white;
+  border: 1px solid #B5B4B4;
+}
+.ant-form-item{
+  margin-bottom: 5px!important;
 }

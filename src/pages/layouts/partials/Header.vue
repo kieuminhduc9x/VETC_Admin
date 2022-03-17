@@ -2,9 +2,9 @@
   <a-layout-header class="header">
     <div class="head-logo">
       <router-link :to="{ name: 'dashboard' }">
-        <!--        <img src="@/assets/vna.png" alt="VNA">-->
+        <img src="@/assets/vetc.png" alt="VETC">
       </router-link>
-      <div class="headline">{{ $t('AppName') }}</div>
+      <!--      <div class="headline">VETC Hậu kiểm</div>-->
     </div>
 
     <div class="head-menu">
@@ -20,18 +20,18 @@
           <!--              <span>Hồ sơ</span>-->
           <!--            </router-link>-->
           <!--          </a-menu-item>-->
-          <a-menu-item key="profile:5">
-            <a href="#" aria-current="page" class="router-link-exact-active router-link-active" @click.prevent="openSelectStore">
-              <a-icon type="profile" />
-              <span>Chọn kho làm việc</span>
-            </a>
-          </a-menu-item>
-          <a-menu-item key="profile:4">
-            <a href="#" aria-current="page" class="router-link-exact-active router-link-active" @click.prevent="showModalPassword">
-              <a-icon type="profile" />
-              <span>Đổi mật khẩu</span>
-            </a>
-          </a-menu-item>
+          <!--          <a-menu-item key="profile:5">-->
+          <!--            <a href="#" aria-current="page" class="router-link-exact-active router-link-active" @click.prevent="openSelectStore">-->
+          <!--              <a-icon type="profile" />-->
+          <!--              <span>Chọn kho làm việc</span>-->
+          <!--            </a>-->
+          <!--          </a-menu-item>-->
+          <!--          <a-menu-item key="profile:4">-->
+          <!--            <a href="#" aria-current="page" class="router-link-exact-active router-link-active" @click.prevent="showModalPassword">-->
+          <!--              <a-icon type="profile" />-->
+          <!--              <span>Đổi mật khẩu</span>-->
+          <!--            </a>-->
+          <!--          </a-menu-item>-->
           <a-menu-item key="profile:2">
             <a href="javascript:;" @click="handleLogout">
               <a-icon type="logout" />

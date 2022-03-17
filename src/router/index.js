@@ -99,6 +99,8 @@ router.beforeEach((routeTo, routeFrom, next) => {
       if (routeTo.name === 'dashboard' ||
           routeTo.name === 'home' ||
           routeTo.name === 'profile' ||
+          routeTo.name === 'hau_kiem' ||
+          routeTo.name === 'giam_sat' ||
           hasPrivilege(routerName) === true ||
           hasAnyPrivilege(['USER_MANAGEMENT', 'ROLE_MANAGEMENT']) === true) {
         return next()
@@ -110,13 +112,19 @@ router.beforeEach((routeTo, routeFrom, next) => {
         next({ name: 'dashboard' })
       }
     }
+  } else if (routeTo.name === 'hau_kiem' || routeTo.name === 'giam_sat'
+  ) {
+    return next()
   } else {
-    if (authRequired && routeFrom.name !== 'login') {
-      return redirectToLogin()
-    } else {
-      return next()
-    }
+    next({ name: 'hau_kiem' })
   }
+  // else {
+  //   if (authRequired && routeFrom.name !== 'login') {
+  //     return redirectToLogin()
+  //   } else {
+  //     return next()
+  //   }
+  // }
   function hasPrivilege (privilege) {
     const privileges = store.getters['auth/currentUser']['listPrivilege']
     return privileges && privileges.includes(privilege)
