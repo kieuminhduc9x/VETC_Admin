@@ -38,16 +38,34 @@
       :default-open-keys="[openKeys]"
       :style="{ height: '100%', borderRight: 0, paddingTop: '0', }"
     >
-      <a-menu-item key="2" >
-        <router-link :to="{ name: 'hau_kiem' }" class="title-menu">
-          <a-icon type="project" />
-          <span>Hậu kiểm</span>
-        </router-link>
-      </a-menu-item>
+      <a-sub-menu key="4">
+        <a slot="title"><icon name="book" width="24px" height="24px" style="margin-right: 10px"></icon><span class="title-menu">Quản trị hệ thống</span></a>
+        <a-menu-item key="4_1" >
+          <router-link :to="{ name: 'account' }" class="title-menu">
+            <span>Tài khoản</span>
+          </router-link>
+        </a-menu-item>
+        <a-menu-item key="4_2" >
+          <router-link :to="{ name: 'permission' }" class="title-menu">
+            <span>Phân quyền</span>
+          </router-link>
+        </a-menu-item>
+        <a-menu-item key="4_3" >
+          <router-link :to="{ name: 'category' }" class="title-menu">
+            <span>Danh mục</span>
+          </router-link>
+        </a-menu-item>
+      </a-sub-menu>
       <a-menu-item key="3" >
         <router-link :to="{ name: 'giam_sat' }" class="title-menu">
           <a-icon type="appstore" />
           <span>Giám sát</span>
+        </router-link>
+      </a-menu-item>
+      <a-menu-item key="2" >
+        <router-link :to="{ name: 'hau_kiem' }" class="title-menu">
+          <a-icon type="project" />
+          <span>Hậu kiểm</span>
         </router-link>
       </a-menu-item>
     </a-menu>
@@ -83,17 +101,14 @@ export default {
         case 'giam_sat':
           idx = '3'
           break
-        case 'warehouse_management':
-          idx = '4'
+        case 'account':
+          idx = '4_1'
           break
-        case 'scan_device_management':
-          idx = '5'
+        case 'permission':
+          idx = '4_2'
           break
-        case 'config':
-        case 'config.create':
-        case 'config.update':
-        case 'role_management':
-          idx = '6'
+        case 'category':
+          idx = '4_3'
           break
       }
 
@@ -111,7 +126,9 @@ export default {
         case 'giam_sat':
           k = '3'
           break
-        case 'warehouse_management':
+        case 'account':
+        case 'permission':
+        case 'category':
           k = '4'
           break
         case 'scan_device_management':

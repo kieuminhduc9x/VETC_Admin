@@ -5,8 +5,8 @@ export const authComputed = {
     currentUser: (state) => state.currentUser
   }),
   ...mapState('common', {
-    select_store: (state) => state.select_store,
-    store_id: (state) => state.store_id
+    // select_store: (state) => state.select_store,
+    // store_id: (state) => state.store_id
   }),
   ...mapGetters('auth', ['loggedIn'])
 }

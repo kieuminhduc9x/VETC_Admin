@@ -83,6 +83,48 @@ export const asyncRouterMap = [
         description: 'Giám sát'
       }
     }
+  },
+
+  // Quản lý tài khoản
+  {
+    path: '/account',
+    name: 'account',
+    component: () => import('../pages/SystemAdmin/Account/Index'),
+    meta: {
+      authRequired: true,
+      head: {
+        title: 'Tài khoản',
+        description: 'Tài khoản'
+      }
+    }
+  },
+
+  // Quản lý Phân quyền
+  {
+    path: '/permission',
+    name: 'permission',
+    component: () => import('../pages/SystemAdmin/Permission/Index'),
+    meta: {
+      authRequired: true,
+      head: {
+        title: 'Phân quyền',
+        description: 'Phân quyền'
+      }
+    }
+  },
+
+  // Quản lý danh mục
+  {
+    path: '/category',
+    name: 'category',
+    component: () => import('../pages/SystemAdmin/Category/Index'),
+    meta: {
+      authRequired: true,
+      head: {
+        title: 'Danh mục',
+        description: 'Danh mục'
+      }
+    }
   }
 
 ]

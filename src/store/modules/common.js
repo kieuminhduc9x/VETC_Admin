@@ -1,29 +1,29 @@
 import { listProvince } from '@/api/common'
 export const state = {
-  provinces: null,
-  select_store: false,
-  store_id: null
+  provinces: null
+  // select_store: false,
+  // store_id: null
 }
 
 export const getters = {
   provinces (state) {
     return state.provinces
-  },
-  select_store (state) {
-    return state.select_store
   }
+  // select_store (state) {
+  //   return state.select_store
+  // }
 }
 
 export const mutations = {
   SET_PROVINCES: (state, provinces) => {
     state.provinces = provinces
-  },
-  SET_SELECT_STORE: (state, selectStore) => {
-    state.select_store = selectStore
-  },
-  SET_STORE: (state, store) => {
-    state.store_id = store
   }
+  // SET_SELECT_STORE: (state, selectStore) => {
+  //   state.select_store = selectStore
+  // },
+  // SET_STORE: (state, store) => {
+  //   state.store_id = store
+  // }
 }
 
 export const actions = {

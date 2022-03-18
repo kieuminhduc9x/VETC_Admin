@@ -76,10 +76,10 @@ router.beforeEach((routeTo, routeFrom, next) => {
       window.localStorage.setItem('bikehubend.fillters', null)
     }
   }
-  function redirectToLogin () {
-    return next({ name: 'login', query: { redirectFrom: routeTo.fullPath } })
-  }
-  const authRequired = routeTo.matched.some((route) => route.meta.authRequired)
+  // function redirectToLogin () {
+  //   return next({ name: 'login', query: { redirectFrom: routeTo.fullPath } })
+  // }
+  // const authRequired = routeTo.matched.some((route) => route.meta.authRequired)
   // If auth is required and the user is logged in...
   if (routeTo.name === 'tracking') {
     return next()
@@ -112,11 +112,16 @@ router.beforeEach((routeTo, routeFrom, next) => {
         next({ name: 'dashboard' })
       }
     }
-  } else if (routeTo.name === 'hau_kiem' || routeTo.name === 'giam_sat'
+  } else if (
+    routeTo.name === 'hau_kiem' ||
+      routeTo.name === 'giam_sat' ||
+      routeTo.name === 'account' ||
+      routeTo.name === 'permission' ||
+      routeTo.name === 'category'
   ) {
     return next()
   } else {
-    next({ name: 'hau_kiem' })
+    next({ name: 'account' })
   }
   // else {
   //   if (authRequired && routeFrom.name !== 'login') {
