@@ -46,24 +46,6 @@ router.beforeEach((routeTo, routeFrom, next) => {
     // Start the route progress bar.
     NProgress.start()
   }
-  if (routeFrom.name !== 'order' && routeFrom.name !== 'order_detail') {
-    const order = window.localStorage.getItem('order.fillters')
-    if (order) {
-      window.localStorage.setItem('order.fillters', null)
-    }
-  }
-  if (routeFrom.name !== 'order_back' && routeFrom.name !== 'order_detail') {
-    const order = window.localStorage.getItem('order_back.fillters')
-    if (order) {
-      window.localStorage.setItem('order.fillters', null)
-    }
-  }
-  if (routeFrom.name !== 'hubstart' && routeFrom.name !== 'order_detail') {
-    const order = window.localStorage.getItem('hubstart.fillters')
-    if (order) {
-      window.localStorage.setItem('hubstart.fillters', null)
-    }
-  }
   if (routeFrom.name !== 'groupawb' && routeFrom.name !== 'order_detail') {
     const order = window.localStorage.getItem('groupawb.fillters')
     if (order) {

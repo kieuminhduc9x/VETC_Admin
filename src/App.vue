@@ -2,7 +2,7 @@
   <a-config-provider :locale="locale">
     <div id="app">
       <router-view/>
-      <select-store />
+      <!--      <select-store />-->
     </div>
   </a-config-provider>
 </template>

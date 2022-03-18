@@ -1,12 +1,13 @@
 <template>
   <a-layout>
-    <a-layout-header>
-      <header-bar :collapsed.sync="collapsed" @collapsed-changed="changeCollapsed"></header-bar>
-    </a-layout-header>
+    <!--    <a-layout-header>-->
+    <!--      <header-bar :collapsed.sync="collapsed" @collapsed-changed="changeCollapsed"></header-bar>-->
+    <!--    </a-layout-header>-->
     <a-layout>
       <sider-bar :collapsed="collapsed" />
       <a-layout>
-        <slot name="breadcrumb"></slot>
+        <slot name="breadcrumb" style="display: flex; justify-content: space-between">
+        </slot>
         <a-layout-content>
           <slot />
         </a-layout-content>

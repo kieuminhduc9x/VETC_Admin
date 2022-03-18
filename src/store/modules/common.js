@@ -39,11 +39,11 @@ export const actions = {
       commit('SET_PROVINCES', provinceData)
       return provinceData
     })
-  },
-  updateSelectStore ({ commit, state, rootState }, payload) {
-    commit('SET_SELECT_STORE', payload)
-  },
-  updateStore ({ commit, state, rootState }, payload) {
-    commit('SET_STORE', payload)
   }
+  // updateSelectStore ({ commit, state, rootState }, payload) {
+  //   commit('SET_SELECT_STORE', payload)
+  // },
+  // updateStore ({ commit, state, rootState }, payload) {
+  //   commit('SET_STORE', payload)
+  // }
 }

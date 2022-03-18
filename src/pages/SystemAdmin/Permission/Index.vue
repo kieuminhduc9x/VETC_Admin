@@ -1,9 +1,12 @@
 <template>
   <main-layout>
     <template v-slot:breadcrumb>
-      <a-breadcrumb separator=">">
-        <a-breadcrumb-item :class="'active'">VETC - Phân quyền</a-breadcrumb-item>
-      </a-breadcrumb>
+      <div style="display: flex; justify-content: space-between">
+        <a-breadcrumb separator=">">
+          <a-breadcrumb-item :class="'active'">VETC - Phân quyền </a-breadcrumb-item>
+        </a-breadcrumb>
+        <menu-profile></menu-profile>
+      </div>
     </template>
     <div style="margin-top: 5px">
       <a-row :gutter="16">
@@ -100,6 +103,7 @@
 
 <script>
 import MainLayout from '@/pages/layouts/MainLayout'
+import MenuProfile from '@/components/MenuProfile'
 import resizeableTitle from '@/utils/resizable-columns'
 import TableEmptyText from '@/utils/table-empty-text'
 import columns from './columns'
@@ -108,7 +112,8 @@ import _merge from 'lodash/merge'
 const ResizeableTitle = resizeableTitle(columns)
 export default {
   components: {
-    MainLayout
+    MainLayout,
+    MenuProfile
   },
   mixins: [TableEmptyText],
   name: 'WarehouseManagement',

@@ -111,9 +111,9 @@ export default {
       this.collapsedTmp = !this.collapsedTmp
       this.$emit('collapsed-changed', this.collapsedTmp)
     },
-    openSelectStore () {
-      this.updateSelectStore(true)
-    },
+    // openSelectStore () {
+    //   this.updateSelectStore(true)
+    // },
     showModalPassword () {
       this.visibleModalPassword = true
     },

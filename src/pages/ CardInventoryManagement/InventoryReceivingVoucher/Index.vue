@@ -3,7 +3,7 @@
     <template v-slot:breadcrumb>
       <div style="display: flex; justify-content: space-between">
         <a-breadcrumb separator=">">
-          <a-breadcrumb-item :class="'active'">VETC - Danh mục </a-breadcrumb-item>
+          <a-breadcrumb-item :class="'active'">VETC - Lập phiếu nhập kho </a-breadcrumb-item>
         </a-breadcrumb>
         <menu-profile></menu-profile>
       </div>
@@ -89,7 +89,7 @@ export default {
     MenuProfile
   },
   mixins: [TableEmptyText],
-  name: 'WarehouseManagement',
+  name: 'InventoryReceivingVoucher',
   data () {
     this.components = {
       header: {

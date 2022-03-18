@@ -1,10 +1,12 @@
 <template>
   <main-layout>
     <template v-slot:breadcrumb>
-      <a-breadcrumb separator=">">
-        <a-breadcrumb-item><a href="/">Home</a></a-breadcrumb-item>
-        <a-breadcrumb-item :class="'active'">Giám sát </a-breadcrumb-item>
-      </a-breadcrumb>
+      <div style="display: flex; justify-content: space-between">
+        <a-breadcrumb separator=">">
+          <a-breadcrumb-item :class="'active'">VETC - Giám sát </a-breadcrumb-item>
+        </a-breadcrumb>
+        <menu-profile></menu-profile>
+      </div>
     </template>
     <div>
       <a-row :gutter="16">
@@ -158,7 +160,7 @@
             <img src="@/assets/image-fake/2022-03-17_16.28.04_vao.jpg" alt="VETC" style="width: 100%; height: 100%">
             <div style="width: 40%; height: 120px; position: absolute; bottom: 80px; right: 0">
               <a-card title="30F23365" style="background-color: #8E97A9; color: white; height: 100%">
-                <a-button slot="extra" class="ant-btn-gray">Xem video</a-button>
+                <a-button slot="extra" class="ant-btn-gray"><a-icon type="play-circle" /></a-button>
                 <img src="@/assets/image-fake/2022-03-17_16.27.42_vao.jpg" alt="VETC" style="width: 100%; height: 100%">
               </a-card>
             </div>
@@ -173,7 +175,7 @@
             <img src="@/assets/image-fake/2022-03-17_16.22.23.jpg" alt="VETC" style="width: 100%; height: 100%">
             <div style="width: 40%; height: 120px; position: absolute; bottom: 80px; right: 0">
               <a-card title="30F23365" style="background-color: #8E97A9; color: white; height: 100%">
-                <a-button slot="extra" class="ant-btn-gray">Xem video</a-button>
+                <a-button slot="extra" class="ant-btn-gray"><a-icon type="play-circle" /></a-button>
                 <img src="@/assets/image-fake/2022-03-17_16.22.50.jpg" alt="VETC" style="width: 100%; height: 100%">
               </a-card>
             </div>
@@ -272,11 +274,13 @@ import resizeableTitle from '@/utils/resizable-columns'
 import TableEmptyText from '@/utils/table-empty-text'
 import columns from './columns'
 import _merge from 'lodash/merge'
+import MenuProfile from '@/components/MenuProfile'
 
 const ResizeableTitle = resizeableTitle(columns)
 export default {
   components: {
-    MainLayout
+    MainLayout,
+    MenuProfile
   },
   mixins: [TableEmptyText],
   name: 'WarehouseManagement',

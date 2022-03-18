@@ -38,36 +38,87 @@
       :default-open-keys="[openKeys]"
       :style="{ height: '100%', borderRight: 0, paddingTop: '0', }"
     >
-      <a-sub-menu key="4">
+      <a-sub-menu key="1">
         <a slot="title"><icon name="book" width="24px" height="24px" style="margin-right: 10px"></icon><span class="title-menu">Quản trị hệ thống</span></a>
-        <a-menu-item key="4_1" >
+        <a-menu-item key="1_1" >
           <router-link :to="{ name: 'account' }" class="title-menu">
             <span>Tài khoản</span>
           </router-link>
         </a-menu-item>
-        <a-menu-item key="4_2" >
+        <a-menu-item key="1_2" >
           <router-link :to="{ name: 'permission' }" class="title-menu">
             <span>Phân quyền</span>
           </router-link>
         </a-menu-item>
-        <a-menu-item key="4_3" >
+        <a-menu-item key="1_3" >
           <router-link :to="{ name: 'category' }" class="title-menu">
             <span>Danh mục</span>
           </router-link>
         </a-menu-item>
       </a-sub-menu>
-      <a-menu-item key="3" >
+      <a-menu-item key="2" >
         <router-link :to="{ name: 'giam_sat' }" class="title-menu">
           <a-icon type="appstore" />
           <span>Giám sát</span>
         </router-link>
       </a-menu-item>
-      <a-menu-item key="2" >
+      <a-menu-item key="3" >
         <router-link :to="{ name: 'hau_kiem' }" class="title-menu">
           <a-icon type="project" />
           <span>Hậu kiểm</span>
         </router-link>
       </a-menu-item>
+      <a-sub-menu key="4">
+        <a slot="title"><icon name="book" width="24px" height="24px" style="margin-right: 10px"></icon><span class="title-menu">Quản lý kho thẻ</span></a>
+        <a-menu-item key="4_1" >
+          <router-link :to="{ name: 'account' }" class="title-menu">
+            <span>Lập phiếu nhập kho</span>
+          </router-link>
+        </a-menu-item>
+        <a-menu-item key="4_2" >
+          <router-link :to="{ name: 'permission' }" class="title-menu">
+            <span>Lập phiếu xuất kho</span>
+          </router-link>
+        </a-menu-item>
+        <a-menu-item key="4_3" >
+          <router-link :to="{ name: 'category' }" class="title-menu">
+            <span>Quản lý phiếu nhập</span>
+          </router-link>
+        </a-menu-item>
+        <a-menu-item key="4_4" >
+          <router-link :to="{ name: 'category' }" class="title-menu">
+            <span>Quản lý phiếu xuất</span>
+          </router-link>
+        </a-menu-item>
+        <a-menu-item key="4_5" >
+          <router-link :to="{ name: 'category' }" class="title-menu">
+            <span>Hủy thẻ</span>
+          </router-link>
+        </a-menu-item>
+        <a-menu-item key="4_6" >
+          <router-link :to="{ name: 'category' }" class="title-menu">
+            <span>Kho thẻ</span>
+          </router-link>
+        </a-menu-item>
+        <a-menu-item key="4_7" >
+          <router-link :to="{ name: 'category' }" class="title-menu">
+            <span>Tính tồn kho thẻ</span>
+          </router-link>
+        </a-menu-item>
+      </a-sub-menu>
+      <a-sub-menu key="5">
+        <a slot="title"><icon name="book" width="24px" height="24px" style="margin-right: 10px"></icon><span class="title-menu">Bảng kê</span></a>
+        <a-menu-item key="5_1" >
+          <router-link :to="{ name: 'account' }" class="title-menu">
+            <span>Bảng kê hướng vào</span>
+          </router-link>
+        </a-menu-item>
+        <a-menu-item key="5_2" >
+          <router-link :to="{ name: 'account' }" class="title-menu">
+            <span>Bảng kê hướng ra</span>
+          </router-link>
+        </a-menu-item>
+      </a-sub-menu>
     </a-menu>
   </a-layout-sider>
 </template>
@@ -92,23 +143,20 @@ export default {
         routeName = fromSource
       }
       switch (routeName) {
-        case 'dashboard':
-          idx = '1'
-          break
-        case 'hau_kiem':
-          idx = '2'
-          break
-        case 'giam_sat':
-          idx = '3'
-          break
         case 'account':
-          idx = '4_1'
+          idx = '1_1'
           break
         case 'permission':
-          idx = '4_2'
+          idx = '1_2'
           break
         case 'category':
-          idx = '4_3'
+          idx = '1_3'
+          break
+        case 'giam_sat':
+          idx = '2'
+          break
+        case 'hau_kiem':
+          idx = '3'
           break
       }
 
@@ -117,28 +165,16 @@ export default {
     openKeys: function () {
       let k = '0'
       switch (this.$router.currentRoute.name) {
-        case 'dashboard':
-          k = '1'
-          break
-        case 'hau_kiem':
-          k = '2'
-          break
-        case 'giam_sat':
-          k = '3'
-          break
         case 'account':
         case 'permission':
         case 'category':
-          k = '4'
+          k = '1'
           break
-        case 'scan_device_management':
-          k = '5'
+        case 'giam_sat':
+          k = '2'
           break
-        case 'config':
-        case 'config.create':
-        case 'config.update':
-        case 'role_management':
-          k = '6'
+        case 'hau_kiem':
+          k = '3'
           break
         default:
           k = '0'
