@@ -8,10 +8,10 @@ export default [
     width: 80
   },
   {
-    title: 'Loại xe',
-    dataIndex: 'loaixe',
-    scopedSlots: { customRender: 'loaixe' },
-    align: 'left',
+    title: 'Trạm vào',
+    dataIndex: 'tramvao',
+    scopedSlots: { customRender: 'tramvao' },
+    align: 'right',
     ellipsis: true,
     width: 120
   },
@@ -24,10 +24,10 @@ export default [
     width: 120
   },
   {
-    title: 'Trạm vào',
-    dataIndex: 'tramvao',
-    scopedSlots: { customRender: 'tramvao' },
-    align: 'right',
+    title: 'Loại xe',
+    dataIndex: 'loaixe',
+    scopedSlots: { customRender: 'loaixe' },
+    align: 'left',
     ellipsis: true,
     width: 120
   },

@@ -108,7 +108,8 @@ router.beforeEach((routeTo, routeFrom, next) => {
       routeTo.name === 'cancel_card' ||
       routeTo.name === 'card_store' ||
       routeTo.name === 'card_inventory_calculator' ||
-      routeTo.name === 'list_attach_invoice'
+      routeTo.name === 'list_attach_invoice' ||
+      routeTo.name === 'disparity_handling'
   ) {
     return next()
   } else {

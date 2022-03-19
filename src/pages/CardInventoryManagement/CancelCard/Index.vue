@@ -113,7 +113,7 @@
                 <span style="cursor: pointer">
                   <a-icon
                     type="delete"
-                    :style="{color: 'red', fontSize: '14px'}"
+                    :style="{color: 'red', fontSize: '18px'}"
                   />
                 </span>
               </template>

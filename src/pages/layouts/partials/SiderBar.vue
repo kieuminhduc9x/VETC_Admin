@@ -110,19 +110,32 @@
             <span>Tính tồn kho thẻ</span>
           </router-link>
         </a-menu-item>
-      </a-sub-menu>
-      <a-sub-menu key="5">
-        <a slot="title"><icon name="book" width="24px" height="24px" style="margin-right: 10px"></icon><span class="title-menu">Báo cáo thống kê</span></a>
-        <a-menu-item key="5_1" >
+        <a-menu-item key="4_8" >
           <router-link :to="{ name: 'list_attach_invoice' }" class="title-menu">
             <span>Lập bảng kê</span>
           </router-link>
         </a-menu-item>
-        <a-menu-item key="5_2" >
-          <router-link :to="{ name: 'account' }" class="title-menu">
+        <a-menu-item key="4_9" >
+          <router-link :to="{ name: 'disparity_handling' }" class="title-menu">
             <span>Xử lý chênh lệch</span>
           </router-link>
         </a-menu-item>
+      </a-sub-menu>
+      <a-sub-menu key="5">
+        <a slot="title"><icon name="book" width="24px" height="24px" style="margin-right: 10px"></icon><span class="title-menu">Đối soát ETC</span></a>
+        <!--        <a-menu-item key="5_1" >-->
+        <!--          <router-link :to="{ name: 'list_attach_invoice' }" class="title-menu">-->
+        <!--            <span>Lập bảng kê</span>-->
+        <!--          </router-link>-->
+        <!--        </a-menu-item>-->
+        <!--        <a-menu-item key="5_2" >-->
+        <!--          <router-link :to="{ name: 'account' }" class="title-menu">-->
+        <!--            <span>Xử lý chênh lệch</span>-->
+        <!--          </router-link>-->
+        <!--        </a-menu-item>-->
+      </a-sub-menu>
+      <a-sub-menu key="6">
+        <a slot="title"><icon name="book" width="24px" height="24px" style="margin-right: 10px"></icon><span class="title-menu">Báo cáo thống kê</span></a>
       </a-sub-menu>
     </a-menu>
   </a-layout-sider>
@@ -188,7 +201,10 @@ export default {
           idx = '4_7'
           break
         case 'list_attach_invoice':
-          idx = '5_1'
+          idx = '4_8'
+          break
+        case 'disparity_handling':
+          idx = '4_9'
           break
       }
 
@@ -216,10 +232,9 @@ export default {
         case 'cancel_card':
         case 'card_store':
         case 'card_inventory_calculator':
-          k = '4'
-          break
         case 'list_attach_invoice':
-          k = '5'
+        case 'disparity_handling':
+          k = '4'
           break
         default:
           k = '0'

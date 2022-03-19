@@ -3,7 +3,7 @@
     <template v-slot:breadcrumb>
       <div style="display: flex; justify-content: space-between">
         <a-breadcrumb separator=">">
-          <a-breadcrumb-item >Báo cáo thống kê</a-breadcrumb-item>
+          <a-breadcrumb-item >Kế toán</a-breadcrumb-item>
           <a-breadcrumb-item :class="'active'">Lập bảng kê </a-breadcrumb-item>
         </a-breadcrumb>
         <menu-profile></menu-profile>
@@ -120,13 +120,13 @@
                   <span style="cursor: pointer">
                     <a-icon
                       type="printer"
-                      :style="{color: 'blue', fontSize: '14px', marginLeft: '8px'}"
+                      :style="{color: 'blue', fontSize: '18px', marginLeft: '8px'}"
                     />
                   </span>
                   <span style="cursor: pointer">
                     <a-icon
                       type="delete"
-                      :style="{color: 'red', fontSize: '14px', marginLeft: '8px'}"
+                      :style="{color: 'red', fontSize: '18px', marginLeft: '8px'}"
                     />
                   </span>
                 </template>
@@ -148,13 +148,13 @@
                   <span style="cursor: pointer">
                     <a-icon
                       type="printer"
-                      :style="{color: 'blue', fontSize: '14px', marginLeft: '8px'}"
+                      :style="{color: 'blue', fontSize: '18px', marginLeft: '8px'}"
                     />
                   </span>
                   <span style="cursor: pointer">
                     <a-icon
                       type="delete"
-                      :style="{color: 'red', fontSize: '14px', marginLeft: '8px'}"
+                      :style="{color: 'red', fontSize: '18px', marginLeft: '8px'}"
                     />
                   </span>
                 </template>
@@ -181,13 +181,13 @@
                   <span style="cursor: pointer">
                     <a-icon
                       type="printer"
-                      :style="{color: 'blue', fontSize: '14px', marginLeft: '8px'}"
+                      :style="{color: 'blue', fontSize: '18px', marginLeft: '8px'}"
                     />
                   </span>
                   <span style="cursor: pointer">
                     <a-icon
                       type="delete"
-                      :style="{color: 'red', fontSize: '14px', marginLeft: '8px'}"
+                      :style="{color: 'red', fontSize: '18px', marginLeft: '8px'}"
                     />
                   </span>
                 </template>
@@ -209,13 +209,13 @@
                   <span style="cursor: pointer">
                     <a-icon
                       type="printer"
-                      :style="{color: 'blue', fontSize: '14px', marginLeft: '8px'}"
+                      :style="{color: 'blue', fontSize: '18px', marginLeft: '8px'}"
                     />
                   </span>
                   <span style="cursor: pointer">
                     <a-icon
                       type="delete"
-                      :style="{color: 'red', fontSize: '14px', marginLeft: '8px'}"
+                      :style="{color: 'red', fontSize: '18px', marginLeft: '8px'}"
                     />
                   </span>
                 </template>
@@ -386,7 +386,7 @@ export default {
           rowIndex: '1',
           loaixe: 'Xe loại 2',
           thietbi: 'Thẻ IC',
-          tramvao: 'Vực Vòng',
+          tramvao: 'Trạm B',
           giave: '35,000',
           soluongcothe: '100',
           soluongkhongthe: '0',
@@ -396,7 +396,7 @@ export default {
           rowIndex: '2',
           loaixe: 'Xe loại 3',
           thietbi: 'Thẻ IC',
-          tramvao: 'Vực Vòng',
+          tramvao: 'Trạm B',
           giave: '45,000',
           soluongcothe: '300',
           soluongkhongthe: '0',

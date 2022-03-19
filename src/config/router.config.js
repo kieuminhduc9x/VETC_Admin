@@ -243,12 +243,26 @@ export const asyncRouterMap = [
   {
     path: '/list-attach-invoice',
     name: 'list_attach_invoice',
-    component: () => import('../pages/StatisticalReport/LiѕtAttachInvoice/Index'),
+    component: () => import('../pages/CardInventoryManagement/LiѕtAttachInvoice/Index'),
     meta: {
       authRequired: true,
       head: {
         title: ' Lập bảng kê',
         description: ' Lập bảng kê'
+      }
+    }
+  },
+
+  // Xử lý chênh lệch
+  {
+    path: '/disparity-handling',
+    name: 'disparity_handling',
+    component: () => import('../pages/CardInventoryManagement/DisparityHandling/Index'),
+    meta: {
+      authRequired: true,
+      head: {
+        title: 'Xử lý chênh lệch',
+        description: 'Xử lý chênh lệch'
       }
     }
   }

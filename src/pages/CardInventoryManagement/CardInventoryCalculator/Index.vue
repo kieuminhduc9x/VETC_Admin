@@ -125,13 +125,13 @@
                 <span style="cursor: pointer">
                   <a-icon
                     type="printer"
-                    :style="{color: 'blue', fontSize: '14px', marginLeft: '8px'}"
+                    :style="{color: 'blue', fontSize: '18px', marginLeft: '8px'}"
                   />
                 </span>
                 <span style="cursor: pointer">
                   <a-icon
                     type="delete"
-                    :style="{color: 'red', fontSize: '14px', marginLeft: '8px'}"
+                    :style="{color: 'red', fontSize: '18px', marginLeft: '8px'}"
                   />
                 </span>
               </template>

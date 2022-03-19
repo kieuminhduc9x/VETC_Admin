@@ -54,13 +54,13 @@
                       <span style="padding-right:12px;cursor: pointer">
                         <a-icon
                           type="edit"
-                          :style="{color: 'blue',fontSize: '14px'}"
+                          :style="{color: 'blue',fontSize: '18px'}"
                         />
                       </span>
                       <span style="cursor: pointer">
                         <a-icon
                           type="minus-circle"
-                          :style="{color: 'blue', fontSize: '14px'}"
+                          :style="{color: 'blue', fontSize: '18px'}"
                         />
                       </span>
                     </template>
