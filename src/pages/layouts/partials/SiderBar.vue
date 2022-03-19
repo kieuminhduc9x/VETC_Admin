@@ -55,6 +55,11 @@
             <span>Danh mục</span>
           </router-link>
         </a-menu-item>
+        <a-menu-item key="1_4" >
+          <router-link :to="{ name: 'code_lookup_HDDT' }" class="title-menu">
+            <span>Tra cứu mã HDDT</span>
+          </router-link>
+        </a-menu-item>
       </a-sub-menu>
       <a-menu-item key="2" >
         <router-link :to="{ name: 'giam_sat' }" class="title-menu">
@@ -69,53 +74,53 @@
         </router-link>
       </a-menu-item>
       <a-sub-menu key="4">
-        <a slot="title"><icon name="book" width="24px" height="24px" style="margin-right: 10px"></icon><span class="title-menu">Quản lý kho thẻ</span></a>
+        <a slot="title"><icon name="book" width="24px" height="24px" style="margin-right: 10px"></icon><span class="title-menu">Kế toán</span></a>
         <a-menu-item key="4_1" >
-          <router-link :to="{ name: 'account' }" class="title-menu">
+          <router-link :to="{ name: 'inventory_deliver_voucher' }" class="title-menu">
             <span>Lập phiếu nhập kho</span>
           </router-link>
         </a-menu-item>
         <a-menu-item key="4_2" >
-          <router-link :to="{ name: 'permission' }" class="title-menu">
+          <router-link :to="{ name: 'inventory_receiving_voucher' }" class="title-menu">
             <span>Lập phiếu xuất kho</span>
           </router-link>
         </a-menu-item>
         <a-menu-item key="4_3" >
-          <router-link :to="{ name: 'category' }" class="title-menu">
+          <router-link :to="{ name: 'deliver_voucher_management' }" class="title-menu">
             <span>Quản lý phiếu nhập</span>
           </router-link>
         </a-menu-item>
         <a-menu-item key="4_4" >
-          <router-link :to="{ name: 'category' }" class="title-menu">
+          <router-link :to="{ name: 'receiving_voucher_management' }" class="title-menu">
             <span>Quản lý phiếu xuất</span>
           </router-link>
         </a-menu-item>
         <a-menu-item key="4_5" >
-          <router-link :to="{ name: 'category' }" class="title-menu">
+          <router-link :to="{ name: 'cancel_card' }" class="title-menu">
             <span>Hủy thẻ</span>
           </router-link>
         </a-menu-item>
         <a-menu-item key="4_6" >
-          <router-link :to="{ name: 'category' }" class="title-menu">
+          <router-link :to="{ name: 'card_store' }" class="title-menu">
             <span>Kho thẻ</span>
           </router-link>
         </a-menu-item>
         <a-menu-item key="4_7" >
-          <router-link :to="{ name: 'category' }" class="title-menu">
+          <router-link :to="{ name: 'card_inventory_calculator' }" class="title-menu">
             <span>Tính tồn kho thẻ</span>
           </router-link>
         </a-menu-item>
       </a-sub-menu>
       <a-sub-menu key="5">
-        <a slot="title"><icon name="book" width="24px" height="24px" style="margin-right: 10px"></icon><span class="title-menu">Bảng kê</span></a>
+        <a slot="title"><icon name="book" width="24px" height="24px" style="margin-right: 10px"></icon><span class="title-menu">Báo cáo thống kê</span></a>
         <a-menu-item key="5_1" >
-          <router-link :to="{ name: 'account' }" class="title-menu">
-            <span>Bảng kê hướng vào</span>
+          <router-link :to="{ name: 'list_attach_invoice' }" class="title-menu">
+            <span>Lập bảng kê</span>
           </router-link>
         </a-menu-item>
         <a-menu-item key="5_2" >
           <router-link :to="{ name: 'account' }" class="title-menu">
-            <span>Bảng kê hướng ra</span>
+            <span>Xử lý chênh lệch</span>
           </router-link>
         </a-menu-item>
       </a-sub-menu>
@@ -152,11 +157,38 @@ export default {
         case 'category':
           idx = '1_3'
           break
+        case 'code_lookup_HDDT':
+          idx = '1_4'
+          break
         case 'giam_sat':
           idx = '2'
           break
         case 'hau_kiem':
           idx = '3'
+          break
+        case 'inventory_deliver_voucher':
+          idx = '4_1'
+          break
+        case 'inventory_receiving_voucher':
+          idx = '4_2'
+          break
+        case 'deliver_voucher_management':
+          idx = '4_3'
+          break
+        case 'receiving_voucher_management':
+          idx = '4_4'
+          break
+        case 'cancel_card':
+          idx = '4_5'
+          break
+        case 'card_store':
+          idx = '4_6'
+          break
+        case 'card_inventory_calculator':
+          idx = '4_7'
+          break
+        case 'list_attach_invoice':
+          idx = '5_1'
           break
       }
 
@@ -168,6 +200,7 @@ export default {
         case 'account':
         case 'permission':
         case 'category':
+        case 'code_lookup_HDDT':
           k = '1'
           break
         case 'giam_sat':
@@ -175,6 +208,18 @@ export default {
           break
         case 'hau_kiem':
           k = '3'
+          break
+        case 'inventory_deliver_voucher':
+        case 'inventory_receiving_voucher':
+        case 'receiving_voucher_management':
+        case 'deliver_voucher_management':
+        case 'cancel_card':
+        case 'card_store':
+        case 'card_inventory_calculator':
+          k = '4'
+          break
+        case 'list_attach_invoice':
+          k = '5'
           break
         default:
           k = '0'

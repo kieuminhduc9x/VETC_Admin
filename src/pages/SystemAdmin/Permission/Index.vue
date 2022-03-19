@@ -3,6 +3,7 @@
     <template v-slot:breadcrumb>
       <div style="display: flex; justify-content: space-between">
         <a-breadcrumb separator=">">
+          <a-breadcrumb-item >Quản trị hệ thống</a-breadcrumb-item>
           <a-breadcrumb-item :class="'active'">VETC - Phân quyền </a-breadcrumb-item>
         </a-breadcrumb>
         <menu-profile></menu-profile>

@@ -9,10 +9,10 @@
 
 <script>
 import viVN from 'ant-design-vue/lib/locale-provider/vi_VN'
-import SelectStore from '@/components/SelectStoreModal'
+// import SelectStore from '@/components/SelectStoreModal'
 export default {
   components: {
-    SelectStore
+    // SelectStore
   },
   data () {
     return {

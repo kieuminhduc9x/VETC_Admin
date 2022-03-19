@@ -99,7 +99,16 @@ router.beforeEach((routeTo, routeFrom, next) => {
       routeTo.name === 'giam_sat' ||
       routeTo.name === 'account' ||
       routeTo.name === 'permission' ||
-      routeTo.name === 'category'
+      routeTo.name === 'category' ||
+      routeTo.name === 'code_lookup_HDDT' ||
+      routeTo.name === 'inventory_deliver_voucher' ||
+      routeTo.name === 'inventory_receiving_voucher' ||
+      routeTo.name === 'deliver_voucher_management' ||
+      routeTo.name === 'receiving_voucher_management' ||
+      routeTo.name === 'cancel_card' ||
+      routeTo.name === 'card_store' ||
+      routeTo.name === 'card_inventory_calculator' ||
+      routeTo.name === 'list_attach_invoice'
   ) {
     return next()
   } else {
