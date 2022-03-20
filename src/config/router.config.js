@@ -265,6 +265,90 @@ export const asyncRouterMap = [
         description: 'Xử lý chênh lệch'
       }
     }
+  },
+  // Phiếu nhập vé
+  {
+    path: '/ticket-import-voucher',
+    name: 'ticket_import_voucher',
+    component: () => import('../pages/CardInventoryManagement/TicketImportVoucher/Index'),
+    meta: {
+      authRequired: true,
+      head: {
+        title: 'Phiếu nhập vé',
+        description: 'Phiếu nhập vé'
+      }
+    }
+  },
+
+  // Lập phiếu xuất vé
+  {
+    path: '/inventory-receiving-voucher',
+    name: 'inventory_receiving_voucher',
+    component: () => import('../pages/CardInventoryManagement/InventoryReceivingVoucher/Index'),
+    meta: {
+      authRequired: true,
+      head: {
+        title: 'Lập phiếu xuất kho',
+        description: 'Lập phiếu xuất kho'
+      }
+    }
+  },
+
+  // ĐỐI SOÁT ETC
+  // Import đối soát ETC
+  {
+    path: '/import-counter-transaction',
+    name: 'import_counter_transaction',
+    component: () => import('../pages/ETCControl/ImportCounterTransaction/Index'),
+    meta: {
+      authRequired: true,
+      head: {
+        title: 'Import đối soát ETC',
+        description: 'Import đối soát ETC'
+      }
+    }
+  },
+
+  // Import file
+  {
+    path: '/import-counter-transaction/import',
+    name: 'import_counter_transaction_import',
+    component: () => import('../pages/ETCControl/ImportCounterTransaction/Import'),
+    meta: {
+      authRequired: true,
+      head: {
+        title: 'Import đối soát ETC',
+        description: 'Import đối soát ETC'
+      }
+    }
+  },
+
+  // Tạo giao dịch ETC
+  {
+    path: '/create-transaction-ETC',
+    name: 'create_transaction',
+    component: () => import('../pages/ETCControl/CreateTransactionETC/Index'),
+    meta: {
+      authRequired: true,
+      head: {
+        title: 'Tạo giao dịch ETC',
+        description: 'Tạo giao dịch ETC'
+      }
+    }
+  },
+
+  // Điều chỉnh giao dịch đã đối soát
+  {
+    path: '/adjustmen-transaction-management',
+    name: 'adjustmen_transaction_management',
+    component: () => import('../pages/ETCControl/AdjustmenTransactionManagement/Index'),
+    meta: {
+      authRequired: true,
+      head: {
+        title: 'Điều chỉnh giao dịch đã đối soát',
+        description: 'Điều chỉnh giao dịch đã đối soát'
+      }
+    }
   }
 
 ]

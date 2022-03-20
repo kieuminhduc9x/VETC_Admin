@@ -46,12 +46,6 @@ router.beforeEach((routeTo, routeFrom, next) => {
     // Start the route progress bar.
     NProgress.start()
   }
-  if (routeFrom.name !== 'groupawb' && routeFrom.name !== 'order_detail') {
-    const order = window.localStorage.getItem('groupawb.fillters')
-    if (order) {
-      window.localStorage.setItem('groupawb.fillters', null)
-    }
-  }
   if (routeFrom.name !== 'bikehubend' && routeFrom.name !== 'order_detail') {
     const order = window.localStorage.getItem('bikehubend.fillters')
     if (order) {
@@ -109,7 +103,12 @@ router.beforeEach((routeTo, routeFrom, next) => {
       routeTo.name === 'card_store' ||
       routeTo.name === 'card_inventory_calculator' ||
       routeTo.name === 'list_attach_invoice' ||
-      routeTo.name === 'disparity_handling'
+      routeTo.name === 'disparity_handling' ||
+      routeTo.name === 'ticket_import_voucher' ||
+      routeTo.name === 'import_counter_transaction' ||
+      routeTo.name === 'import_counter_transaction_import' ||
+      routeTo.name === 'create_transaction' ||
+      routeTo.name === 'adjustmen_transaction_management'
   ) {
     return next()
   } else {
@@ -183,7 +182,7 @@ router.afterEach((routeTo, routeFrom) => {
   // Complete the animation of the route progress bar.
   if (routeTo.meta.head !== undefined) {
     if (routeTo.meta.head.title !== undefined) {
-      document.title = routeTo.meta.head.title + ' - Quản lý kho Nam Cường'
+      document.title = routeTo.meta.head.title + ' - VETC'
     }
     if (routeTo.meta.head.description !== undefined) {
       const meta = document.getElementsByTagName('meta').namedItem('description')

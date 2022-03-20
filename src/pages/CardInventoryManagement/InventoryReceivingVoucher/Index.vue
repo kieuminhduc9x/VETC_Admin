@@ -4,13 +4,13 @@
       <div style="display: flex; justify-content: space-between">
         <a-breadcrumb separator=">">
           <a-breadcrumb-item >Kế toán</a-breadcrumb-item>
-          <a-breadcrumb-item :class="'active'">Lập phiếu nhập kho </a-breadcrumb-item>
+          <a-breadcrumb-item :class="'active'">Phiếu xuất kho thẻ</a-breadcrumb-item>
         </a-breadcrumb>
         <menu-profile></menu-profile>
       </div>
     </template>
     <div style="margin-top: 5px">
-      <a-card title="Thông tin phiếu nhập">
+      <a-card title="Thông tin phiếu xuất">
         <a-form-model
           :model="form"
           :label-col="labelCol"
@@ -20,7 +20,7 @@
           <a-row :gutter="16">
             <a-col :xs="24" :lg="12" :md="12">
               <a-form-model-item
-                label="Trạm"
+                label="Đơn vị"
                 prop="tram"
                 style="margin-bottom: 20px!important;">
                 <a-select
@@ -118,7 +118,7 @@
           </a-row>
         </a-form-model>
       </a-card>
-      <a-card title="Chi tiết phiếu nhập">
+      <a-card title="Chi tiết phiếu xuất">
         <a-form-model
           :model="formDetail"
           :label-col="labelCol"

@@ -4,7 +4,7 @@
       <div style="display: flex; justify-content: space-between">
         <a-breadcrumb separator=">">
           <a-breadcrumb-item >Kế toán</a-breadcrumb-item>
-          <a-breadcrumb-item :class="'active'">Phiếu nhập kho thẻ</a-breadcrumb-item>
+          <a-breadcrumb-item :class="'active'">Phiếu nhập vé</a-breadcrumb-item>
         </a-breadcrumb>
         <menu-profile></menu-profile>
       </div>
@@ -290,11 +290,19 @@ export default {
       labelCol: { span: 6 },
       wrapperCol: { span: 14 },
       formDetail: {
-        thietbi: '1',
-        soluong: '',
-        inphieunhap: false
+        lotrinh: undefined,
+        loaive: undefined,
+        tuserial: '',
+        denserial: '',
+        soluong: ''
       },
-      lsThietbi: [
+      lsLotrinh: [
+        {
+          value: '1',
+          name: 'Thẻ IC'
+        }
+      ],
+      lsLoaive: [
         {
           value: '1',
           name: 'Thẻ IC'

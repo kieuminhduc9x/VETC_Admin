@@ -20,7 +20,7 @@
           <a-row :gutter="16">
             <a-col :xs="24" :lg="12" :md="12">
               <a-form-model-item
-                label="Trạm"
+                label="Đơn vị"
                 prop="tram"
                 style="margin-bottom: 20px!important;">
                 <a-select

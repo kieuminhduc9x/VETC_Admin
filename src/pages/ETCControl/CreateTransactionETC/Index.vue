@@ -3,24 +3,24 @@
     <template v-slot:breadcrumb>
       <div style="display: flex; justify-content: space-between">
         <a-breadcrumb separator=">">
-          <a-breadcrumb-item >Kế toán</a-breadcrumb-item>
-          <a-breadcrumb-item :class="'active'">Tính tồn kho thẻ </a-breadcrumb-item>
+          <a-breadcrumb-item >Đối soát ETC</a-breadcrumb-item>
+          <a-breadcrumb-item :class="'active'">Tạo giao dịch ETC</a-breadcrumb-item>
         </a-breadcrumb>
         <menu-profile></menu-profile>
       </div>
     </template>
     <div style="margin-top: 5px">
-      <a-card title="Thông tin">
+      <a-card>
         <a-form-model
           :model="form"
           :label-col="labelCol"
           :wrapper-col="wrapperCol"
-          labelAlign="left"
-          style="padding: 15px 20px">
+          labelAlign="left">
+
           <a-row :gutter="16">
-            <a-col :xs="24" :lg="8" :md="8">
+            <a-col :xs="24" :lg="12" :md="12">
               <a-form-model-item
-                label="Đơn vị"
+                label="Trạm"
                 prop="tram"
                 style="margin-bottom: 20px!important;">
                 <a-select
@@ -33,82 +33,43 @@
                 </a-select>
               </a-form-model-item>
             </a-col>
-            <a-col :xs="24" :lg="8" :md="8">
+            <a-col :xs="24" :lg="12" :md="12">
               <a-form-model-item
-                label="Ngày chốt"
-                prop="ngaychot"
+                label="Ngày đối soát"
+                prop="ngaydoisoat"
                 style="margin-bottom: 20px!important;">
                 <a-date-picker
-                  v-model="form.ngaychot"
-                  :format="'DD/MM/YYYY'"
-                >
-                </a-date-picker>
+                  format="DD/MM/YYY"
+                  v-model="form.ngaydoisoat"></a-date-picker>
               </a-form-model-item>
             </a-col>
-            <a-col :xs="24" :lg="6" :md="6">
-              <div style="display: flex; justify-content: flex-start">
-                <a-button class="ant-btn-success">Tính tồn kho</a-button>
-              </div>
+          </a-row>
+          <a-row :gutter="16">
+            <a-col :xs="24" :lg="12" :md="12">
+              <a-form-model-item
+                label="Mã giao dịch"
+                prop="magiaodich"
+                style="margin-bottom: 20px!important;">
+                <a-input v-model="form.magiaodich"></a-input>
+              </a-form-model-item>
+            </a-col>
+            <a-col :xs="24" :lg="12" :md="12">
+              <a-form-model-item
+                label="Biển số xe"
+                prop="biensoxe"
+                style="margin-bottom: 20px!important;">
+                <a-input v-model="form.biensoxe"></a-input>
+              </a-form-model-item>
             </a-col>
           </a-row>
+          <div style="display: flex; justify-content: center; margin: 15px 0">
+            <a-button class="ant-btn-success" @click="showModalCreate">Thêm</a-button>
+            <a-button class="ant-btn-success">Tìm kiếm</a-button>
+          </div>
         </a-form-model>
       </a-card>
-      <a-card title="Danh sách ngày đã chốt">
-        <a-form-model
-          :model="formChotNgay"
-          :label-col="labelCol"
-          :wrapper-col="wrapperCol"
-          labelAlign="left"
-          style="padding: 15px 20px">
-
-          <a-row :gutter="16">
-            <a-col :xs="24" :lg="8" :md="8">
-              <a-form-model-item
-                label="Đơn vị"
-                prop="tram"
-                style="margin-bottom: 20px!important;">
-                <a-select
-                  v-model="formChotNgay.tram"
-                  :disabled="true"
-                >
-                  <a-select-option v-for="item in lsTramChotNgay" :key="item.value" :value="item.value">
-                    {{ item.name }}
-                  </a-select-option>
-                </a-select>
-              </a-form-model-item>
-            </a-col>
-            <a-col :xs="24" :lg="6" :md="6">
-              <a-form-model-item
-                label="Từ ngày"
-                prop="tungay"
-                style="margin-bottom: 20px!important;">
-                <a-date-picker
-                  v-model="formChotNgay.tungay"
-                  format="DD/MM/YYYY"
-                >
-                </a-date-picker>
-              </a-form-model-item>
-            </a-col>
-            <a-col :xs="24" :lg="6" :md="6">
-              <a-form-model-item
-                label="Đến ngày"
-                prop="denngay"
-                style="margin-bottom: 20px!important;">
-                <a-date-picker
-                  v-model="formChotNgay.denngay"
-                  format="DD/MM/YYYY"
-                >
-                </a-date-picker>
-              </a-form-model-item>
-            </a-col>
-            <a-col :xs="24" :lg="4" :md="4">
-              <div style="display: flex; justify-content: center;">
-                <a-button class="ant-btn-success">Tìm kiếm</a-button>
-              </div>
-            </a-col>
-          </a-row>
-        </a-form-model>
-        <a-row :gutter="16" type="flex">
+      <a-card title="Danh sách giao dịch">
+        <a-row :gutter="16">
           <a-col :span="24">
             <a-table
               ref="tb1"
@@ -124,7 +85,7 @@
               <template slot="action">
                 <span style="cursor: pointer">
                   <a-icon
-                    type="printer"
+                    type="form"
                     :style="{color: 'blue', fontSize: '18px', marginLeft: '8px'}"
                   />
                 </span>
@@ -140,6 +101,13 @@
         </a-row>
       </a-card>
     </div>
+    <modal-create
+      v-if="visibleModal === true"
+      :visible-modal="visibleModal"
+      :is-create="isCreate"
+      :is-update="isUpdate"
+      :modelObject="modelObject"
+      @closeModal="closeModal"></modal-create>
   </main-layout>
 </template>
 
@@ -150,13 +118,14 @@ import resizeableTitle from '@/utils/resizable-columns'
 import TableEmptyText from '@/utils/table-empty-text'
 import columns from './columns'
 import _merge from 'lodash/merge'
-import moment from 'moment'
+import ModalCreate from '@/pages/ETCControl/CreateTransactionETC/ModalCreate'
 
 const ResizeableTitle = resizeableTitle(columns)
 export default {
   components: {
     MainLayout,
-    MenuProfile
+    MenuProfile,
+    ModalCreate
   },
   mixins: [TableEmptyText],
   name: 'InventoryReceivingVoucher',
@@ -167,7 +136,6 @@ export default {
       }
     }
     return {
-      moment,
       activeSearchKey: 1,
       activeResultKey: 1,
       pagination: {
@@ -186,53 +154,40 @@ export default {
       columns,
       form: {
         tram: '1',
-        ngaychot: ''
+        ngaydoisoat: '',
+        magiaodich: '',
+        biensoxe: ''
       },
       lsTram: [
-        {
-          value: '1',
-          name: 'Trạm B'
-        }
-      ],
-      labelCol: { span: 6 },
-      wrapperCol: { span: 14 },
-      formChotNgay: {
-        tram: '1',
-        tungay: '',
-        denngay: ''
-      },
-      lsTramChotNgay: [
         {
           value: '1',
           name: 'Liêm Tuyền'
         }
       ],
+      labelCol: { span: 6 },
+      wrapperCol: { span: 14 },
       data: [
         {
-          ngaychot: '21/02/2022',
-          thietbi: 'Thẻ IC',
-          tondau: '1,000',
-          nhaptutrungtam: '2,000',
-          nhaptrakho: '3,000',
-          xuatchonhanvien: '0',
-          xuatchotramkhac: '0',
-          xuattratrungtam: '0',
-          xuathuy: '0',
-          toncuoi: '15,000'
-        },
-        {
-          ngaychot: '21/02/2022',
-          thietbi: 'Thẻ IC',
-          tondau: '10,000',
-          nhaptutrungtam: '0',
-          nhaptrakho: '3,000',
-          xuatchonhanvien: '0',
-          xuatchotramkhac: '0',
-          xuattratrungtam: '0',
-          xuathuy: '0',
-          toncuoi: '13,000'
+          rowIndex: '1',
+          magiaodich: '43546544',
+          maetag: '87427483748',
+          thoigiangiaodich: '22/02/2021 06:30:00',
+          lanxe: 'Làn 01',
+          nhanvien: 'Vũ Đạt',
+          ca: 'Ca 2',
+          giave: '35,000',
+          biensoxe: '30H-19322',
+          trangthaibe: 'commit',
+          trangthaihaukiem: 'commit',
+          loaive: 'Vé thường',
+          loaibienso: 'Biển trắng',
+          ghichu: ''
         }
-      ]
+      ],
+      visibleModal: false,
+      isCreate: false,
+      isUpdate: false,
+      modelObject: {}
     }
   },
   created () {
@@ -252,8 +207,16 @@ export default {
     getData (value) {
       this.pagination = _merge(this.pagination, this.handlePaginationData(this.data))
     },
-    clickMenu (item, key) {
-      console.log(item, key)
+    goToImport () {
+      this.$router.push({ name: 'import_counter_transaction_import' })
+    },
+    showModalCreate () {
+      this.visibleModal = true
+      this.isCreate = true
+      this.isUpdate = false
+    },
+    closeModal () {
+      this.visibleModal = false
     }
 
   }

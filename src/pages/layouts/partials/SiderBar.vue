@@ -76,63 +76,88 @@
       <a-sub-menu key="4">
         <a slot="title"><icon name="book" width="24px" height="24px" style="margin-right: 10px"></icon><span class="title-menu">Kế toán</span></a>
         <a-menu-item key="4_1" >
-          <router-link :to="{ name: 'inventory_deliver_voucher' }" class="title-menu">
-            <span>Lập phiếu nhập kho</span>
+          <router-link :to="{ name: 'inventory_deliver_voucher' }" class="title-sub-menu">
+            <span>Phiếu nhập kho thẻ</span>
           </router-link>
         </a-menu-item>
         <a-menu-item key="4_2" >
-          <router-link :to="{ name: 'inventory_receiving_voucher' }" class="title-menu">
-            <span>Lập phiếu xuất kho</span>
+          <router-link :to="{ name: 'inventory_receiving_voucher' }" class="title-sub-menu">
+            <span>Phiếu xuất kho thẻ</span>
           </router-link>
         </a-menu-item>
         <a-menu-item key="4_3" >
-          <router-link :to="{ name: 'deliver_voucher_management' }" class="title-menu">
+          <router-link :to="{ name: 'deliver_voucher_management' }" class="title-sub-menu">
             <span>Quản lý phiếu nhập</span>
           </router-link>
         </a-menu-item>
         <a-menu-item key="4_4" >
-          <router-link :to="{ name: 'receiving_voucher_management' }" class="title-menu">
+          <router-link :to="{ name: 'receiving_voucher_management' }" class="title-sub-menu">
             <span>Quản lý phiếu xuất</span>
           </router-link>
         </a-menu-item>
         <a-menu-item key="4_5" >
-          <router-link :to="{ name: 'cancel_card' }" class="title-menu">
+          <router-link :to="{ name: 'cancel_card' }" class="title-sub-menu">
             <span>Hủy thẻ</span>
           </router-link>
         </a-menu-item>
         <a-menu-item key="4_6" >
-          <router-link :to="{ name: 'card_store' }" class="title-menu">
+          <router-link :to="{ name: 'card_store' }" class="title-sub-menu">
             <span>Kho thẻ</span>
           </router-link>
         </a-menu-item>
         <a-menu-item key="4_7" >
-          <router-link :to="{ name: 'card_inventory_calculator' }" class="title-menu">
+          <router-link :to="{ name: 'card_inventory_calculator' }" class="title-sub-menu">
             <span>Tính tồn kho thẻ</span>
           </router-link>
         </a-menu-item>
         <a-menu-item key="4_8" >
-          <router-link :to="{ name: 'list_attach_invoice' }" class="title-menu">
+          <router-link :to="{ name: 'list_attach_invoice' }" class="title-sub-menu">
             <span>Lập bảng kê</span>
           </router-link>
         </a-menu-item>
         <a-menu-item key="4_9" >
-          <router-link :to="{ name: 'disparity_handling' }" class="title-menu">
+          <router-link :to="{ name: 'disparity_handling' }" class="title-sub-menu">
             <span>Xử lý chênh lệch</span>
           </router-link>
         </a-menu-item>
+        <!--        <a-menu-item key="4_10" >-->
+        <!--          <router-link :to="{ name: 'ticket_import_voucher' }" class="title-sub-menu">-->
+        <!--            <span>Phiếu nhập vé</span>-->
+        <!--          </router-link>-->
+        <!--        </a-menu-item>-->
+        <!--        <a-menu-item key="4_11" >-->
+        <!--          <router-link :to="{ name: '' }" class="title-menu">-->
+        <!--            <span>Phiếu xuất vé</span>-->
+        <!--          </router-link>-->
+        <!--        </a-menu-item>-->
+        <!--        <a-menu-item key="4_12" >-->
+        <!--          <router-link :to="{ name: '' }" class="title-menu">-->
+        <!--            <span>Quản lý phiếu nhập vé</span>-->
+        <!--          </router-link>-->
+        <!--        </a-menu-item>-->
+        <!--        <a-menu-item key="4_13" >-->
+        <!--          <router-link :to="{ name: '' }" class="title-menu">-->
+        <!--            <span>Quản lý phiếu xuất vé</span>-->
+        <!--          </router-link>-->
+        <!--        </a-menu-item>-->
       </a-sub-menu>
       <a-sub-menu key="5">
         <a slot="title"><icon name="book" width="24px" height="24px" style="margin-right: 10px"></icon><span class="title-menu">Đối soát ETC</span></a>
-        <!--        <a-menu-item key="5_1" >-->
-        <!--          <router-link :to="{ name: 'list_attach_invoice' }" class="title-menu">-->
-        <!--            <span>Lập bảng kê</span>-->
-        <!--          </router-link>-->
-        <!--        </a-menu-item>-->
-        <!--        <a-menu-item key="5_2" >-->
-        <!--          <router-link :to="{ name: 'account' }" class="title-menu">-->
-        <!--            <span>Xử lý chênh lệch</span>-->
-        <!--          </router-link>-->
-        <!--        </a-menu-item>-->
+        <a-menu-item key="5_1" >
+          <router-link :to="{ name: 'import_counter_transaction' }" class="title-sub-menu">
+            <span>Import đối soát giao dịch</span>
+          </router-link>
+        </a-menu-item>
+        <a-menu-item key="5_2" >
+          <router-link :to="{ name: 'create_transaction' }" class="title-sub-menu">
+            <span>Tạo giao dịch ETC</span>
+          </router-link>
+        </a-menu-item>
+        <a-menu-item key="5_3" >
+          <router-link :to="{ name: 'adjustmen_transaction_management' }" class="title-sub-menu">
+            <span>Điều chỉnh giao dịch đã đối soát</span>
+          </router-link>
+        </a-menu-item>
       </a-sub-menu>
       <a-sub-menu key="6">
         <a slot="title"><icon name="book" width="24px" height="24px" style="margin-right: 10px"></icon><span class="title-menu">Báo cáo thống kê</span></a>
@@ -206,6 +231,19 @@ export default {
         case 'disparity_handling':
           idx = '4_9'
           break
+        case 'ticket_import_voucher':
+          idx = '4_10'
+          break
+        case 'import_counter_transaction':
+        case 'import_counter_transaction_import':
+          idx = '5_1'
+          break
+        case 'create_transaction':
+          idx = '5_2'
+          break
+        case 'adjustmen_transaction_management':
+          idx = '5_3'
+          break
       }
 
       return idx
@@ -234,7 +272,14 @@ export default {
         case 'card_inventory_calculator':
         case 'list_attach_invoice':
         case 'disparity_handling':
+        case 'ticket_import_voucher':
           k = '4'
+          break
+        case 'import_counter_transaction':
+        case 'import_counter_transaction_import':
+        case 'create_transaction':
+        case 'adjustmen_transaction_management':
+          k = '5'
           break
         default:
           k = '0'
@@ -315,6 +360,10 @@ export default {
 }
 .title-menu{
   font-size: 16px!important;
+  font-weight: 400!important;
+}
+.title-sub-menu{
+  font-size: 14px!important;
   font-weight: 400!important;
 }
 .icon-menu {

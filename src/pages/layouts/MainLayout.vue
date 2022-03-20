@@ -11,7 +11,7 @@
         <a-layout-content>
           <slot />
         </a-layout-content>
-        <a-layout-footer style="text-align: center; padding-bottom:16px">Copyright ©2021. All rights reserved.</a-layout-footer>
+        <a-layout-footer style="text-align: center; padding-bottom:16px">Copyright ©2022. All rights reserved.</a-layout-footer>
       </a-layout>
     </a-layout>
   </a-layout>

@@ -64,7 +64,7 @@ export default [
     width: 120
   },
   {
-    title: 'Trạm',
+    title: 'Đơn vị',
     dataIndex: 'tram',
     scopedSlots: { customRender: 'tram' },
     align: 'left',

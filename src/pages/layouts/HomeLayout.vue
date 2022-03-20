@@ -12,7 +12,7 @@
           </div>
           <slot />
           <a-layout-footer style="background: transparent;">
-            <a-layout-footer style="text-align: center; padding-bottom:16px;background: transparent;">Copyright ©2021. All rights reserved.</a-layout-footer>
+            <a-layout-footer style="text-align: center; padding-bottom:16px;background: transparent;">Copyright ©2022. All rights reserved.</a-layout-footer>
           </a-layout-footer>
         </a-layout-content>
       </a-layout>

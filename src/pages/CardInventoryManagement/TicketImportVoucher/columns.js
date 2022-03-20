@@ -5,31 +5,29 @@ export default [
     scopedSlots: { customRender: 'rowIndex' },
     align: 'center',
     ellipsis: true,
-    width: 80
-  },
-  {
-    title: 'Đơn vị',
-    dataIndex: 'tram',
-    scopedSlots: { customRender: 'tram' },
-    align: 'left',
-    ellipsis: true,
-    width: 120
+    width: 100
   },
   {
     title: 'Thiết bị',
     dataIndex: 'thietbi',
     scopedSlots: { customRender: 'thietbi' },
     align: 'left',
-    ellipsis: true,
-    width: 120
+    ellipsis: true
   },
   {
-    title: 'Số lượng thẻ',
-    dataIndex: 'soluongthe',
-    scopedSlots: { customRender: 'soluongthe' },
+    title: 'Số lượng',
+    dataIndex: 'soluong',
+    scopedSlots: { customRender: 'soluong' },
     align: 'right',
+    ellipsis: true
+  },
+  {
+    title: 'Thao tác',
+    dataIndex: 'action',
+    scopedSlots: { customRender: 'action' },
+    align: 'center',
     ellipsis: true,
-    width: 120
+    width: 80
   }
 
 ]
