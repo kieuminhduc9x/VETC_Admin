@@ -39,16 +39,20 @@
                 prop="ngaydoisoat"
                 style="margin-bottom: 20px!important;">
                 <a-date-picker
+                  placeholder="Chọn thời gian"
                   format="DD/MM/YYY"
                   v-model="form.ngaydoisoat"></a-date-picker>
               </a-form-model-item>
             </a-col>
+          </a-row>
+          <a-row :gutter="16">
             <a-col :xs="24" :lg="12" :md="12">
               <a-form-model-item
                 label="Ngày bắt đầu"
                 prop="ngaybatdau"
                 style="margin-bottom: 20px!important;">
                 <a-date-picker
+                  placeholder="Chọn thời gian"
                   format="DD/MM/YYY"
                   v-model="form.ngaybatdau"></a-date-picker>
               </a-form-model-item>
@@ -59,10 +63,13 @@
                 prop="ngayketthuc"
                 style="margin-bottom: 20px!important;">
                 <a-date-picker
+                  placeholder="Chọn thời gian"
                   format="DD/MM/YYY"
                   v-model="form.ngayketthuc"></a-date-picker>
               </a-form-model-item>
             </a-col>
+          </a-row>
+          <a-row :gutter="16">
             <a-col :xs="24" :lg="12" :md="12">
               <a-form-model-item
                 label="Tổng tiền"
@@ -175,12 +182,12 @@ export default {
         ngaybatdau: '',
         ngayketthuc: '',
         tongtien: '',
-        tenfile: '1'
+        tenfile: ''
       },
       lsTram: [
         {
           value: '1',
-          name: 'Liêm Tuyền'
+          name: 'Trạm B'
         }
       ],
       labelCol: { span: 6 },

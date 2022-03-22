@@ -4,13 +4,13 @@
       <div style="display: flex; justify-content: space-between">
         <a-breadcrumb separator=">">
           <a-breadcrumb-item >Kế toán</a-breadcrumb-item>
-          <a-breadcrumb-item :class="'active'">Phiếu nhập kho thẻ</a-breadcrumb-item>
+          <a-breadcrumb-item :class="'active'">Phiếu xuất vé</a-breadcrumb-item>
         </a-breadcrumb>
         <menu-profile></menu-profile>
       </div>
     </template>
     <div style="margin-top: 5px">
-      <a-card title="Thông tin phiếu nhập">
+      <a-card title="Thông tin phiếu xuất">
         <a-form-model
           :model="form"
           :label-col="labelCol"
@@ -21,13 +21,12 @@
             <a-col :xs="24" :lg="12" :md="12">
               <a-form-model-item
                 label="Đơn vị"
-                prop="tram"
+                prop="donvi"
                 style="margin-bottom: 20px!important;">
                 <a-select
-                  v-model="form.tram"
-                  :disabled="true"
+                  v-model="form.donvi"
                 >
-                  <a-select-option v-for="item in lsTram" :key="item.value" :value="item.value">
+                  <a-select-option v-for="item in lsDonvi" :key="item.value" :value="item.value">
                     {{ item.name }}
                   </a-select-option>
                 </a-select>
@@ -51,13 +50,13 @@
                 </a-select>
               </a-form-model-item>
               <a-form-model-item
-                label="Người nhận"
-                prop="nguoinhan"
+                label="Người giao"
+                prop="nguoigiao"
                 style="margin-bottom: 20px!important;">
                 <a-select
-                  v-model="form.nguoinhan"
+                  v-model="form.nguoigiao"
                 >
-                  <a-select-option v-for="item in lsNguoinhan" :key="item.value" :value="item.value">
+                  <a-select-option v-for="item in lsNguoigiao" :key="item.value" :value="item.value">
                     {{ item.name }}
                   </a-select-option>
                 </a-select>
@@ -97,13 +96,13 @@
                 <a-input v-model="form.sochungtu"></a-input>
               </a-form-model-item>
               <a-form-model-item
-                label="Nhập từ"
-                prop="nhaptu"
+                label="Xuất đến"
+                prop="xuatden"
                 style="margin-bottom: 15px!important;">
                 <a-select
-                  v-model="form.nhaptu"
+                  v-model="form.xuatden"
                 >
-                  <a-select-option v-for="item in lsNhaptu" :key="item.value" :value="item.value">
+                  <a-select-option v-for="item in lsXuatden" :key="item.value" :value="item.value">
                     {{ item.name }}
                   </a-select-option>
                 </a-select>
@@ -118,7 +117,7 @@
           </a-row>
         </a-form-model>
       </a-card>
-      <a-card title="Chi tiết phiếu nhập">
+      <a-card title="Chi tiết phiếu xuất">
         <a-form-model
           :model="formDetail"
           :label-col="labelCol"
@@ -126,31 +125,80 @@
           labelAlign="left"
           style="padding: 15px 20px">
           <a-row :gutter="16">
-            <a-col :xs="24" :lg="10" :md="10">
-              <a-form-model-item
-                label="Thiết bị"
-                prop="thietbi"
-                style="margin-bottom: 20px!important;">
-                <a-select
-                  v-model="formDetail.thietbi"
-                >
-                  <a-select-option v-for="item in lsThietbi" :key="item.value" :value="item.value">
-                    {{ item.name }}
-                  </a-select-option>
-                </a-select>
-              </a-form-model-item>
+            <a-col :xs="24" :md="16" :lg="16">
+              <a-row :gutter="16">
+                <a-col :xs="24" :lg="12" :md="12">
+                  <a-form-model-item
+                    label="Lộ trình"
+                    prop="lotrinh"
+                    style="margin-bottom: 20px!important;">
+                    <a-select
+                      v-model="formDetail.lotrinh"
+                      placeholder="Chọn lộ trình"
+                    >
+                      <a-select-option v-for="item in lsLotrinh" :key="item.value" :value="item.value">
+                        {{ item.name }}
+                      </a-select-option>
+                    </a-select>
+                  </a-form-model-item>
+                </a-col>
+                <a-col :xs="24" :lg="12" :md="12">
+                  <a-form-model-item
+                    label="Loại vé"
+                    prop="lotrinh"
+                    style="margin-bottom: 20px!important;">
+                    <a-select
+                      placeholder="Chọn loại vé"
+                      v-model="formDetail.lotrinh">
+                      <a-select-option v-for="item in lsLoaive" :key="item.value" :value="item.value">
+                        {{ item.name }}
+                      </a-select-option>
+                    </a-select>
+                  </a-form-model-item>
+                </a-col>
+              </a-row>
+              <a-row :gutter="16">
+                <a-col :xs="24" :lg="12" :md="12">
+                  <a-form-model-item
+                    label="Từ Serial"
+                    prop="tuserial"
+                    style="margin-bottom: 20px!important;">
+                    <a-input
+                      v-model="formDetail.tuserial"
+                      placeholder="Nhập từ Serial"
+                    >
+                    </a-input>
+                  </a-form-model-item>
+                </a-col>
+                <a-col :xs="24" :lg="12" :md="12">
+                  <a-form-model-item
+                    label="Đến Serial"
+                    prop="denserial"
+                    style="margin-bottom: 20px!important;">
+                    <a-input
+                      placeholder="Nhập đến Serial"
+                      v-model="formDetail.denserial">
+                    </a-input>
+                  </a-form-model-item>
+                </a-col>
+              </a-row>
+              <a-row :gutter="16">
+                <a-col :xs="24" :lg="24" :md="24">
+                  <a-form-model-item
+                    label="Số lượng"
+                    prop="soluong"
+                    style="margin-bottom: 20px!important;">
+                    <a-input
+                      v-model="formDetail.soluong">
+                    </a-input>
+                  </a-form-model-item>
+                </a-col>
+              </a-row>
             </a-col>
-            <a-col :xs="24" :lg="10" :md="10">
-              <a-form-model-item
-                label="Số lượng"
-                prop="soluong"
-                style="margin-bottom: 20px!important;">
-                <a-input v-model="formDetail.soluong"></a-input>
-              </a-form-model-item>
-            </a-col>
-            <a-col :xs="24" :lg="4" :md="4">
-              <div>
-                <a-button class="ant-btn-success">Thêm vào danh sách</a-button>
+            <a-col :xs="24" :lg="8" :md="8">
+              <div style="display: flex; justify-content: center">
+                <a-button class="ant-btn-success">Thêm vào DS</a-button>
+                <a-button class="ant-btn-success">Import file</a-button>
               </div>
             </a-col>
           </a-row>
@@ -177,8 +225,8 @@
                 </template>
               </a-table>
               <div style="display: flex; justify-content: flex-end;margin-top: 20px ">
-                <a-checkbox :checked="formDetail.inphieunhap" v-model="formDetail.inphieunhap">
-                  <span>In phiếu nhập</span>
+                <a-checkbox :checked="formDetail.inphieuxuat" v-model="formDetail.inphieuxuat">
+                  <span>In phiếu xuat</span>
                 </a-checkbox>
               </div>
               <div style="display: flex; justify-content: flex-end;margin-top: 20px ">
@@ -235,17 +283,17 @@ export default {
       loading: false,
       columns,
       form: {
-        tram: '1',
+        donvi: '1',
         sophieu: 'PN20022022001',
         phuongthuc: '1',
-        nguoinhan: '1',
+        nguoigiao: '1',
         ngaylap: '2022-03-16',
         ca: '1',
         sochungtu: '123456789',
-        nhaptu: '1',
+        xuatden: '1',
         ghichu: ''
       },
-      lsTram: [
+      lsDonvi: [
         {
           value: '1',
           name: 'Trạm B'
@@ -254,22 +302,14 @@ export default {
       lsPhuongthuc: [
         {
           value: '1',
-          name: 'Nhập thẻ mới từ trung tâm'
+          name: 'Xuất vé cho nhân viên'
         },
         {
           value: '2',
-          name: 'Nhập thẻ từ trạm khác'
-        },
-        {
-          value: '3',
-          name: 'Nhập thẻ dư từ nhân viên'
-        },
-        {
-          value: '4',
-          name: 'Nhập thẻ hư từ nhân viên'
+          name: 'Xuất vé hỏng'
         }
       ],
-      lsNguoinhan: [
+      lsNguoigiao: [
         {
           value: '1',
           name: 'Hoàng My'
@@ -281,29 +321,33 @@ export default {
           name: 'Ca 2'
         }
       ],
-      lsNhaptu: [
+      lsXuatden: [
         {
           value: '1',
-          name: 'Tien Phong'
+          name: 'Hà Thanh Vân'
         }
       ],
       labelCol: { span: 6 },
       wrapperCol: { span: 14 },
       formDetail: {
-        thietbi: '1',
+        lotrinh: undefined,
+        loaive: undefined,
+        tuserial: '',
+        denserial: '',
         soluong: '',
-        inphieunhap: false
+        inphieuxuat: false
       },
-      lsThietbi: [
-        {
-          value: '1',
-          name: 'Thẻ IC'
-        }
-      ],
+      lsLotrinh: [],
+      lsLoaive: [],
       data: [
         {
           rowIndex: '1',
-          thietbi: 'Thẻ IC',
+          lotrinh: 'Trạm A - Trạm B',
+          loaive: 'Vé lượt loại 2',
+          menhgia: '1,000',
+          kyhieu: 'TC01/02',
+          tuserial: '0000001',
+          denserial: '0001000',
           soluong: '1,000'
         }
       ]

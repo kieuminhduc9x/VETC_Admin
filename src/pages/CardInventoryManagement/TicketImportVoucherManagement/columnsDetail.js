@@ -8,14 +8,6 @@ export default [
     width: 100
   },
   {
-    title: 'Thao tác',
-    dataIndex: 'action',
-    scopedSlots: { customRender: 'action' },
-    align: 'center',
-    ellipsis: true,
-    width: 80
-  },
-  {
     title: 'Lộ trình',
     dataIndex: 'lotrinh',
     scopedSlots: { customRender: 'lotrinh' },

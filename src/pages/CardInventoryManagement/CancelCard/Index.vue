@@ -53,10 +53,11 @@
             </a-col>
             <a-col :xs="24" :lg="12" :md="12">
               <a-form-model-item
-                label="Ngày lập"
+                label="Ngày"
                 prop="ngaylap"
                 style="margin-bottom: 20px!important;">
                 <a-date-picker
+                  placeholder="Chọn thời gian"
                   v-model="form.ngaylap"
                   format="DD/MM/YYYY"></a-date-picker>
               </a-form-model-item>

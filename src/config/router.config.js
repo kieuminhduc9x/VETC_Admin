@@ -280,16 +280,58 @@ export const asyncRouterMap = [
     }
   },
 
-  // Lập phiếu xuất vé
+  // Phiếu xuất vé
   {
-    path: '/inventory-receiving-voucher',
-    name: 'inventory_receiving_voucher',
-    component: () => import('../pages/CardInventoryManagement/InventoryReceivingVoucher/Index'),
+    path: '/ticket-export-voucher',
+    name: 'ticket_export_voucher',
+    component: () => import('../pages/CardInventoryManagement/TicketExportVoucher/Index'),
     meta: {
       authRequired: true,
       head: {
-        title: 'Lập phiếu xuất kho',
-        description: 'Lập phiếu xuất kho'
+        title: 'Phiếu xuất vé',
+        description: 'Phiếu xuất vé'
+      }
+    }
+  },
+
+  // Quản lý phiếu nhập vé
+  {
+    path: '/ticket-import-voucher-management',
+    name: 'ticket_import_voucher_management',
+    component: () => import('../pages/CardInventoryManagement/TicketImportVoucherManagement/Index'),
+    meta: {
+      authRequired: true,
+      head: {
+        title: 'Quản lý phiếu nhập vé',
+        description: 'Quản lý phiếu nhập vé'
+      }
+    }
+  },
+
+  // Quản lý phiếu xuất vé
+  {
+    path: '/ticket-export-voucher-management',
+    name: 'ticket_export_voucher_management',
+    component: () => import('../pages/CardInventoryManagement/TicketExportVoucherManagement/Index'),
+    meta: {
+      authRequired: true,
+      head: {
+        title: 'Quản lý phiếu xuất vé',
+        description: 'Quản lý phiếu xuất vé'
+      }
+    }
+  },
+
+  // Kho vé
+  {
+    path: '/ticket-store',
+    name: 'ticket_store',
+    component: () => import('../pages/CardInventoryManagement/TicketStore/Index'),
+    meta: {
+      authRequired: true,
+      head: {
+        title: 'Kho vé',
+        description: 'Kho vé'
       }
     }
   },

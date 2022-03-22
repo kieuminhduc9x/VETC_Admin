@@ -37,7 +37,7 @@ export default [
     scopedSlots: { customRender: 'thoigiangiaodich' },
     align: 'center',
     ellipsis: true,
-    width: 150
+    width: 180
   },
   {
     title: 'Làn xe',
@@ -83,7 +83,7 @@ export default [
     title: 'Trạng thái BE',
     dataIndex: 'trangthaibe',
     scopedSlots: { customRender: 'trangthaibe' },
-    align: 'right',
+    align: 'left',
     ellipsis: true,
     width: 120
   },
@@ -91,7 +91,7 @@ export default [
     title: 'Trạng thái hậu kiểm',
     dataIndex: 'trangthaihaukiem',
     scopedSlots: { customRender: 'trangthaihaukiem' },
-    align: 'right',
+    align: 'left',
     ellipsis: true,
     width: 120
   },

@@ -11,7 +11,7 @@ export default [
     title: 'Ngày chốt',
     dataIndex: 'ngaychot',
     scopedSlots: { customRender: 'ngaychot' },
-    align: 'left',
+    align: 'center',
     ellipsis: true,
     width: 120
   },

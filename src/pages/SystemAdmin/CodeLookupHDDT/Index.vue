@@ -71,6 +71,7 @@
                 prop="tungay"
                 style="margin-bottom: 20px!important;">
                 <a-date-picker
+                  placeholder="Chọn thời gian"
                   v-model="form.tungay"
                   format="DD/MM/YYYY"
                 >
@@ -83,6 +84,7 @@
                 prop="denngay"
                 style="margin-bottom: 20px!important;">
                 <a-date-picker
+                  placeholder="Chọn thời gian"
                   v-model="form.denngay"
                   format="DD/MM/YYYY"
                 >
@@ -169,7 +171,7 @@ export default {
       form: {
         tramvao: '1',
         tramra: '1',
-        code: '1',
+        code: 'LT023JFJGDSJFG',
         biensoxe: '',
         tungay: '',
         denngay: ''

@@ -35,6 +35,7 @@
                 prop="ngaydoisoat"
                 style="margin-bottom: 20px!important;">
                 <a-date-picker
+                  placeholder="Chọn thời gian"
                   format="DD/MM/YYY"
                   v-model="form.ngaydoisoat"></a-date-picker>
               </a-form-model-item>

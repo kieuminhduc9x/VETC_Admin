@@ -62,6 +62,7 @@
                 prop="thoigiangiaodich"
                 :rules="[]">
                 <a-date-picker
+                  placeholder="Chọn thời gian"
                   v-model="form.thoigiangiaodich"
                 >
                 </a-date-picker>

@@ -27,7 +27,7 @@ export default [
     scopedSlots: { customRender: 'action' },
     align: 'center',
     ellipsis: true,
-    width: 80
+    width: 120
   }
 
 ]

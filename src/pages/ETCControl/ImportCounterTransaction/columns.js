@@ -29,7 +29,7 @@ export default [
     scopedSlots: { customRender: 'ngaybatdau' },
     align: 'center',
     ellipsis: true,
-    width: 150
+    width: 180
   },
   {
     title: 'Ngày kết thúc',
@@ -37,12 +37,12 @@ export default [
     scopedSlots: { customRender: 'ngayketthuc' },
     align: 'center',
     ellipsis: true,
-    width: 150
+    width: 180
   },
   {
-    title: 'Tên đơn vị',
-    dataIndex: 'tendonvi',
-    scopedSlots: { customRender: 'tendonvi' },
+    title: 'Tên trạm',
+    dataIndex: 'tentram',
+    scopedSlots: { customRender: 'tentram' },
     align: 'left',
     ellipsis: true,
     width: 120
@@ -69,7 +69,7 @@ export default [
     scopedSlots: { customRender: 'ngaytao' },
     align: 'center',
     ellipsis: true,
-    width: 150
+    width: 180
   },
   {
     title: 'Người tạo',
@@ -77,7 +77,7 @@ export default [
     scopedSlots: { customRender: 'nguoitao' },
     align: 'left',
     ellipsis: true,
-    width: 120
+    width: 180
   },
   {
     title: 'Tổng tiền',

@@ -4,13 +4,13 @@
       <div style="display: flex; justify-content: space-between">
         <a-breadcrumb separator=">">
           <a-breadcrumb-item >Kế toán</a-breadcrumb-item>
-          <a-breadcrumb-item :class="'active'">Quản lý phiếu nhập </a-breadcrumb-item>
+          <a-breadcrumb-item :class="'active'">Quản lý phiếu xuất vé</a-breadcrumb-item>
         </a-breadcrumb>
         <menu-profile></menu-profile>
       </div>
     </template>
     <div style="margin-top: 5px">
-      <a-card title="Thông tin phiếu nhập">
+      <a-card title="Thông tin phiếu xuất vé">
         <a-form-model
           :model="form"
           :label-col="labelCol"
@@ -54,7 +54,7 @@
                 </a-select>
               </a-form-model-item>
               <a-form-model-item
-                label="Người nhận"
+                label="Người lập"
                 prop="nguoilap"
                 style="margin-bottom: 20px!important;">
                 <a-select
@@ -63,7 +63,7 @@
                   <a-select-option :key="'all'" :value="'all'">
                     -- Tất cả --
                   </a-select-option>
-                  <a-select-option v-for="item in lsNguoinhan" :key="item.value" :value="item.value">
+                  <a-select-option v-for="item in lsNguoilap" :key="item.value" :value="item.value">
                     {{ item.name }}
                   </a-select-option>
                 </a-select>
@@ -114,16 +114,16 @@
                 </a-select>
               </a-form-model-item>
               <a-form-model-item
-                label="Nhập từ"
-                prop="nhaptu"
+                label="Xuất đến"
+                prop="xuatden"
                 style="margin-bottom: 20px!important;">
                 <a-select
-                  v-model="form.nhaptu"
+                  v-model="form.xuatden"
                 >
                   <a-select-option :key="'all'" :value="'all'">
                     -- Tất cả --
                   </a-select-option>
-                  <a-select-option v-for="item in lsNhaptu" :key="item.value" :value="item.value">
+                  <a-select-option v-for="item in lsXuatden" :key="item.value" :value="item.value">
                     {{ item.name }}
                   </a-select-option>
                 </a-select>
@@ -133,14 +133,14 @@
           <a-row :gutter="16">
             <a-col :span="24">
               <div style="display: flex; justify-content: center">
-                <a-button class="ant-btn-success">Thêm phiếu nhập</a-button>
+                <a-button class="ant-btn-success">Thêm phiếu xuất</a-button>
                 <a-button class="ant-btn-success">Tìm kiếm</a-button>
               </div>
             </a-col>
           </a-row>
         </a-form-model>
       </a-card>
-      <a-card title="Danh sách phiếu nhập">
+      <a-card title="Danh sách phiếu xuất vé">
         <div slot="extra">
           <a-button class="ant-btn-success">Excel</a-button>
         </div>
@@ -184,7 +184,7 @@
           </a-col>
         </a-row>
       </a-card>
-      <a-card title="Chi tiết phiếu nhập">
+      <a-card title="Chi tiết phiếu xuất vé">
         <a-row :gutter="16" type="flex">
           <a-col :span="24">
             <a-table
@@ -254,11 +254,11 @@ export default {
         sophieu: 'PN20022022001',
         phuongthuc: 'all',
         nguoilap: 'all',
-        tungay: '2022-03-16',
-        denngay: '2022-03-16',
+        tungay: '2021-02-22',
+        denngay: '2021-02-22',
         ca: 'all',
         sochungtu: '123456789',
-        nhaptu: 'all'
+        xuatden: 'all'
       },
       lsTram: [
         {
@@ -280,7 +280,7 @@ export default {
           name: 'Xuất cho trạm khác'
         }
       ],
-      lsNguoinhan: [
+      lsNguoilap: [
         {
           value: '1',
           name: 'Hoàng My'
@@ -292,7 +292,7 @@ export default {
           name: 'Ca 2'
         }
       ],
-      lsNhaptu: [
+      lsXuatden: [
         {
           value: '1',
           name: 'Xuất thẻ cho nhân viên'
@@ -327,8 +327,8 @@ export default {
           sochungtu: '123456789',
           ngaylap: '2021-02-20',
           nguoilap: 'Nguyễn Hạnh',
-          nguoinhan: 'Hoàng My',
-          nhaptu: 'Tien Phong',
+          nguoigiao: 'Hoàng My',
+          xuatden: 'Hà Thanh Vân',
           ca: '2',
           phuongthuc: 'Nhập thẻ mới từ trung tâm',
           ghichu: ''
@@ -340,8 +340,8 @@ export default {
           sochungtu: '123456789',
           ngaylap: '2021-02-20',
           nguoilap: 'Nguyễn Hạnh',
-          nguoinhan: 'Hoàng My',
-          nhaptu: 'Tien Phong',
+          nguoigiao: 'Hoàng My',
+          xuatden: 'Hà Thanh Vân',
           ca: '2',
           phuongthuc: 'Nhập thẻ mới từ trung tâm',
           ghichu: ''
@@ -350,7 +350,12 @@ export default {
       dataDetail: [
         {
           rowIndex: '1',
-          thietbi: 'Thẻ IC',
+          lotrinh: 'Trạm A - Trạm B',
+          loaive: 'Vé lượt loại 2',
+          menhgia: '1,000',
+          kyhieu: 'TC01/02',
+          tuserial: '0000001',
+          denserial: '0001000',
           soluong: '1,000'
         }
       ]

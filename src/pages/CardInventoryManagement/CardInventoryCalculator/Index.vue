@@ -25,7 +25,6 @@
                 style="margin-bottom: 20px!important;">
                 <a-select
                   v-model="form.tram"
-                  :disabled="true"
                 >
                   <a-select-option v-for="item in lsTram" :key="item.value" :value="item.value">
                     {{ item.name }}
@@ -39,6 +38,7 @@
                 prop="ngaychot"
                 style="margin-bottom: 20px!important;">
                 <a-date-picker
+                  placeholder="Chọn thời gian"
                   v-model="form.ngaychot"
                   :format="'DD/MM/YYYY'"
                 >
@@ -69,7 +69,6 @@
                 style="margin-bottom: 20px!important;">
                 <a-select
                   v-model="formChotNgay.tram"
-                  :disabled="true"
                 >
                   <a-select-option v-for="item in lsTramChotNgay" :key="item.value" :value="item.value">
                     {{ item.name }}
@@ -83,6 +82,7 @@
                 prop="tungay"
                 style="margin-bottom: 20px!important;">
                 <a-date-picker
+                  placeholder="Chọn thời gian"
                   v-model="formChotNgay.tungay"
                   format="DD/MM/YYYY"
                 >
@@ -97,6 +97,7 @@
                 <a-date-picker
                   v-model="formChotNgay.denngay"
                   format="DD/MM/YYYY"
+                  placeholder="Chọn thời gian"
                 >
                 </a-date-picker>
               </a-form-model-item>
@@ -204,7 +205,7 @@ export default {
       lsTramChotNgay: [
         {
           value: '1',
-          name: 'Liêm Tuyền'
+          name: 'Trạm B'
         }
       ],
       data: [

@@ -12,7 +12,7 @@
     </div> -->
     <div
       class="ant-layout-sider-trigger sider--top cl-sider--top"
-      style="width: 40px;"
+      style="width: 270px;"
       @click="() => {collapsed = !collapsed; showSidebar()}"><i
         aria-label="icon: right"
         class="anticon anticon-left"
@@ -120,26 +120,31 @@
             <span>Xử lý chênh lệch</span>
           </router-link>
         </a-menu-item>
-        <!--        <a-menu-item key="4_10" >-->
-        <!--          <router-link :to="{ name: 'ticket_import_voucher' }" class="title-sub-menu">-->
-        <!--            <span>Phiếu nhập vé</span>-->
-        <!--          </router-link>-->
-        <!--        </a-menu-item>-->
-        <!--        <a-menu-item key="4_11" >-->
-        <!--          <router-link :to="{ name: '' }" class="title-menu">-->
-        <!--            <span>Phiếu xuất vé</span>-->
-        <!--          </router-link>-->
-        <!--        </a-menu-item>-->
-        <!--        <a-menu-item key="4_12" >-->
-        <!--          <router-link :to="{ name: '' }" class="title-menu">-->
-        <!--            <span>Quản lý phiếu nhập vé</span>-->
-        <!--          </router-link>-->
-        <!--        </a-menu-item>-->
-        <!--        <a-menu-item key="4_13" >-->
-        <!--          <router-link :to="{ name: '' }" class="title-menu">-->
-        <!--            <span>Quản lý phiếu xuất vé</span>-->
-        <!--          </router-link>-->
-        <!--        </a-menu-item>-->
+        <a-menu-item key="4_10" >
+          <router-link :to="{ name: 'ticket_import_voucher' }" class="title-sub-menu">
+            <span>Phiếu nhập vé</span>
+          </router-link>
+        </a-menu-item>
+        <a-menu-item key="4_11" >
+          <router-link :to="{ name: 'ticket_export_voucher' }" class="title-sub-menu">
+            <span>Phiếu xuất vé</span>
+          </router-link>
+        </a-menu-item>
+        <a-menu-item key="4_12" >
+          <router-link :to="{ name: 'ticket_import_voucher_management' }" class="title-sub-menu">
+            <span>Quản lý phiếu nhập vé</span>
+          </router-link>
+        </a-menu-item>
+        <a-menu-item key="4_13" >
+          <router-link :to="{ name: 'ticket_export_voucher_management' }" class="title-sub-menu">
+            <span>Quản lý phiếu xuất vé</span>
+          </router-link>
+        </a-menu-item>
+        <a-menu-item key="4_14" >
+          <router-link :to="{ name: 'ticket_store' }" class="title-sub-menu">
+            <span>Kho vé</span>
+          </router-link>
+        </a-menu-item>
       </a-sub-menu>
       <a-sub-menu key="5">
         <a slot="title"><icon name="book" width="24px" height="24px" style="margin-right: 10px"></icon><span class="title-menu">Đối soát ETC</span></a>
@@ -155,7 +160,7 @@
         </a-menu-item>
         <a-menu-item key="5_3" >
           <router-link :to="{ name: 'adjustmen_transaction_management' }" class="title-sub-menu">
-            <span>Điều chỉnh giao dịch đã đối soát</span>
+            <span>Điều chỉnh GD đã đối soát</span>
           </router-link>
         </a-menu-item>
       </a-sub-menu>
@@ -173,7 +178,7 @@ export default {
   name: 'SideBar',
   data () {
     return {
-      collapsed: true
+      collapsed: false
     }
   },
   computed: {
@@ -234,6 +239,18 @@ export default {
         case 'ticket_import_voucher':
           idx = '4_10'
           break
+        case 'ticket_export_voucher':
+          idx = '4_11'
+          break
+        case 'ticket_import_voucher_management':
+          idx = '4_12'
+          break
+        case 'ticket_export_voucher_management':
+          idx = '4_13'
+          break
+        case 'ticket_store':
+          idx = '4_14'
+          break
         case 'import_counter_transaction':
         case 'import_counter_transaction_import':
           idx = '5_1'
@@ -273,6 +290,10 @@ export default {
         case 'list_attach_invoice':
         case 'disparity_handling':
         case 'ticket_import_voucher':
+        case 'ticket_export_voucher':
+        case 'ticket_import_voucher_management':
+        case 'ticket_export_voucher_management':
+        case 'ticket_store':
           k = '4'
           break
         case 'import_counter_transaction':

@@ -105,6 +105,10 @@ router.beforeEach((routeTo, routeFrom, next) => {
       routeTo.name === 'list_attach_invoice' ||
       routeTo.name === 'disparity_handling' ||
       routeTo.name === 'ticket_import_voucher' ||
+      routeTo.name === 'ticket_export_voucher' ||
+      routeTo.name === 'ticket_import_voucher_management' ||
+      routeTo.name === 'ticket_export_voucher_management' ||
+      routeTo.name === 'ticket_store' ||
       routeTo.name === 'import_counter_transaction' ||
       routeTo.name === 'import_counter_transaction_import' ||
       routeTo.name === 'create_transaction' ||

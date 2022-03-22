@@ -154,6 +154,7 @@
                       prop="thoigianban"
                       style="margin-bottom: 20px!important;">
                       <a-date-picker
+                        placeholder="Chọn thời gian"
                         v-model="formNewSale.thoigianban"
                         format="DD/MM/YYYY hh:mm:ss"
                       >

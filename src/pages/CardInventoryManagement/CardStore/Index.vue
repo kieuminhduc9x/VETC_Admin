@@ -74,7 +74,6 @@
                 style="margin-bottom: 20px!important;">
                 <a-select
                   v-model="formTotalCard.nhanvien"
-                  :disabled="true"
                 >
                   <a-select-option v-for="item in lsNhanvien" :key="item.value" :value="item.value">
                     {{ item.name }}
@@ -165,7 +164,7 @@ export default {
       lsNhanvien: [
         {
           value: '1',
-          name: 'Thẻ IC'
+          name: 'Chọn nhân viên'
         }
       ],
       data: [

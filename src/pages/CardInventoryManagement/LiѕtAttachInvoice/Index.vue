@@ -25,7 +25,6 @@
                 style="margin-bottom: 20px!important;">
                 <a-select
                   v-model="form.thuphivien"
-                  :disabled="true"
                 >
                   <a-select-option v-for="item in lsThuphivien" :key="item.value" :value="item.value">
                     {{ item.name }}
@@ -39,6 +38,7 @@
                 prop="ngay"
                 style="margin-bottom: 20px!important;">
                 <a-date-picker
+                  placeholder="Chọn thời gian"
                   v-model="form.ngay"
                   :format="'DD/MM/YYYY'"
                 >
@@ -52,7 +52,6 @@
                 style="margin-bottom: 20px!important;">
                 <a-select
                   v-model="form.ca"
-                  :disabled="true"
                 >
                   <a-select-option v-for="item in lsCa" :key="item.value" :value="item.value">
                     {{ item.name }}
@@ -317,7 +316,7 @@ export default {
       loading: false,
       form: {
         thuphivien: '1',
-        ngay: '',
+        ngay: '2021-02-21',
         ca: '',
         batdauca: '1',
         ketthucca: '1'

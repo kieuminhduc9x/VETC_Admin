@@ -54,7 +54,7 @@
                 </a-select>
               </a-form-model-item>
               <a-form-model-item
-                label="Người nhận"
+                label="Người lập"
                 prop="nguoilap"
                 style="margin-bottom: 20px!important;">
                 <a-select

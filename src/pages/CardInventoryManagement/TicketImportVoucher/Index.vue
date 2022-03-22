@@ -21,13 +21,12 @@
             <a-col :xs="24" :lg="12" :md="12">
               <a-form-model-item
                 label="Đơn vị"
-                prop="tram"
+                prop="donvi"
                 style="margin-bottom: 20px!important;">
                 <a-select
-                  v-model="form.tram"
-                  :disabled="true"
+                  v-model="form.donvi"
                 >
-                  <a-select-option v-for="item in lsTram" :key="item.value" :value="item.value">
+                  <a-select-option v-for="item in lsDonvi" :key="item.value" :value="item.value">
                     {{ item.name }}
                   </a-select-option>
                 </a-select>
@@ -126,31 +125,80 @@
           labelAlign="left"
           style="padding: 15px 20px">
           <a-row :gutter="16">
-            <a-col :xs="24" :lg="10" :md="10">
-              <a-form-model-item
-                label="Thiết bị"
-                prop="thietbi"
-                style="margin-bottom: 20px!important;">
-                <a-select
-                  v-model="formDetail.thietbi"
-                >
-                  <a-select-option v-for="item in lsThietbi" :key="item.value" :value="item.value">
-                    {{ item.name }}
-                  </a-select-option>
-                </a-select>
-              </a-form-model-item>
+            <a-col :xs="24" :md="16" :lg="16">
+              <a-row :gutter="16">
+                <a-col :xs="24" :lg="12" :md="12">
+                  <a-form-model-item
+                    label="Lộ trình"
+                    prop="lotrinh"
+                    style="margin-bottom: 20px!important;">
+                    <a-select
+                      v-model="formDetail.lotrinh"
+                      placeholder="Chọn lộ trình"
+                    >
+                      <a-select-option v-for="item in lsLotrinh" :key="item.value" :value="item.value">
+                        {{ item.name }}
+                      </a-select-option>
+                    </a-select>
+                  </a-form-model-item>
+                </a-col>
+                <a-col :xs="24" :lg="12" :md="12">
+                  <a-form-model-item
+                    label="Loại vé"
+                    prop="lotrinh"
+                    style="margin-bottom: 20px!important;">
+                    <a-select
+                      placeholder="Chọn loại vé"
+                      v-model="formDetail.lotrinh">
+                      <a-select-option v-for="item in lsLoaive" :key="item.value" :value="item.value">
+                        {{ item.name }}
+                      </a-select-option>
+                    </a-select>
+                  </a-form-model-item>
+                </a-col>
+              </a-row>
+              <a-row :gutter="16">
+                <a-col :xs="24" :lg="12" :md="12">
+                  <a-form-model-item
+                    label="Từ Serial"
+                    prop="tuserial"
+                    style="margin-bottom: 20px!important;">
+                    <a-input
+                      v-model="formDetail.tuserial"
+                      placeholder="Nhập từ Serial"
+                    >
+                    </a-input>
+                  </a-form-model-item>
+                </a-col>
+                <a-col :xs="24" :lg="12" :md="12">
+                  <a-form-model-item
+                    label="Đến Serial"
+                    prop="denserial"
+                    style="margin-bottom: 20px!important;">
+                    <a-input
+                      placeholder="Nhập đến Serial"
+                      v-model="formDetail.denserial">
+                    </a-input>
+                  </a-form-model-item>
+                </a-col>
+              </a-row>
+              <a-row :gutter="16">
+                <a-col :xs="24" :lg="24" :md="24">
+                  <a-form-model-item
+                    label="Số lượng"
+                    prop="soluong"
+                    style="margin-bottom: 20px!important;">
+                    <a-input
+                      v-model="formDetail.soluong">
+                    </a-input>
+                  </a-form-model-item>
+                </a-col>
+              </a-row>
             </a-col>
-            <a-col :xs="24" :lg="10" :md="10">
-              <a-form-model-item
-                label="Số lượng"
-                prop="soluong"
-                style="margin-bottom: 20px!important;">
-                <a-input v-model="formDetail.soluong"></a-input>
-              </a-form-model-item>
-            </a-col>
-            <a-col :xs="24" :lg="4" :md="4">
-              <div>
-                <a-button class="ant-btn-success">Thêm vào danh sách</a-button>
+            <a-col :xs="24" :lg="8" :md="8">
+              <div style="display: flex; justify-content: center">
+                <a-button class="ant-btn-success">Thêm vào DS</a-button>
+                <a-button class="ant-btn-success">Import file</a-button>
               </div>
             </a-col>
           </a-row>
@@ -235,7 +283,7 @@ export default {
       loading: false,
       columns,
       form: {
-        tram: '1',
+        donvi: '1',
         sophieu: 'PN20022022001',
         phuongthuc: '1',
         nguoinhan: '1',
@@ -245,10 +293,10 @@ export default {
         nhaptu: '1',
         ghichu: ''
       },
-      lsTram: [
+      lsDonvi: [
         {
           value: '1',
-          name: 'Liêm Tuyền'
+          name: 'Trạm B'
         }
       ],
       lsPhuongthuc: [
@@ -296,22 +344,17 @@ export default {
         denserial: '',
         soluong: ''
       },
-      lsLotrinh: [
-        {
-          value: '1',
-          name: 'Thẻ IC'
-        }
-      ],
-      lsLoaive: [
-        {
-          value: '1',
-          name: 'Thẻ IC'
-        }
-      ],
+      lsLotrinh: [],
+      lsLoaive: [],
       data: [
         {
           rowIndex: '1',
-          thietbi: 'Thẻ IC',
+          lotrinh: 'Trạm A - Trạm B',
+          loaive: 'Vé lượt loại 2',
+          menhgia: '1,000',
+          kyhieu: 'TC01/02',
+          tuserial: '0000001',
+          denserial: '0001000',
           soluong: '1,000'
         }
       ]

@@ -4,13 +4,13 @@
       <div style="display: flex; justify-content: space-between">
         <a-breadcrumb separator=">">
           <a-breadcrumb-item >Kế toán</a-breadcrumb-item>
-          <a-breadcrumb-item :class="'active'">Quản lý phiếu nhập </a-breadcrumb-item>
+          <a-breadcrumb-item :class="'active'">Quản lý phiếu nhập vé</a-breadcrumb-item>
         </a-breadcrumb>
         <menu-profile></menu-profile>
       </div>
     </template>
     <div style="margin-top: 5px">
-      <a-card title="Thông tin phiếu nhập">
+      <a-card title="Thông tin phiếu nhập vé">
         <a-form-model
           :model="form"
           :label-col="labelCol"
@@ -140,7 +140,7 @@
           </a-row>
         </a-form-model>
       </a-card>
-      <a-card title="Danh sách phiếu nhập">
+      <a-card title="Danh sách phiếu nhập vé">
         <div slot="extra">
           <a-button class="ant-btn-success">Excel</a-button>
         </div>
@@ -184,7 +184,7 @@
           </a-col>
         </a-row>
       </a-card>
-      <a-card title="Chi tiết phiếu nhập">
+      <a-card title="Chi tiết phiếu nhập vé">
         <a-row :gutter="16" type="flex">
           <a-col :span="24">
             <a-table
@@ -254,8 +254,8 @@ export default {
         sophieu: 'PN20022022001',
         phuongthuc: 'all',
         nguoilap: 'all',
-        tungay: '2022-03-16',
-        denngay: '2022-03-16',
+        tungay: '2022-02-10',
+        denngay: '2022-02-20',
         ca: 'all',
         sochungtu: '123456789',
         nhaptu: 'all'
@@ -330,7 +330,7 @@ export default {
           nguoinhan: 'Hoàng My',
           nhaptu: 'Tien Phong',
           ca: '2',
-          phuongthuc: 'Nhập thẻ mới từ trung tâm',
+          phuongthuc: 'Nhập vé mới từ trung tâm',
           ghichu: ''
         },
         {
@@ -338,19 +338,24 @@ export default {
           tram: 'Trạm B',
           sophieu: 'PN20022022001',
           sochungtu: '123456789',
-          ngaylap: '2021-02-20',
+          ngaylap: '2021-02-15',
           nguoilap: 'Nguyễn Hạnh',
           nguoinhan: 'Hoàng My',
           nhaptu: 'Tien Phong',
           ca: '2',
-          phuongthuc: 'Nhập thẻ mới từ trung tâm',
+          phuongthuc: 'Nhập vé mới từ trung tâm',
           ghichu: ''
         }
       ],
       dataDetail: [
         {
           rowIndex: '1',
-          thietbi: 'Thẻ IC',
+          lotrinh: 'Trạm A - Trạm B',
+          loaive: 'Vé lượt loại 2',
+          menhgia: '1,000',
+          kyhieu: 'TC01/02',
+          tuserial: '0000001',
+          denserial: '0001000',
           soluong: '1,000'
         }
       ]

@@ -19,7 +19,7 @@
           labelAlign="left">
 
           <a-row :gutter="16">
-            <a-col :xs="24" :lg="12" :md="12">
+            <a-col :xs="24" :lg="8" :md="8">
               <a-form-model-item
                 label="Chọn file"
                 prop="tenfile"
@@ -29,6 +29,15 @@
                 >
                 </a-input>
               </a-form-model-item>
+            </a-col>
+            <a-col :xs="24" :lg="4" :md="4">
+              <a-upload
+                name="file"
+                :multiple="true"
+                action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+              >
+                <a-button> <a-icon type="upload" /> upload </a-button>
+              </a-upload>
             </a-col>
             <a-col :xs="24" :lg="12" :md="12">
               <div style="display: flex; justify-content: center; margin: 0px 0">

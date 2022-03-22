@@ -80,6 +80,7 @@
                 prop="ngaydoisoat"
                 :rules="[]">
                 <a-date-picker
+                  placeholder="Chọn thời gian"
                   v-model="form.ngaydoisoat"
                 >
                 </a-date-picker>
