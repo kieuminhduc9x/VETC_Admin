@@ -54,7 +54,9 @@
                 label="Mã tra cứu HĐĐT"
                 prop="code"
                 style="margin-bottom: 20px!important;">
-                <a-input v-model="form.code"></a-input>
+                <a-input
+                  placeholder="Nhập mã tra cứu HĐĐT"
+                  v-model="form.code"></a-input>
               </a-form-model-item>
             </a-col>
             <a-col :xs="24" :lg="12" :md="12">
@@ -171,7 +173,7 @@ export default {
       form: {
         tramvao: '1',
         tramra: '1',
-        code: 'LT023JFJGDSJFG',
+        code: undefined,
         biensoxe: '',
         tungay: '',
         denngay: ''
